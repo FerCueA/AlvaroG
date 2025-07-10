@@ -1,27 +1,37 @@
-// Reemplaza esta URL con tu enlace real de Booksy
+// Enlace a Booksy
 const booksyURL = "https://booksy.com/es-es/osteopatiayacupuntura";
 
-// Lista de botones que redirigen a Booksy
-const botonesReserva = [
-  document.getElementById("btn-open-login"),
-  document.getElementById("btn-open-login-hero"),
-  document.getElementById("btn-open-login-footer"),
-];
-
-botonesReserva.forEach((btn) => {
-  if (btn) {
-    btn.addEventListener("click", () => {
-      window.open(booksyURL, "_blank");
-    });
-  }
-});
-
-// Menú responsive (opcional si tienes nav-toggle activo)
-const navToggle = document.getElementById("nav-toggle");
-const navLinks = document.getElementById("nav-links");
-
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
+// Abrir Booksy
+function abrirBooksy() {
+  window.open(booksyURL, "_blank");
 }
+
+// Botones de reserva
+["btn-open-login", "btn-open-login-hero", "btn-open-login-footer"].forEach(
+  (id) => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener("click", abrirBooksy);
+  }
+);
+
+// IntersectionObserver para activar animaciones
+const animados = document.querySelectorAll(
+  ".hero-content h1, .hero-content p, .btn-primary, .service-card"
+);
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = "running";
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+animados.forEach((el) => {
+  el.style.animationPlayState = "paused";
+  observer.observe(el);
+});
