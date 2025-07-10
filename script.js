@@ -1,5 +1,5 @@
 // Reemplaza esta URL con tu enlace real de Booksy
-const booksyURL = "https://booksy.com/es-es/tu-nombre-de-usuario"; // <-- CAMBIA ESTO
+const booksyURL = "https://booksy.com/es-es/osteopatiayacupuntura";
 
 // Lista de botones que redirigen a Booksy
 const botonesReserva = [
