@@ -7,7 +7,7 @@
       name="description"
       content="Centro de Osteopatía China y Medicina Tradicional en Madrid. Reserva tu cita online."
     />
-    <title>Alvaro · Osteopatía y Medicina Tradicional China</title>
+    <title>Álvaro García · Osteopatía y Medicina Tradicional China</title>
 
     <!-- Google Fonts -->
     <link
@@ -16,39 +16,58 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" href="img/logo.png" />
 
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-M9DRQROsA2ZtLB5FbUvYYzUpBqG9N9e7x2QnK6wZ7LXmA6RVfsdt4kzRmkKfQpbClYIXHnEcWvM5dSc9W5Zb0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
+
   <body>
-    <!-- HEADER -->
-    <header>
+    <header class="header">
       <nav class="nav-container">
-        <a href="#" class="logo">Alvaro</a>
-        <button id="btn-open-login" class="btn-booksy">Reserva tu cita</button>
+        <a href="/" class="logo-img">
+          <img src="/img/Logo.png" alt="Logo Álvaro" class="logo-decorado" />
+        </a>
+        <div class="nav-actions">
+          <button id="btn-open-login" class="btn-booksy">
+            Reserva tu cita
+          </button>
+        </div>
       </nav>
     </header>
 
     <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="hero-content">
-        <h1>Recupera tu energía vital</h1>
-        <p>
-          Tratamientos profesionales de osteopatía china y medicina tradicional
-          adaptados a ti.
-        </p>
-        <button id="btn-open-login-hero" class="btn-primary">
-          Reservar ahora
-        </button>
-      </div>
-      <div class="hero-wave">
-        <svg viewBox="0 0 1440 80">
-          <path
-            fill="#f0f4ef"
-            d="M0,32L48,32C96,32,192,32,288,48C384,64,480,96,576,106.7C672,117,768,107,864,96C960,85,1056,75,1152,90.7C1248,107,1344,149,1392,170.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-          ></path>
-        </svg>
+    <section
+      id="hero"
+      class="hero"
+      style="background-image: url('/img/hero-bg.png')"
+    >
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h1 class="hero-name">Álvaro García</h1>
+
+          <h2>Osteopatía, Quiromasaje y Medicina china</h2>
+          <p>
+            Acupuntura, Diagnóstico por pulso, Auriculopuntura, Agujas
+            intradermicas, ventosas, moxibustion, acupuntura abdominal, etc.
+          </p>
+          <p>
+            Sesiones personalizadas para mejorar y estabilizar el sistema
+            nervioso central y dolencias musculoesqueleticas.
+          </p>
+
+          <button id="btn-open-login-hero" class="btn-primary">
+            Reservar ahora
+          </button>
+        </div>
       </div>
     </section>
 
@@ -58,28 +77,94 @@
       <div class="service-cards">
         <article class="service-card">
           <div class="service-icon">🦴</div>
-          <h3>Osteopatía China</h3>
+          <h3>Osteopatía</h3>
           <p>Reequilibrio corporal con técnicas ancestrales orientales.</p>
+          <img
+            src="/img/osteopatia.jpg"
+            alt="osteopatía"
+            class="service-image"
+          />
+        </article>
+        
         </article>
         <article class="service-card">
           <div class="service-icon">💉</div>
           <h3>Acupuntura</h3>
           <p>Estimulación de puntos para restaurar el flujo de Qi.</p>
+          <img
+            src="/img/acupuntura.jpg"
+            alt="acupuntura"
+            class="service-image"
+          />
         </article>
         <article class="service-card">
           <div class="service-icon">🔥</div>
           <h3>Moxibustión</h3>
           <p>Aplicación de calor en meridianos para aliviar dolencias.</p>
+          <img
+            src="/img/moxibustion.jpg"
+            alt="moxibustión"
+            class="service-image"
+          />
         </article>
         <article class="service-card">
           <div class="service-icon">🩹</div>
           <h3>Vendaje Neuromuscular</h3>
           <p>Soporte muscular sin restringir tu movimiento.</p>
+          <img
+            src="/img/vendajeNeuromuscular.jpg"
+            alt="vendaje neuromuscular"
+            class="service-image"
+          />
         </article>
         <article class="service-card">
           <div class="service-icon">☯️</div>
           <h3>Medicina Tradicional China</h3>
           <p>Diagnóstico por pulso y tratamientos personalizados.</p>
+          <img
+            src="/img/murcielago.jpg"
+            alt="medicina tradicional china"
+            class="service-image"
+          />
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🎧</div>
+          <h3>Auriculopuntura</h3>
+          <p>
+            Estimulación de puntos auriculares para aliviar múltiples dolencias.
+          </p>
+          <img
+            src="/img/Auricolopuntura.jpeg"
+            alt="auriculopuntura"
+            class="service-image"
+          />
+        </article>
+      </div>
+    </section>
+
+    <!-- OFERTAS -->
+    <section id="bonos" class="section bonos">
+      <h2>Bonos y Promociones</h2>
+      <div class="bonos-cards">
+        <article class="bono-card">
+          <div class="bono-icon">💆‍♂️</div>
+          <h3>Sesión individual</h3>
+          <p class="precio">40 €</p>
+        </article>
+        <article class="bono-card">
+          <div class="bono-icon">👥</div>
+          <h3>Bono 2 sesiones</h3>
+          <p class="precio">70 €</p>
+        </article>
+        <article class="bono-card">
+          <div class="bono-icon">🔁</div>
+          <h3>Bono 3 sesiones</h3>
+          <p class="precio">105 €</p>
+        </article>
+        <article class="bono-card">
+          <div class="bono-icon">🎯</div>
+          <h3>Bono 5 sesiones</h3>
+          <p class="precio">175 €</p>
         </article>
       </div>
     </section>
@@ -88,39 +173,71 @@
     <section id="contacto" class="section contacto">
       <h2>Contacto</h2>
       <div class="contacto-info">
-        <p><strong>Dirección:</strong> Calle Ejemplo, 123, Madrid</p>
-        <p>
-          <strong>Email:</strong>
-          <a href="mailto:info@alvaroosteopatia.com" class="link"
-            >info@alvaroosteopatia.com</a
-          >
-        </p>
-        <p>
-          <strong>Teléfono:</strong>
-          <a href="tel:+34600123456" class="link">+34 600 123 456</a>
-        </p>
-        <button id="btn-open-login-footer" class="btn-booksy">
-          Reserva tu cita
-        </button>
+        <div class="contacto-item">
+          <span class="icon">📍</span>
+          <p>
+            <strong>Dirección:</strong>
+            <a
+              href="https://maps.app.goo.gl/A6n4D7X7t2gjP6S1A"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link"
+            >
+              Carretera General de Tenoya S/N
+            </a>
+          </p>
+        </div>
+
+        <div class="contacto-item">
+          <span class="icon">⏰</span>
+          <p><strong>Horario:</strong> Lunes a Viernes — 09:30 a 19:00</p>
+        </div>
+
+        <div class="contacto-item">
+          <span class="icon">📞</span>
+          <p>
+            <strong>Teléfono:</strong>
+            <a href="tel:+634810054" class="link">+34 634810054</a>
+          </p>
+        </div>
+
+        <div class="contacto-item">
+          <span class="icon">💬</span>
+          <p>
+            <strong>WhatsApp:</strong>
+            <a href="https://wa.me/34634810054" target="_blank" class="link">
+              Enviar mensaje
+            </a>
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-container">
-        <p>&copy; 2025 Alvaro. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Álvaro García. Todos los derechos reservados.</p>
         <div class="social">
           <a
-            href="https://instagram.com/tu_usuario"
+            href="https://www.instagram.com/tu_usuario"
             target="_blank"
-            rel="noopener"
-            >Instagram</a
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            >📸 Instagram</a
           >
           <a
-            href="https://facebook.com/tu_usuario"
+            href="https://www.tiktok.com/@tu_usuario"
             target="_blank"
-            rel="noopener"
-            >Facebook</a
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+            >🎵 TikTok</a
+          >
+          <a
+            href="https://booksy.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Booksy"
+            >📅 Booksy</a
           >
         </div>
       </div>
