@@ -1026,6 +1026,11 @@ button:focus-visible,
   visibility: visible;
   opacity: 1;
 }
+.whatsapp-float.tooltip-activo .tooltip-float,
+.call-float.tooltip-activo .tooltip-float {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 .whatsapp-float,
 .call-float {
   position: fixed;

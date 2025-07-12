@@ -193,3 +193,49 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 900);
   }
 });
+
+// Doble pulsación en móvil para botones flotantes WhatsApp y Teléfono
+function dobleToqueFlotantes() {
+  function isMobile() {
+    return (
+      window.innerWidth <= 800 ||
+      /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+        navigator.userAgent
+      )
+    );
+  }
+  [
+    {
+      selector: ".whatsapp-float",
+      action: function (el) {
+        window.open(el.href, "_blank");
+      },
+    },
+    {
+      selector: ".call-float",
+      action: function (el) {
+        window.location.href = el.href;
+      },
+    },
+  ].forEach(({ selector, action }) => {
+    const btn = document.querySelector(selector);
+    if (!btn) return;
+    let tocado = false;
+    btn.addEventListener("click", function (e) {
+      if (!isMobile()) return; // Solo en móvil
+      if (!tocado) {
+        e.preventDefault();
+        btn.classList.add("tooltip-activo");
+        setTimeout(() => btn.classList.remove("tooltip-activo"), 2000);
+        tocado = true;
+        setTimeout(() => (tocado = false), 1800);
+      } else {
+        // Segunda pulsación: ejecuta acción
+        btn.classList.remove("tooltip-activo");
+        action(btn);
+        tocado = false;
+      }
+    });
+  });
+}
+document.addEventListener("DOMContentLoaded", dobleToqueFlotantes);
