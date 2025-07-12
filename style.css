@@ -2,9 +2,11 @@
    RESET Y VARIABLES
 --------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Lora:wght@400;600&display=swap");
 
 :root {
   --font: "Poppins", sans-serif;
+  --font-serif: "Lora", serif;
   --pri: #5e4635;
   --sec: #ffffff;
   --accent: #ffa500;
@@ -26,6 +28,17 @@ body {
   color: var(--black);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
 /* ---------------------------------------------------
    MAX WIDTH GENERAL
 --------------------------------------------------- */
@@ -37,6 +50,53 @@ section {
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* ---------------------------------------------------
+   NAV Y FOOTER SIEMPRE 100% ANCHO EN ESCRITORIO
+--------------------------------------------------- */
+.header,
+.footer {
+  width: 100vw;
+  left: 0;
+  right: 0;
+  max-width: 100vw;
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Contenido centrado y máx 1080px */
+main,
+section {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1080px) {
+  main,
+  section {
+    max-width: 100vw;
+  }
+}
+
+@media (min-width: 1081px) {
+  .header,
+  .footer {
+    width: 100vw;
+    max-width: 100vw;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  main,
+  section {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ---------------------------------------------------
@@ -105,6 +165,30 @@ section {
 .btn-primary:hover {
   background: var(--accent-d);
   transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------
+   BOTÓN RESERVA DESTACADO
+--------------------------------------------------- */
+.btn-booksy {
+  box-shadow: 0 4px 16px rgba(255, 165, 0, 0.18), 0 1.5px 0 var(--accent-d);
+  border: 2.5px solid var(--accent-d);
+  font-size: 1.08rem;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s,
+    transform 0.2s;
+  outline: none;
+}
+.btn-booksy:hover,
+.btn-booksy:focus {
+  background: var(--accent-d);
+  color: var(--white);
+  border-color: var(--accent);
+  box-shadow: 0 6px 24px rgba(255, 165, 0, 0.28);
+  transform: scale(1.04);
 }
 
 /* ---------------------------------------------------
@@ -191,6 +275,11 @@ section {
   /* corte diagonal */
   clip-path: polygon(0 15%, 100% 0, 100% 85%, 0% 100%);
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
 }
 .service-card:hover {
   transform: translateY(-5px);
@@ -206,12 +295,36 @@ section {
   margin-bottom: 0.5rem;
   color: var(--pri);
 }
-.service-image {
+.service-card .service-image-wrapper {
+  order: 3;
   width: 100%;
-  margin-top: 1rem;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  margin-top: 1.2rem;
+}
+.service-card .service-image {
+  width: 100%;
+  max-width: 180px;
+  max-height: 110px;
   object-fit: cover;
-  max-height: 180px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  display: block;
+}
+.service-card h3,
+.service-card p {
+  width: 100%;
+}
+@media (max-width: 1024px) {
+  .service-card .service-image-wrapper {
+    min-height: 80px;
+  }
+  .service-card .service-image {
+    max-width: 120px;
+    max-height: 80px;
+  }
 }
 
 /* ---------------------------------------------------
@@ -242,6 +355,11 @@ section {
   /* corte diagonal */
   clip-path: polygon(0 15%, 100% 0, 100% 85%, 0% 100%);
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
 }
 .bono-card:hover {
   transform: translateY(-5px);
@@ -407,11 +525,33 @@ section {
     scroll-snap-align: start;
     margin-bottom: 0.5rem;
   }
+  .service-card,
+  .bono-card {
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    min-width: 60vw;
+    max-width: 68vw;
+  }
 }
 @media (max-width: 600px) {
   .service-card {
     min-width: 92vw;
     max-width: 96vw;
+  }
+  .bono-card {
+    min-width: 92vw;
+    max-width: 96vw;
+  }
+  .service-card,
+  .bono-card {
+    min-width: 69vw;
+    max-width: 75vw;
+    padding: 1.1rem;
+    font-size: 0.8rem;
+  }
+  .service-card .service-icon .ph-icon,
+  .bono-card .bono-icon .ph-icon {
+    font-size: 1.8rem;
   }
 }
 
@@ -539,5 +679,35 @@ section {
   .service-card,
   .bono-card {
     overflow: visible;
+  }
+}
+
+/* ---------------------------------------------------
+   AJUSTE ALTURA Y TEXTO EN CARDS DE BONOS
+--------------------------------------------------- */
+.bono-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  min-height: 260px;
+}
+.bono-card .bono-desc {
+  flex: 1 1 auto;
+  margin: 0.7rem 0 0.7rem 0;
+  color: var(--black);
+  font-size: 0.98em;
+  line-height: 1.4;
+}
+.bono-card .precio {
+  margin-top: auto;
+}
+@media (max-width: 1024px) {
+  .bono-card {
+    min-height: 180px;
+  }
+  .bono-card .bono-desc {
+    font-size: 0.92em;
   }
 }
