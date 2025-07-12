@@ -108,3 +108,26 @@ document.addEventListener("DOMContentLoaded", () => {
     ".section.bonos .slider-arrow.right"
   );
 });
+
+// ANIMACIONES AL HACER SCROLL
+function animacionesScroll() {
+  const animables = document.querySelectorAll(
+    ".service-card, .bono-card, .section h2, .hero-content, .contacto-info, .footer-container"
+  );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  animables.forEach((el) => {
+    el.classList.add("anim-scroll");
+    observer.observe(el);
+  });
+}
+document.addEventListener("DOMContentLoaded", animacionesScroll);

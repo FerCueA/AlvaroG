@@ -468,7 +468,7 @@ section {
 }
 
 /* ---------------------------------------------------
-   ANIMACIONES AL HACER SCROLL (1)
+   ANIMACIONES AL HACER SCROLL 
 --------------------------------------------------- */
 .anim-scroll {
   opacity: 0;
@@ -482,7 +482,7 @@ section {
 }
 
 /* ---------------------------------------------------
-   RESPONSIVE REFINADO
+   RESPONSIVE 
 --------------------------------------------------- */
 @media (max-width: 768px) {
   .nav-container {
@@ -668,7 +668,7 @@ section {
 }
 
 /* ---------------------------------------------------
-   AJUSTE ICONOS EN SLIDER PARA QUE NO SE CORTEN
+   AJUSTE ICONOS EN SLIDER 
 --------------------------------------------------- */
 .service-card .service-icon,
 .bono-card .bono-icon {
@@ -695,7 +695,7 @@ section {
 }
 
 /* ---------------------------------------------------
-   AJUSTE ALTURA Y TEXTO EN CARDS DE BONOS
+   AJUSTE ALTURA Y TEXTO 
 --------------------------------------------------- */
 .bono-card {
   display: flex;
@@ -725,7 +725,7 @@ section {
 }
 
 /* ---------------------------------------------------
-   BOTÓN FLOTANTE WHATSAPP CENTRADO EN LATERAL
+   BOTÓN FLOTANTE WHATSAPP 
 --------------------------------------------------- */
 .whatsapp-float {
   position: fixed;
@@ -762,7 +762,7 @@ section {
 }
 
 /* ---------------------------------------------------
-   ACCESIBILIDAD Y CONTRASTE (8)
+   ACCESIBILIDAD Y CONTRASTE 
 --------------------------------------------------- */
 :root {
   --focus: #ffa500;
@@ -776,7 +776,7 @@ button:focus,
 }
 
 /* ---------------------------------------------------
-   OPTIMIZACIÓN SEO (9)
+   OPTIMIZACIÓN SEO 
 --------------------------------------------------- */
 img,
 picture,
