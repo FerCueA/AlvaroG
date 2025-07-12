@@ -29,6 +29,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <!-- Iconos Phosphor -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css"
+    />
   </head>
 
   <body>
@@ -51,11 +57,7 @@
     </header>
 
     <!-- HERO -->
-    <section
-      id="hero"
-      class="hero"
-      style="background-image: url('/img/hero-bg.png')"
-    >
+    <section id="hero" class="hero">
       <div class="hero-overlay">
         <div class="hero-content">
           <h1 class="hero-name">Álvaro García</h1>
@@ -80,9 +82,19 @@
     <!-- SERVICIOS -->
     <section id="services" class="section services">
       <h2>Nuestros Servicios</h2>
+      <div class="slider-arrows">
+        <button class="slider-arrow left" aria-label="Anterior">
+          <i class="ph ph-caret-left"></i>
+        </button>
+        <button class="slider-arrow right" aria-label="Siguiente">
+          <i class="ph ph-caret-right"></i>
+        </button>
+      </div>
       <div class="service-cards">
         <article class="service-card">
-          <div class="service-icon">🦴</div>
+          <div class="service-icon">
+            <i class="ph ph-hand-heart ph-icon"></i>
+          </div>
           <h3>Osteopatía</h3>
           <p>Reequilibrio corporal.</p>
           <img
@@ -92,7 +104,7 @@
           />
         </article>
         <article class="service-card">
-          <div class="service-icon">💉</div>
+          <div class="service-icon"><i class="ph ph-needle ph-icon"></i></div>
           <h3>Acupuntura</h3>
           <p>Estimulación de puntos para restaurar el flujo de Qi.</p>
           <img
@@ -102,7 +114,7 @@
           />
         </article>
         <article class="service-card">
-          <div class="service-icon">🔥</div>
+          <div class="service-icon"><i class="ph ph-fire ph-icon"></i></div>
           <h3>Moxibustión</h3>
           <p>Aplicación de calor en meridianos para aliviar dolencias.</p>
           <img
@@ -112,7 +124,7 @@
           />
         </article>
         <article class="service-card">
-          <div class="service-icon">🩹</div>
+          <div class="service-icon"><i class="ph ph-bandage ph-icon"></i></div>
           <h3>Vendaje Neuromuscular</h3>
           <p>Soporte muscular sin restringir tu movimiento.</p>
           <img
@@ -122,7 +134,7 @@
           />
         </article>
         <article class="service-card">
-          <div class="service-icon">🎧</div>
+          <div class="service-icon"><i class="ph ph-ear ph-icon"></i></div>
           <h3>Auriculopuntura</h3>
           <p>
             Estimulación de puntos auriculares para aliviar múltiples dolencias.
@@ -139,24 +151,32 @@
     <!-- BONOS -->
     <section id="bonos" class="section bonos">
       <h2>Bonos y Promociones</h2>
+      <div class="slider-arrows">
+        <button class="slider-arrow left" aria-label="Anterior">
+          <i class="ph ph-caret-left"></i>
+        </button>
+        <button class="slider-arrow right" aria-label="Siguiente">
+          <i class="ph ph-caret-right"></i>
+        </button>
+      </div>
       <div class="bonos-cards">
         <article class="bono-card">
-          <div class="bono-icon">💆‍♂️</div>
+          <div class="bono-icon"><i class="ph ph-user ph-icon"></i></div>
           <h3>Sesión individual</h3>
           <p class="precio">40 €</p>
         </article>
         <article class="bono-card">
-          <div class="bono-icon">👥</div>
+          <div class="bono-icon"><i class="ph ph-users-three ph-icon"></i></div>
           <h3>Bono 2 sesiones</h3>
           <p class="precio">70 €</p>
         </article>
         <article class="bono-card">
-          <div class="bono-icon">🔁</div>
+          <div class="bono-icon"><i class="ph ph-repeat ph-icon"></i></div>
           <h3>Bono 3 sesiones</h3>
           <p class="precio">105 €</p>
         </article>
         <article class="bono-card">
-          <div class="bono-icon">🎯</div>
+          <div class="bono-icon"><i class="ph ph-target ph-icon"></i></div>
           <h3>Bono 5 sesiones</h3>
           <p class="precio">175 €</p>
         </article>
@@ -168,7 +188,7 @@
       <h2>Contacto</h2>
       <div class="contacto-info">
         <div class="contacto-item">
-          <span class="icon">📍</span>
+          <span class="icon"><i class="ph ph-map-pin ph-icon"></i></span>
           <p>
             <strong>Dirección:</strong>
             <a
@@ -181,18 +201,18 @@
           </p>
         </div>
         <div class="contacto-item">
-          <span class="icon">⏰</span>
+          <span class="icon"><i class="ph ph-clock ph-icon"></i></span>
           <p><strong>Horario:</strong> Lunes a Viernes — 09:30 a 19:00</p>
         </div>
         <div class="contacto-item">
-          <span class="icon">📞</span>
+          <span class="icon"><i class="ph ph-phone ph-icon"></i></span>
           <p>
             <strong>Teléfono:</strong>
             <a href="tel:+34634810054" class="link">+34 634 810 054</a>
           </p>
         </div>
         <div class="contacto-item">
-          <span class="icon">💬</span>
+          <span class="icon"><i class="ph ph-whatsapp-logo ph-icon"></i></span>
           <p>
             <strong>WhatsApp:</strong>
             <a
@@ -217,21 +237,21 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            >📸 Instagram</a
+            ><i class="ph ph-instagram-logo ph-icon"></i> Instagram</a
           >
           <a
             href="https://www.tiktok.com/@tu_usuario"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="TikTok"
-            >🎵 TikTok</a
+            ><i class="ph ph-tiktok-logo ph-icon"></i> TikTok</a
           >
           <a
             href="https://booksy.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Booksy"
-            >📅 Booksy</a
+            ><i class="ph ph-calendar-check ph-icon"></i> Booksy</a
           >
         </div>
       </div>
@@ -239,14 +259,5 @@
 
     <!-- JS -->
     <script src="script.js"></script>
-
-    <!-- ADDON LATERAL MÓVIL -->
-    <div id="mobile-addon">
-      <button id="addon-toggle" aria-label="Abrir menú">☰</button>
-      <nav id="addon-panel" aria-hidden="true">
-        <a href="#services">Servicios</a>
-        <a href="#bonos">Precios</a>
-      </nav>
-    </div>
   </body>
 </html>

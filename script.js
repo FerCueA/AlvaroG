@@ -80,3 +80,31 @@ document.querySelectorAll("#addon-panel a").forEach((link) =>
     panel.setAttribute("aria-hidden", "true");
   })
 );
+
+// FLECHAS SLIDER PARA SERVICIOS Y BONOS
+function setupSliderArrows(sliderSelector, leftSelector, rightSelector) {
+  const slider = document.querySelector(sliderSelector);
+  const left = document.querySelector(leftSelector);
+  const right = document.querySelector(rightSelector);
+  if (!slider || !left || !right) return;
+
+  left.addEventListener("click", () => {
+    slider.scrollBy({ left: -slider.offsetWidth * 0.8, behavior: "smooth" });
+  });
+  right.addEventListener("click", () => {
+    slider.scrollBy({ left: slider.offsetWidth * 0.8, behavior: "smooth" });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupSliderArrows(
+    ".service-cards",
+    ".section.services .slider-arrow.left",
+    ".section.services .slider-arrow.right"
+  );
+  setupSliderArrows(
+    ".bonos-cards",
+    ".section.bonos .slider-arrow.left",
+    ".section.bonos .slider-arrow.right"
+  );
+});
