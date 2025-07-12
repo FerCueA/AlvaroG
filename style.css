@@ -570,6 +570,7 @@ section {
   .service-cards {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden !important;
     scroll-snap-type: x mandatory;
     gap: 1.6rem;
     padding-bottom: 1.5rem;

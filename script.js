@@ -239,3 +239,28 @@ function dobleToqueFlotantes() {
   });
 }
 document.addEventListener("DOMContentLoaded", dobleToqueFlotantes);
+
+// Ocultar tooltip flotante al pulsar fuera en móvil
+function ocultarTooltipFuera() {
+  function isMobile() {
+    return (
+      window.innerWidth <= 800 ||
+      /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+        navigator.userAgent
+      )
+    );
+  }
+  document.addEventListener("touchstart", function (e) {
+    if (!isMobile()) return;
+    const wBtn = document.querySelector(".whatsapp-float");
+    const cBtn = document.querySelector(".call-float");
+    if (!wBtn && !cBtn) return;
+    if (wBtn.classList.contains("tooltip-activo") && !wBtn.contains(e.target)) {
+      wBtn.classList.remove("tooltip-activo");
+    }
+    if (cBtn.classList.contains("tooltip-activo") && !cBtn.contains(e.target)) {
+      cBtn.classList.remove("tooltip-activo");
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded", ocultarTooltipFuera);
