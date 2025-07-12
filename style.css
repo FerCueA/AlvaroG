@@ -714,3 +714,38 @@ img[alt]:not([alt=""]) {
     font-size: 1.15rem;
   }
 }
+
+/* ---------------------------------------------------
+   DIRECCIÓN - CLARA Y ORDENADA
+--------------------------------------------------- */
+.direccion-movil {
+  display: block;
+  font-size: 1em;
+  line-height: 1.5;
+  margin-top: 0.2em;
+  color: var(--pri);
+}
+.direccion-movil .localidades {
+  font-weight: 600;
+  color: var(--accent);
+  display: inline-block;
+  margin-top: 0.1em;
+}
+.direccion-movil .duda {
+  font-size: 0.97em;
+  color: var(--black);
+  display: inline-block;
+  margin-top: 0.2em;
+}
+@media (max-width: 600px) {
+  .direccion-movil {
+    font-size: 1.08em;
+    padding-left: 0.1em;
+  }
+  .direccion-movil .localidades {
+    font-size: 1.05em;
+  }
+  .direccion-movil .duda {
+    font-size: 0.99em;
+  }
+}
