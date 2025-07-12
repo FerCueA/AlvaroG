@@ -161,3 +161,35 @@ scrollBtn.addEventListener("click", () => {
 // darkBtn.addEventListener('click', () => {
 //   document.body.classList.toggle('dark-mode');
 // });
+
+// Animación de entrada para sección de contacto
+function animarContacto() {
+  const contactoSection = document.querySelector(".section.contacto");
+  if (!contactoSection) return;
+  contactoSection.style.opacity = 0;
+  contactoSection.style.transform = "translateY(40px)";
+  function mostrarContacto() {
+    const rect = contactoSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      contactoSection.style.transition = "opacity 0.7s, transform 0.7s";
+      contactoSection.style.opacity = 1;
+      contactoSection.style.transform = "translateY(0)";
+      window.removeEventListener("scroll", mostrarContacto);
+    }
+  }
+  window.addEventListener("scroll", mostrarContacto);
+  // Si ya está visible al cargar
+  mostrarContacto();
+}
+document.addEventListener("DOMContentLoaded", animarContacto);
+
+// Loader minimalista
+window.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("loader-bg");
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add("hide");
+      setTimeout(() => loader.remove(), 500);
+    }, 900);
+  }
+});

@@ -963,3 +963,103 @@ button:focus-visible,
     font-size: 1.15rem;
   }
 }
+
+/* Animación logo al hacer hover */
+.logo-animado {
+  transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    box-shadow 0.2s;
+}
+.logo-animado:hover,
+.logo-animado:focus {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 4px 24px rgba(255, 165, 0, 0.13);
+}
+
+/* Microinteracciones en botones principales */
+.btn-primary,
+.btn-booksy {
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-booksy:hover,
+.btn-booksy:focus {
+  box-shadow: 0 2px 16px rgba(255, 165, 0, 0.18);
+  transform: scale(1.04);
+}
+
+/* Separadores visuales en contacto */
+.contact-separator {
+  border: none;
+  border-top: 1.5px solid #f3e6d1;
+  margin: 0.5em 0 0.5em 2.2em;
+  width: 90%;
+  opacity: 0.7;
+}
+
+/* Tooltips accesibles para iconos flotantes - fondo translúcido */
+.tooltip-float {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  right: 110%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.35); /* translúcido */
+  color: var(--accent);
+  border-radius: 6px;
+  padding: 0.3em 0.7em;
+  font-size: 0.95em;
+  font-weight: 500;
+  box-shadow: none;
+  pointer-events: none;
+  transition: opacity 0.18s, visibility 0.18s;
+  z-index: 1001;
+  white-space: nowrap;
+  backdrop-filter: blur(2px);
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.25);
+}
+.whatsapp-float:hover .tooltip-float,
+.whatsapp-float:focus .tooltip-float,
+.call-float:hover .tooltip-float,
+.call-float:focus .tooltip-float {
+  visibility: visible;
+  opacity: 1;
+}
+.whatsapp-float,
+.call-float {
+  position: fixed;
+  overflow: visible;
+}
+
+/* Loader minimalista */
+#loader-bg {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s;
+}
+.loader {
+  border: 4px solid #f3e6d1;
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#loader-bg.hide {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -3,8 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Alvaro Garcia. Reserva tu cita online." />
-    <title>Álvaro García · Osteopatía y Medicina Tradicional China</title>
+    <meta
+      name="description"
+      content="Centro de Osteopatía y Medicina Tradicional China en Las Palmas. Tratamientos personalizados de acupuntura, osteopatía y más. Reserva tu cita online en Las Palmas de Gran Canaria."
+    />
+    <title>
+      Osteopatía y Medicina Tradicional China en Las Palmas | Álvaro García
+    </title>
 
     <!-- Google Fonts -->
     <link
@@ -13,7 +18,7 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/logo.png" />
+    <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
 
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css" />
@@ -35,14 +40,15 @@
   </head>
 
   <body>
+    <div id="loader-bg"><div class="loader" aria-label="Cargando"></div></div>
     <!-- HEADER -->
     <header class="header">
       <nav class="nav-container">
-        <a href="/" class="logo-img">
+        <a href="/" class="logo-img" tabindex="0">
           <img
             src="/img/Logo.png"
             alt="Logo Álvaro García"
-            class="logo-decorado"
+            class="logo-decorado logo-animado"
           />
         </a>
         <div class="nav-actions">
@@ -219,17 +225,25 @@
             </span>
           </p>
         </div>
+        <hr class="contact-separator" aria-hidden="true" />
         <div class="contacto-item">
           <span class="icon"><i class="ph ph-clock ph-icon"></i></span>
           <p><strong>Horario:</strong> Lunes a Viernes — 09:30 a 19:00</p>
         </div>
+        <hr class="contact-separator" aria-hidden="true" />
         <div class="contacto-item">
           <span class="icon"><i class="ph ph-phone ph-icon"></i></span>
           <p>
             <strong>Teléfono:</strong>
-            <a href="tel:+34634810054" class="link">+34 634 810 054</a>
+            <a
+              href="tel:+34634810054"
+              class="link"
+              aria-label="Llamar al teléfono 634 810 054"
+              >+34 634 810 054</a
+            >
           </p>
         </div>
+        <hr class="contact-separator" aria-hidden="true" />
         <div class="contacto-item">
           <span class="icon"><i class="ph ph-whatsapp-logo ph-icon"></i></span>
           <p>
@@ -239,6 +253,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="link"
+              aria-label="Enviar WhatsApp a 634 810 054"
               >Enviar mensaje</a
             >
           </p>
@@ -255,21 +270,24 @@
             href="https://www.instagram.com/quiromasajistaalvarogarcia/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram"
+            aria-label="Instagram de Álvaro García"
+            role="link"
             ><i class="ph ph-instagram-logo ph-icon"></i> Instagram</a
           >
           <a
             href="https://www.tiktok.com/@osteopata.lvaro"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="TikTok"
+            aria-label="TikTok de Álvaro García"
+            role="link"
             ><i class="ph ph-tiktok-logo ph-icon"></i> TikTok</a
           >
           <a
             href="https://booksy.com"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Booksy"
+            aria-label="Reserva en Booksy"
+            role="link"
             ><i class="ph ph-calendar-check ph-icon"></i> Booksy</a
           >
         </div>
@@ -287,6 +305,7 @@
       aria-label="WhatsApp"
     >
       <i class="ph ph-whatsapp-logo"></i>
+      <span class="tooltip-float" role="tooltip">Chatea por WhatsApp</span>
     </a>
     <!-- BOTÓN FLOTANTE LLAMAR -->
     <a
@@ -295,6 +314,7 @@
       aria-label="Llamar por teléfono"
     >
       <i class="ph ph-phone"></i>
+      <span class="tooltip-float" role="tooltip">Llama ahora</span>
     </a>
   </body>
 </html>
