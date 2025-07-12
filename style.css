@@ -625,13 +625,56 @@ section {
 .whatsapp-float .ph-whatsapp-logo {
   color: inherit;
 }
+.call-float {
+  position: fixed;
+  top: 62%;
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+  z-index: 998;
+  background: #fff;
+  color: var(--accent);
+  border-radius: 50% 0 0 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 2px 12px rgba(255, 165, 0, 0.1);
+  border: 2px solid var(--accent);
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
+}
+.call-float:hover {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid var(--accent-d);
+  transform: translateY(-50%) scale(1.08);
+}
+.call-float .ph-phone {
+  color: inherit;
+}
 @media (max-width: 600px) {
-  .whatsapp-float {
-    top: auto;
-    bottom: 24px;
-    right: 24px;
-    border-radius: 50%;
-    transform: none;
+  .whatsapp-float,
+  .call-float {
+    display: flex;
+  }
+}
+@media (min-width: 601px) {
+  .whatsapp-float,
+  .call-float {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    left: auto;
+    transform: translateY(-50%);
+    border-radius: 50% 0 0 50%;
+    z-index: 999;
+  }
+  .call-float {
+    top: 62%;
+    z-index: 998;
   }
 }
 
