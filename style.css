@@ -13,6 +13,7 @@
   --accent-d: #e59400;
   --white: #ffffff;
   --black: #1c1c1c;
+  --focus: #ffa500;
 }
 
 * {
@@ -467,6 +468,20 @@ section {
 }
 
 /* ---------------------------------------------------
+   ANIMACIONES AL HACER SCROLL (1)
+--------------------------------------------------- */
+.anim-scroll {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.anim-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ---------------------------------------------------
    RESPONSIVE REFINADO
 --------------------------------------------------- */
 @media (max-width: 768px) {
@@ -539,15 +554,10 @@ section {
     max-width: 96vw;
   }
   .bono-card {
-    min-width: 92vw;
-    max-width: 96vw;
-  }
-  .service-card,
-  .bono-card {
-    min-width: 69vw;
-    max-width: 75vw;
-    padding: 1.1rem;
-    font-size: 0.8rem;
+    min-width: 73.6vw; /* 92vw * 0.8 */
+    max-width: 76.8vw; /* 96vw * 0.8 */
+    padding: 0.88rem; /* 1.1rem * 0.8 */
+    font-size: 0.64rem; /* 0.8rem * 0.8 */
   }
   .service-card .service-icon .ph-icon,
   .bono-card .bono-icon .ph-icon {
@@ -578,8 +588,10 @@ section {
 }
 @media (max-width: 600px) {
   .bono-card {
-    min-width: 92vw;
-    max-width: 96vw;
+    min-width: 73.6vw; /* 92vw * 0.8 */
+    max-width: 76.8vw; /* 96vw * 0.8 */
+    padding: 0.88rem; /* 1.1rem * 0.8 */
+    font-size: 0.64rem; /* 0.8rem * 0.8 */
   }
 }
 
@@ -710,4 +722,69 @@ section {
   .bono-card .bono-desc {
     font-size: 0.92em;
   }
+}
+
+/* ---------------------------------------------------
+   BOTÓN FLOTANTE WHATSAPP CENTRADO EN LATERAL
+--------------------------------------------------- */
+.whatsapp-float {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+  z-index: 999;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50% 0 0 50%;
+  width: 67.2px; /* 20% más grande que 56px */
+  height: 67.2px; /* 20% más grande que 56px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.64rem; /* 20% más grande que 2.2rem */
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.18);
+  transition: background 0.2s, transform 0.2s;
+  border-right: none;
+}
+.whatsapp-float:hover {
+  background: #1ebe5d;
+  transform: translateY(-50%) scale(1.08);
+}
+@media (max-width: 600px) {
+  .whatsapp-float {
+    top: auto;
+    bottom: 24px;
+    right: 24px;
+    border-radius: 50%;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------
+   ACCESIBILIDAD Y CONTRASTE (8)
+--------------------------------------------------- */
+:root {
+  --focus: #ffa500;
+}
+a:focus,
+button:focus,
+.btn-booksy:focus,
+.btn-primary:focus {
+  outline: 2.5px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------
+   OPTIMIZACIÓN SEO (9)
+--------------------------------------------------- */
+img,
+picture,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+img[alt]:not([alt=""]) {
+  font-style: italic;
 }
