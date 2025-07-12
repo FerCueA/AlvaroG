@@ -131,3 +131,33 @@ function animacionesScroll() {
   });
 }
 document.addEventListener("DOMContentLoaded", animacionesScroll);
+
+// SCROLL TO TOP
+const scrollBtn = document.createElement("button");
+scrollBtn.className = "scroll-to-top";
+scrollBtn.innerHTML = '<i class="ph ph-arrow-up"></i>';
+document.body.appendChild(scrollBtn);
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.classList.add("visible");
+  } else {
+    scrollBtn.classList.remove("visible");
+  }
+});
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// MODO OSCURO (toggle manual, opcional)
+// Descomenta para activar el botón de modo oscuro
+// const darkBtn = document.createElement('button');
+// darkBtn.textContent = '🌙';
+// darkBtn.style.position = 'fixed';
+// darkBtn.style.bottom = '32px';
+// darkBtn.style.left = '32px';
+// darkBtn.style.zIndex = '1201';
+// darkBtn.className = 'btn-darkmode';
+// document.body.appendChild(darkBtn);
+// darkBtn.addEventListener('click', () => {
+//   document.body.classList.toggle('dark-mode');
+// });
