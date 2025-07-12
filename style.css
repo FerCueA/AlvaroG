@@ -529,204 +529,51 @@ section {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 1.2rem;
-    padding-bottom: 1rem;
+    gap: 1.6rem;
+    padding-bottom: 1.5rem;
     grid-template-columns: none !important;
+    border-radius: 18px;
   }
   .service-card {
-    min-width: 80vw;
-    max-width: 90vw;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    margin-bottom: 0.5rem;
-  }
-  .service-card,
-  .bono-card {
-    padding: 1.5rem;
-    font-size: 0.85rem;
-    min-width: 60vw;
-    max-width: 68vw;
-  }
-}
-@media (max-width: 600px) {
-  .service-card {
-    min-width: 92vw;
-    max-width: 96vw;
-  }
-  .bono-card {
-    min-width: 73.6vw; /* 92vw * 0.8 */
-    max-width: 76.8vw; /* 96vw * 0.8 */
-    padding: 0.88rem; /* 1.1rem * 0.8 */
-    font-size: 0.64rem; /* 0.8rem * 0.8 */
-  }
-  .service-card .service-icon .ph-icon,
-  .bono-card .bono-icon .ph-icon {
-    font-size: 1.8rem;
-  }
-}
-
-/* ---------------------------------------------------
-   SLICE LATERAL BONOS (SLIDER EN MOVIL)
---------------------------------------------------- */
-@media (max-width: 1024px) {
-  .bonos-cards {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 1.2rem;
-    padding-bottom: 1rem;
-    grid-template-columns: none !important;
-    max-width: 100vw;
-  }
-  .bono-card {
-    min-width: 80vw;
-    max-width: 90vw;
+    min-width: 78vw;
+    max-width: 84vw;
     flex: 0 0 auto;
     scroll-snap-align: start;
     margin-bottom: 0.5rem;
   }
 }
 @media (max-width: 600px) {
-  .bono-card {
-    min-width: 73.6vw; /* 92vw * 0.8 */
-    max-width: 76.8vw; /* 96vw * 0.8 */
-    padding: 0.88rem; /* 1.1rem * 0.8 */
-    font-size: 0.64rem; /* 0.8rem * 0.8 */
+  .service-card {
+    min-width: 88vw;
+    max-width: 92vw;
+    padding: 0.95rem;
+    font-size: 0.74rem;
   }
 }
 
-/* ---------------------------------------------------
-   AJUSTES RESPONSIVE MEJORADOS
---------------------------------------------------- */
-@media (min-width: 1025px) {
-  .service-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
-  }
-  .bonos-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-}
-@media (min-width: 1441px) {
-  body,
-  .header,
-  .footer,
-  main,
-  section {
-    max-width: 1440px;
-  }
-}
-
-/* ---------------------------------------------------
-   SCROLLBAR PERSONALIZADA PARA SLIDER (SERVICIOS Y BONOS)
---------------------------------------------------- */
+/* Mejorar visibilidad de la barra de scroll */
 @media (max-width: 1024px) {
-  .service-cards,
-  .bonos-cards {
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent) var(--white);
-  }
   .service-cards::-webkit-scrollbar,
   .bonos-cards::-webkit-scrollbar {
-    height: 8px;
-    background: var(--white);
-    border-radius: 6px;
+    height: 12px;
+    background: #ffe5b4;
+    border-radius: 8px;
   }
   .service-cards::-webkit-scrollbar-thumb,
   .bonos-cards::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, var(--accent), var(--accent-d));
-    border-radius: 6px;
-    min-width: 40px;
+    background: linear-gradient(90deg, var(--accent), #ffb84d 80%);
+    border-radius: 8px;
+    min-width: 60px;
+    border: 2px solid #fff3e0;
   }
   .service-cards::-webkit-scrollbar-track,
   .bonos-cards::-webkit-scrollbar-track {
-    background: var(--white);
-    border-radius: 6px;
+    background: #fff3e0;
+    border-radius: 8px;
   }
 }
 
-/* Ocultar flechas slider */
-.slider-arrows {
-  display: none !important;
-}
-
-/* ---------------------------------------------------
-   ICONOS PHOSPHOR (GENÉRICOS)
---------------------------------------------------- */
-.ph-icon {
-  font-size: 2.2rem;
-  color: var(--accent);
-  vertical-align: middle;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ---------------------------------------------------
-   AJUSTE ICONOS EN SLIDER 
---------------------------------------------------- */
-.service-card .service-icon,
-.bono-card .bono-icon {
-  overflow: visible;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.6rem;
-}
-
-.service-card .service-icon .ph-icon,
-.bono-card .bono-icon .ph-icon {
-  font-size: 2.4rem;
-  line-height: 1.1;
-}
-
-@media (max-width: 1024px) {
-  .service-card,
-  .bono-card {
-    overflow: visible;
-  }
-}
-
-/* ---------------------------------------------------
-   AJUSTE ALTURA Y TEXTO 
---------------------------------------------------- */
-.bono-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  min-height: 260px;
-}
-.bono-card .bono-desc {
-  flex: 1 1 auto;
-  margin: 0.7rem 0 0.7rem 0;
-  color: var(--black);
-  font-size: 0.98em;
-  line-height: 1.4;
-}
-.bono-card .precio {
-  margin-top: auto;
-}
-@media (max-width: 1024px) {
-  .bono-card {
-    min-height: 180px;
-  }
-  .bono-card .bono-desc {
-    font-size: 0.92em;
-  }
-}
-
-/* ---------------------------------------------------
-   BOTÓN FLOTANTE WHATSAPP 
---------------------------------------------------- */
+/* BOTÓN FLOTANTE WHATSAPP MINIMALISTA */
 .whatsapp-float {
   position: fixed;
   top: 50%;
@@ -734,22 +581,27 @@ section {
   left: auto;
   transform: translateY(-50%);
   z-index: 999;
-  background: #25d366;
-  color: #fff;
+  background: #fff;
+  color: var(--accent);
   border-radius: 50% 0 0 50%;
-  width: 67.2px; /* 20% más grande que 56px */
-  height: 67.2px; /* 20% más grande que 56px */
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.64rem; /* 20% más grande que 2.2rem */
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.18);
-  transition: background 0.2s, transform 0.2s;
-  border-right: none;
+  font-size: 2.2rem;
+  box-shadow: 0 2px 12px rgba(255, 165, 0, 0.1);
+  border: 2px solid var(--accent);
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
 }
 .whatsapp-float:hover {
-  background: #1ebe5d;
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid var(--accent-d);
   transform: translateY(-50%) scale(1.08);
+}
+.whatsapp-float .ph-whatsapp-logo {
+  color: inherit;
 }
 @media (max-width: 600px) {
   .whatsapp-float {
@@ -787,4 +639,56 @@ video {
 }
 img[alt]:not([alt=""]) {
   font-style: italic;
+}
+
+/* ---------------------------------------------------
+   FLECHAS DEL SLIDER
+--------------------------------------------------- */
+.slider-arrows {
+  display: flex !important;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+.slider-arrow {
+  background: #fff;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 8px rgba(255, 165, 0, 0.08);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s, transform 0.18s;
+}
+.slider-arrow:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.slider-arrow:hover {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid var(--accent-d);
+  transform: scale(1.08);
+}
+.slider-arrow i {
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .slider-arrows {
+    justify-content: center;
+    margin-bottom: 0.2rem;
+    gap: 0.3rem;
+  }
+  .slider-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1.15rem;
+  }
 }
