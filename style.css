@@ -1105,19 +1105,3 @@ button:focus-visible,
     /* Solo permiten scroll horizontal si el usuario arrastra dentro del slider */
   }
 }
-
-@media (min-width: 1025px) {
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 1002;
-    background: var(--white);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-  }
-}
-@media (max-width: 1024px) {
-  .header {
-    position: static !important;
-    box-shadow: none !important;
-  }
-}
