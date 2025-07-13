@@ -1069,3 +1069,19 @@ button:focus-visible,
   opacity: 0;
   pointer-events: none;
 }
+
+/* ---------------------------------------------------
+   EVITAR SCROLL LATERAL ACCIDENTAL EN MÓVIL FUERA DE LOS SLIDERS
+--------------------------------------------------- */
+@media (max-width: 1024px) {
+  html, body {
+    overscroll-behavior-x: none;
+    overflow-x: hidden;
+  }
+  .service-cards,
+  .bonos-cards {
+    overscroll-behavior-x: contain;
+    touch-action: pan-y;
+    /* Solo permiten scroll horizontal si el usuario arrastra dentro del slider */
+  }
+}
