@@ -106,10 +106,9 @@ section {
 .header {
   position: sticky;
   top: 0;
-  width: 100%;
-  z-index: 100;
+  z-index: 1002;
   background: var(--white);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 .header::after {
   content: "";
@@ -473,6 +472,14 @@ section {
   border-top: 4px solid var(--accent);
   padding: 2rem 1rem;
   text-align: center;
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position: relative;
+  box-sizing: border-box;
 }
 .footer-container p {
   margin-bottom: 1rem;
@@ -732,6 +739,18 @@ section {
   .call-float {
     top: 62%;
     z-index: 998;
+  }
+}
+@media (min-width: 1025px) {
+  .whatsapp-float,
+  .call-float {
+    display: none !important;
+  }
+}
+@media (max-width: 1024px) {
+  .whatsapp-float,
+  .call-float {
+    display: flex !important;
   }
 }
 
@@ -1074,7 +1093,8 @@ button:focus-visible,
    EVITAR SCROLL LATERAL ACCIDENTAL EN MÓVIL FUERA DE LOS SLIDERS
 --------------------------------------------------- */
 @media (max-width: 1024px) {
-  html, body {
+  html,
+  body {
     overscroll-behavior-x: none;
     overflow-x: hidden;
   }
@@ -1083,5 +1103,21 @@ button:focus-visible,
     overscroll-behavior-x: contain;
     touch-action: pan-y;
     /* Solo permiten scroll horizontal si el usuario arrastra dentro del slider */
+  }
+}
+
+@media (min-width: 1025px) {
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 1002;
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  }
+}
+@media (max-width: 1024px) {
+  .header {
+    position: static !important;
+    box-shadow: none !important;
   }
 }
