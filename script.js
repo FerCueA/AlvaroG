@@ -396,3 +396,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Forzar apertura directa de WhatsApp en todos los botones relevantes
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Botón header
+  const btnHeaderWhatsapp = document.querySelector(".btn-booksy");
+  if (btnHeaderWhatsapp) {
+    btnHeaderWhatsapp.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.open("https://wa.me/34634810054", "_blank");
+    });
+  }
+  // Botón flotante
+  const btnFloatWhatsapp = document.querySelector(".whatsapp-float");
+  if (btnFloatWhatsapp) {
+    btnFloatWhatsapp.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.open("https://wa.me/34634810054", "_blank");
+    });
+  }
+});
