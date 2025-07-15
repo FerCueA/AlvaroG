@@ -401,8 +401,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", function () {
   function isMobile() {
-    return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
-      navigator.userAgent
+    // Mejor detección: ancho de pantalla y userAgent
+    return (
+      window.innerWidth <= 800 ||
+      /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+        navigator.userAgent
+      )
     );
   }
   // Mensaje predefinido para WhatsApp
@@ -417,7 +421,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btnHeaderWhatsapp.addEventListener("click", function (e) {
       e.preventDefault();
       if (isMobile()) {
-        window.location.href = urlWhatsappMovil;
+        window.location.assign(urlWhatsappMovil);
       } else {
         window.open(urlWhatsappWeb, "_blank");
       }
@@ -429,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btnFloatWhatsapp.addEventListener("click", function (e) {
       e.preventDefault();
       if (isMobile()) {
-        window.location.href = urlWhatsappMovil;
+        window.location.assign(urlWhatsappMovil);
       } else {
         window.open(urlWhatsappWeb, "_blank");
       }
