@@ -193,51 +193,74 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Doble pulsación en móvil para botones flotantes WhatsApp y Teléfono
-function dobleToqueFlotantes() {
-  function isMobile() {
-    return (
-      window.innerWidth <= 800 ||
-      /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
-        navigator.userAgent
-      )
-    );
+// Doble pulsación en móvil y escritorio para WhatsApp y llamada flotantes
+function dobleToqueFlotantesWhatsappLlamada() {
+  const whatsappBtn = document.querySelector(".whatsapp-float");
+  const callBtn = document.querySelector(".call-float");
+  let tocadoWhatsapp = false;
+  let tocadoCall = false;
+  // Tooltip accesible
+  function showTooltip(btn, mensaje) {
+    let tooltip = btn.querySelector(".tooltip-float");
+    if (!tooltip) {
+      tooltip = document.createElement("span");
+      tooltip.className = "tooltip-float";
+      btn.appendChild(tooltip);
+    }
+    tooltip.textContent = mensaje;
+    tooltip.style.display = "block";
+    setTimeout(() => (tooltip.style.display = "none"), 2000);
   }
-  [
-    {
-      selector: ".whatsapp-float",
-      action: function (el) {
-        window.open(el.href, "_blank");
-      },
-    },
-    {
-      selector: ".call-float",
-      action: function (el) {
-        window.location.href = el.href;
-      },
-    },
-  ].forEach(({ selector, action }) => {
-    const btn = document.querySelector(selector);
-    if (!btn) return;
-    let tocado = false;
-    btn.addEventListener("click", function (e) {
-      if (!isMobile()) return; // Solo en móvil
-      if (!tocado) {
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener("click", function (e) {
+      if (!tocadoWhatsapp) {
         e.preventDefault();
-        btn.classList.add("tooltip-activo");
-        setTimeout(() => btn.classList.remove("tooltip-activo"), 2000);
-        tocado = true;
-        setTimeout(() => (tocado = false), 1800);
+        showTooltip(whatsappBtn, "Pulsa de nuevo para abrir WhatsApp");
+        tocadoWhatsapp = true;
+        setTimeout(() => (tocadoWhatsapp = false), 1800);
       } else {
-        // Segunda pulsación: ejecuta acción
-        btn.classList.remove("tooltip-activo");
-        action(btn);
-        tocado = false;
+        tocadoWhatsapp = false;
+        // Ejecutar acción WhatsApp
+        function isMobile() {
+          return (
+            window.innerWidth <= 800 ||
+            /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+              navigator.userAgent
+            )
+          );
+        }
+        const mensajeWhatsapp = encodeURIComponent(
+          "¡Hola! Me gustaría pedir información sobre los servicios de osteopatía y medicina china."
+        );
+        const urlWhatsappMovil = `https://wa.me/34634810054?text=${mensajeWhatsapp}`;
+        const urlWhatsappWeb = `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeWhatsapp}`;
+        if (isMobile()) {
+          window.location.assign(urlWhatsappMovil);
+        } else {
+          window.open(urlWhatsappWeb, "_blank");
+        }
       }
     });
-  });
+  }
+  if (callBtn) {
+    callBtn.addEventListener("click", function (e) {
+      if (!tocadoCall) {
+        e.preventDefault();
+        showTooltip(callBtn, "Pulsa de nuevo para llamar");
+        tocadoCall = true;
+        setTimeout(() => (tocadoCall = false), 1800);
+      } else {
+        tocadoCall = false;
+        // Ejecutar acción llamada
+        window.location.href = "tel:+34634810054";
+      }
+    });
+  }
 }
-document.addEventListener("DOMContentLoaded", dobleToqueFlotantes);
+document.addEventListener(
+  "DOMContentLoaded",
+  dobleToqueFlotantesWhatsappLlamada
+);
 
 // Ocultar tooltip flotante al pulsar fuera en móvil
 function ocultarTooltipFuera() {
