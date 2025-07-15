@@ -7,30 +7,73 @@
       name="description"
       content="Centro de Osteopatía y Medicina Tradicional China en Las Palmas. Tratamientos personalizados de acupuntura, osteopatía y más. Reserva tu cita online en Las Palmas de Gran Canaria."
     />
+    <meta
+      name="keywords"
+      content="osteopatía, acupuntura, medicina china, fisioterapia, Las Palmas, Gran Canaria, quiromasaje, moxibustión, auriculopuntura, vendaje neuromuscular"
+    />
+    <meta name="author" content="Álvaro García - Osteopatía y Medicina China" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="es" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.alvarogarcia-osteopata.com/" />
+    <meta
+      property="og:title"
+      content="Osteopatía y Medicina Tradicional China en Las Palmas | Álvaro García"
+    />
+    <meta
+      property="og:description"
+      content="Centro de Osteopatía y Medicina Tradicional China en Las Palmas. Tratamientos personalizados de acupuntura, osteopatía y más."
+    />
+    <meta
+      property="og:image"
+      content="https://www.alvarogarcia-osteopata.com/img/Logo.png"
+    />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://www.alvarogarcia-osteopata.com/"
+    />
+    <meta
+      property="twitter:title"
+      content="Osteopatía y Medicina Tradicional China en Las Palmas | Álvaro García"
+    />
+    <meta
+      property="twitter:description"
+      content="Centro de Osteopatía y Medicina Tradicional China en Las Palmas. Tratamientos personalizados de acupuntura, osteopatía y más."
+    />
+    <meta
+      property="twitter:image"
+      content="https://www.alvarogarcia-osteopata.com/img/Logo.png"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.alvarogarcia-osteopata.com/" />
+
     <title>
       Osteopatía y Medicina Tradicional China en Las Palmas | Álvaro García
     </title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts con preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Preload recursos críticos -->
+    <link rel="preload" href="img/Logo.png" as="image" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
 
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Iconos -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-M9DRQROsA2ZtLB5FbUvYYzUpBqG9N9e7x2QnK6wZ7LXmA6RVfsdt4kzRmkKfQpbClYIXHnEcWvM5dSc9W5Zb0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
 
     <!-- Iconos Phosphor -->
     <link
@@ -46,7 +89,7 @@
       <nav class="nav-container">
         <a href="/" class="logo-img" tabindex="0">
           <img
-            src="/img/Logo.png"
+            src="img/Logo.png"
             alt="Logo Álvaro García"
             class="logo-decorado logo-animado"
           />
@@ -105,9 +148,11 @@
           <p>Reequilibrio corporal.</p>
           <div class="service-image-wrapper">
             <img
-              src="/img/osteopatia.jpg"
+              src="img/osteopatia.jpg"
               alt="Terapia de osteopatía"
               class="service-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </article>
@@ -117,9 +162,11 @@
           <p>Estimulación de puntos para restaurar el flujo de Qi.</p>
           <div class="service-image-wrapper">
             <img
-              src="/img/acupuntura.jpg"
+              src="img/acupuntura.jpg"
               alt="Acupuntura"
               class="service-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </article>
@@ -129,9 +176,11 @@
           <p>Aplicación de calor en meridianos para aliviar dolencias.</p>
           <div class="service-image-wrapper">
             <img
-              src="/img/moxibustion.jpg"
+              src="img/moxibustion.jpg"
               alt="Moxibustión"
               class="service-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </article>
@@ -143,9 +192,11 @@
           <p>Soporte muscular sin restringir tu movimiento.</p>
           <div class="service-image-wrapper">
             <img
-              src="/img/vendajeNeuromuscular.jpg"
+              src="img/vendajeNeuromuscular.jpg"
               alt="Vendaje neuromuscular"
               class="service-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </article>
@@ -157,9 +208,11 @@
           </p>
           <div class="service-image-wrapper">
             <img
-              src="/img/Auricolopuntura.jpeg"
+              src="img/Auricolopuntura.jpeg"
               alt="Auriculopuntura"
               class="service-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </article>
@@ -267,7 +320,6 @@
     <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-container">
-        <p>&copy; 2025 Álvaro García. Todos los derechos reservados.</p>
         <div class="social">
           <a
             href="https://www.instagram.com/quiromasajistaalvarogarcia/"
@@ -286,11 +338,88 @@
             ><i class="ph ph-tiktok-logo ph-icon"></i> TikTok</a
           >
         </div>
+        <p>
+          &copy; 2025 | Desarrollada por
+          <a
+            href="https://aleixofdezcuevas.es/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="developer-link"
+            >Aleixo Fdez Cuevas</a
+          ><br class="mobile-break" />
+          Todos los derechos reservados.
+        </p>
       </div>
     </footer>
 
     <!-- JS -->
     <script src="script.js"></script>
+
+    <!-- Schema.org JSON-LD para LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://www.alvarogarcia-osteopata.com/#business",
+        "name": "Álvaro García - Osteopatía y Medicina China",
+        "description": "Centro de Osteopatía y Medicina Tradicional China en Las Palmas. Tratamientos personalizados de acupuntura, osteopatía, quiromasaje, moxibustión y vendaje neuromuscular.",
+        "url": "https://www.alvarogarcia-osteopata.com/",
+        "logo": "https://www.alvarogarcia-osteopata.com/img/Logo.png",
+        "image": "https://www.alvarogarcia-osteopata.com/img/Logo.png",
+        "telephone": "+34634810054",
+        "priceRange": "€40-€175",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Las Palmas de Gran Canaria",
+          "addressRegion": "Las Palmas",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "28.1248",
+          "longitude": "-15.4300"
+        },
+        "openingHours": "Mo-Fr 09:30-19:00",
+        "serviceArea": {
+          "@type": "City",
+          "name": "Las Palmas de Gran Canaria"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Osteopatía y Medicina China",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Osteopatía",
+                "description": "Reequilibrio corporal"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Acupuntura",
+                "description": "Estimulación de puntos para restaurar el flujo de Qi"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Moxibustión",
+                "description": "Aplicación de calor en meridianos para aliviar dolencias"
+              }
+            }
+          ]
+        },
+        "sameAs": [
+          "https://www.instagram.com/quiromasajistaalvarogarcia/",
+          "https://www.tiktok.com/@osteopata.lvaro"
+        ]
+      }
+    </script>
 
     <!-- BOTÓN FLOTANTE WHATSAPP  -->
     <a
@@ -311,5 +440,10 @@
       <i class="ph ph-phone"></i>
       <span class="tooltip-float" role="tooltip">Llama ahora</span>
     </a>
+
+    <!-- BOTÓN SCROLL TO TOP -->
+    <button id="scroll-to-top" aria-label="Volver arriba" title="Volver arriba">
+      <i class="ph ph-arrow-up"></i>
+    </button>
   </body>
 </html>

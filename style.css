@@ -480,10 +480,24 @@ section {
   right: 0;
   position: relative;
   box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 .footer-container p {
-  margin-bottom: 1rem;
+  margin: 0;
   color: var(--pri);
+  text-align: center;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .footer-container .social {
   display: flex;
@@ -499,11 +513,123 @@ section {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 .footer-container .social a:hover {
   color: var(--pri);
   transform: translateY(-2px);
+}
+
+/* Estilo para el enlace del desarrollador en copyright */
+.developer-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  display: inline;
+}
+
+.developer-link:hover,
+.developer-link:focus {
+  color: var(--accent-d);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .footer-container p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
+  .developer-link {
+    font-size: 0.9rem;
+  }
+
+  .footer-container .social {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-container .social a {
+    font-size: 1rem;
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.2rem 0.3rem;
+  }
+
+  .footer-container {
+    gap: 1rem;
+    padding: 0 0.3rem;
+  }
+
+  .footer-container p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    padding: 0 0.2rem;
+  }
+
+  .developer-link {
+    font-size: 0.85rem;
+  }
+
+  .footer-container .social {
+    gap: 0.8rem;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .footer-container .social a {
+    font-size: 0.95rem;
+    padding: 0.25rem 0.4rem;
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer {
+    padding: 1rem 0.2rem;
+  }
+
+  .footer-container {
+    gap: 0.8rem;
+    padding: 0 0.2rem;
+  }
+
+  .footer-container p {
+    font-size: 0.8rem;
+    line-height: 1.8;
+    padding: 0 0.1rem;
+    text-align: center;
+  }
+
+  .developer-link {
+    font-size: 0.8rem;
+  }
+
+  .footer-container .social a {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.3rem;
+  }
 }
 
 /* ---------------------------------------------------
@@ -579,503 +705,498 @@ section {
     overflow-x: auto;
     overflow-y: hidden !important;
     scroll-snap-type: x mandatory;
-    gap: 1.6rem;
-    padding-bottom: 1.5rem;
+    gap: 1.5rem;
+    padding: 0 1rem 1.5rem 1rem;
     grid-template-columns: none !important;
     border-radius: 18px;
+    justify-content: flex-start;
   }
   .service-card {
-    min-width: 78vw;
-    max-width: 84vw;
+    min-width: 280px;
+    max-width: 320px;
+    width: 300px;
     flex: 0 0 auto;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     margin-bottom: 0.5rem;
   }
   .bonos-cards {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 1.2rem;
-    padding-bottom: 1rem;
+    gap: 1.5rem;
+    padding: 0 1rem 1rem 1rem;
     grid-template-columns: none !important;
     max-width: 100vw;
+    justify-content: flex-start;
   }
   .bono-card {
-    min-width: 78vw;
-    max-width: 84vw;
+    min-width: 260px;
+    max-width: 300px;
+    width: 280px;
     flex: 0 0 auto;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     margin-bottom: 0.5rem;
   }
 }
-@media (max-width: 600px) {
+
+/* Ajustes para móviles medianos (tablets pequeñas y móviles grandes) */
+@media (max-width: 768px) {
   .service-card {
-    min-width: 88vw;
-    max-width: 92vw;
-    padding: 0.95rem;
-    font-size: 0.74rem;
+    min-width: 260px;
+    max-width: 290px;
+    width: 275px;
+    padding: 1.5rem;
   }
   .bono-card {
-    min-width: 88vw;
-    max-width: 92vw;
-    padding: 0.88rem;
-    font-size: 0.64rem;
+    min-width: 240px;
+    max-width: 270px;
+    width: 255px;
+    padding: 1.3rem;
   }
 }
 
-/* Mejorar visibilidad de la barra de scroll */
-@media (max-width: 1024px) {
-  .service-cards::-webkit-scrollbar,
-  .bonos-cards::-webkit-scrollbar {
-    height: 12px;
-    background: #ffe5b4;
-    border-radius: 8px;
-  }
-  .service-cards::-webkit-scrollbar-thumb,
-  .bonos-cards::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, var(--accent), #ffb84d 80%);
-    border-radius: 8px;
-    min-width: 60px;
-    border: 2px solid #fff3e0;
-  }
-  .service-cards::-webkit-scrollbar-track,
-  .bonos-cards::-webkit-scrollbar-track {
-    background: #fff3e0;
-    border-radius: 8px;
-  }
-}
-
-/* BOTÓN FLOTANTE WHATSAPP MINIMALISTA */
-.whatsapp-float {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  left: auto;
-  transform: translateY(-50%);
-  z-index: 999;
-  background: #fff;
-  color: var(--accent);
-  border-radius: 50% 0 0 50%;
-  width: 40px; /* reducido */
-  height: 40px; /* reducido */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem; /* reducido */
-  box-shadow: 0 2px 12px rgba(255, 165, 0, 0.1);
-  border: 2px solid var(--accent);
-  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
-  opacity: 0.7; /* transparencia */
-  backdrop-filter: blur(2px);
-}
-.whatsapp-float:hover {
-  background: var(--accent);
-  color: #fff;
-  border: 2px solid var(--accent-d);
-  transform: translateY(-50%) scale(1.08);
-  opacity: 1;
-}
-.whatsapp-float .ph-whatsapp-logo {
-  color: inherit;
-}
-.call-float {
-  position: fixed;
-  top: 62%;
-  right: 0;
-  left: auto;
-  transform: translateY(-50%);
-  z-index: 998;
-  background: #fff;
-  color: var(--accent);
-  border-radius: 50% 0 0 50%;
-  width: 40px; /* reducido */
-  height: 40px; /* reducido */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem; /* reducido */
-  box-shadow: 0 2px 12px rgba(255, 165, 0, 0.1);
-  border: 2px solid var(--accent);
-  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.2s;
-  opacity: 0.7; /* transparencia */
-  backdrop-filter: blur(2px);
-}
-.call-float:hover {
-  background: var(--accent);
-  color: #fff;
-  border: 2px solid var(--accent-d);
-  transform: translateY(-50%) scale(1.08);
-  opacity: 1;
-}
-.call-float .ph-phone {
-  color: inherit;
-}
+/* Ajustes para móviles estándar */
 @media (max-width: 600px) {
-  .whatsapp-float,
-  .call-float {
-    display: flex;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-    opacity: 0.7;
+  .service-card {
+    min-width: 240px;
+    max-width: 270px;
+    width: 255px;
+    padding: 1.4rem;
+    font-size: 0.9rem;
   }
-}
-@media (min-width: 601px) {
-  .whatsapp-float,
-  .call-float {
-    display: flex;
-    position: fixed;
-    top: 50%;
-    right: 0;
-    left: auto;
-    transform: translateY(-50%);
-    border-radius: 50% 0 0 50%;
-    z-index: 999;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-    opacity: 0.7;
-  }
-  .call-float {
-    top: 62%;
-    z-index: 998;
-  }
-}
-@media (min-width: 1025px) {
-  .whatsapp-float,
-  .call-float {
-    display: none !important;
-  }
-}
-@media (max-width: 1024px) {
-  .whatsapp-float,
-  .call-float {
-    display: flex !important;
+  .bono-card {
+    min-width: 220px;
+    max-width: 250px;
+    width: 235px;
+    padding: 1.2rem;
+    font-size: 0.85rem;
   }
 }
 
-/* ---------------------------------------------------
-   ACCESIBILIDAD Y CONTRASTE 
---------------------------------------------------- */
-:root {
-  --focus: #ffa500;
-}
-a:focus,
-button:focus,
-.btn-booksy:focus,
-.btn-primary:focus {
-  outline: 2.5px solid var(--focus);
-  outline-offset: 2px;
+/* Ajustes para móviles pequeños */
+@media (max-width: 480px) {
+  .service-cards {
+    padding: 0 0.5rem 1.5rem 0.5rem;
+    gap: 1rem;
+  }
+  .bonos-cards {
+    padding: 0 0.5rem 1rem 0.5rem;
+    gap: 1rem;
+  }
+  .service-card {
+    min-width: 220px;
+    max-width: 250px;
+    width: 235px;
+    padding: 1.3rem;
+  }
+  .bono-card {
+    min-width: 200px;
+    max-width: 230px;
+    width: 215px;
+    padding: 1.1rem;
+  }
 }
 
-/* ---------------------------------------------------
-   ACCESIBILIDAD: MODO ALTO CONTRASTE Y REDUCIR MOVIMIENTO
---------------------------------------------------- */
-@media (prefers-contrast: more) {
-  body,
-  section,
-  .service-card,
-  .bono-card,
-  .contacto-info,
-  .footer {
-    background: #fff !important;
-    color: #000 !important;
-    border-color: #000 !important;
+/* Ajustes para móviles muy pequeños */
+@media (max-width: 360px) {
+  .service-card {
+    min-width: 200px;
+    max-width: 220px;
+    width: 210px;
+    padding: 1.2rem;
+    font-size: 0.85rem;
   }
-  .btn-booksy,
-  .btn-primary,
-  .slider-arrow {
-    background: #000 !important;
-    color: #fff !important;
-    border-color: #000 !important;
-  }
-  a,
-  .link,
-  .footer-container .social a {
-    color: #000 !important;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition: none !important;
-    animation: none !important;
-    scroll-behavior: auto !important;
+  .bono-card {
+    min-width: 180px;
+    max-width: 200px;
+    width: 190px;
+    padding: 1rem;
+    font-size: 0.8rem;
   }
 }
 
 /* ---------------------------------------------------
-   BOTÓN SCROLL TO TOP (MÓVIL Y ESCRITORIO)
---------------------------------------------------- */
-.scroll-to-top {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  width: 48px;
-  height: 48px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 2px 12px rgba(255, 165, 0, 0.13);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 1200;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-.scroll-to-top.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-@media (max-width: 600px) {
-  .scroll-to-top {
-    bottom: 80px;
-    right: 16px;
-    width: 42px;
-    height: 42px;
-    font-size: 1.5rem;
-  }
-}
-
-/* ---------------------------------------------------
-   GLASSMORPHISM (OPCIONAL EN SECCIONES)
---------------------------------------------------- */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 16px;
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-}
-
-/* ---------------------------------------------------
-   MODO OSCURO (OPCIONAL)
---------------------------------------------------- */
-body.dark-mode {
-  background: #181818;
-  color: #fff;
-}
-body.dark-mode section,
-body.dark-mode .service-card,
-body.dark-mode .bono-card,
-body.dark-mode .contacto-info,
-body.dark-mode .footer {
-  background: #232323 !important;
-  color: #fff !important;
-  border-color: #333 !important;
-}
-body.dark-mode .btn-booksy,
-body.dark-mode .btn-primary,
-body.dark-mode .slider-arrow {
-  background: #ffa500 !important;
-  color: #232323 !important;
-  border-color: #ffa500 !important;
-}
-body.dark-mode .footer-container .social a {
-  color: #ffa500 !important;
-}
-
-/* ---------------------------------------------------
-   ANIMACIÓN HOVER EN CARDS
---------------------------------------------------- */
-.service-card:hover,
-.bono-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 24px rgba(255, 165, 0, 0.13);
-}
-
-/* ---------------------------------------------------
-   TRANSICIONES SUAVES GLOBALES
---------------------------------------------------- */
-*,
-*::before,
-*::after {
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s,
-    transform 0.3s;
-}
-
-/* ---------------------------------------------------
-   SWIPE SLIDER (MEJOR UX EN MÓVIL)
---------------------------------------------------- */
-.service-cards,
-.bonos-cards {
-  touch-action: pan-x;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* ---------------------------------------------------
-   FOCUS VISIBLE MEJORADO
---------------------------------------------------- */
-a:focus-visible,
-button:focus-visible,
-.btn-booksy:focus-visible,
-.btn-primary:focus-visible,
-.slider-arrow:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--accent);
-}
-
-/* ---------------------------------------------------
-   ALTO CONTRASTE PARA ICONOS
---------------------------------------------------- */
-@media (prefers-contrast: more) {
-  .ph-icon {
-    color: #000 !important;
-  }
-}
-
-/* ---------------------------------------------------
-   FLECHAS DEL SLIDER
+   FLECHAS DE SLIDER
 --------------------------------------------------- */
 .slider-arrows {
-  display: flex !important;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 2;
+  display: none;
 }
-.slider-arrow {
-  background: #fff;
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 8px rgba(255, 165, 0, 0.08);
-  cursor: pointer;
-  transition: background 0.18s, color 0.18s, border 0.18s, transform 0.18s;
-}
-.slider-arrow:focus {
-  outline: 2px solid var(--focus);
-  outline-offset: 2px;
-}
-.slider-arrow:hover {
-  background: var(--accent);
-  color: #fff;
-  border: 2px solid var(--accent-d);
-  transform: scale(1.08);
-}
-.slider-arrow i {
-  pointer-events: none;
-}
-@media (max-width: 600px) {
+
+@media (max-width: 1024px) {
   .slider-arrows {
+    display: flex;
     justify-content: center;
-    margin-bottom: 0.2rem;
-    gap: 0.3rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
+
   .slider-arrow {
-    width: 32px;
-    height: 32px;
-    font-size: 1.15rem;
+    background: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--accent);
+    font-size: 1.5rem;
+  }
+
+  .slider-arrow:hover {
+    background: var(--accent);
+    color: var(--white);
+    transform: scale(1.1);
+  }
+
+  .slider-arrow:active {
+    transform: scale(0.95);
   }
 }
 
-/* Animación logo al hacer hover */
-.logo-animado {
-  transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-    box-shadow 0.2s;
-}
-.logo-animado:hover,
-.logo-animado:focus {
-  transform: scale(1.08) rotate(-2deg);
-  box-shadow: 0 4px 24px rgba(255, 165, 0, 0.13);
-}
-
-/* Microinteracciones en botones principales */
-.btn-primary,
-.btn-booksy {
-  transition: box-shadow 0.18s, transform 0.18s;
-}
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-booksy:hover,
-.btn-booksy:focus {
-  box-shadow: 0 2px 16px rgba(255, 165, 0, 0.18);
-  transform: scale(1.04);
-}
-
-/* Separadores visuales en contacto */
-.contact-separator {
-  border: none;
-  border-top: 1.5px solid #f3e6d1;
-  margin: 0.5em 0 0.5em 2.2em;
-  width: 90%;
-  opacity: 0.7;
-}
-
-/* Tooltips accesibles para iconos flotantes - fondo translúcido */
-.tooltip-float {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  right: 110%;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.35); /* translúcido */
-  color: var(--accent);
-  border-radius: 6px;
-  padding: 0.3em 0.7em;
-  font-size: 0.95em;
-  font-weight: 500;
-  box-shadow: none;
-  pointer-events: none;
-  transition: opacity 0.18s, visibility 0.18s;
-  z-index: 1001;
-  white-space: nowrap;
-  backdrop-filter: blur(2px);
-  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.25);
-}
-.whatsapp-float:hover .tooltip-float,
-.whatsapp-float:focus .tooltip-float,
-.call-float:hover .tooltip-float,
-.call-float:focus .tooltip-float {
-  visibility: visible;
-  opacity: 1;
-}
-.whatsapp-float.tooltip-activo .tooltip-float,
-.call-float.tooltip-activo .tooltip-float {
-  visibility: visible !important;
-  opacity: 1 !important;
-}
+/* ---------------------------------------------------
+   BOTONES FLOTANTES
+--------------------------------------------------- */
 .whatsapp-float,
 .call-float {
   position: fixed;
-  overflow: visible;
-}
-
-/* Loader minimalista */
-#loader-bg {
-  position: fixed;
-  z-index: 2000;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.85);
+  right: 0;
+  background: #fff;
+  color: var(--accent);
+  border-radius: 50% 0 0 50%;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.4s;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 16px rgba(255, 165, 0, 0.15);
+  border: 2px solid var(--accent);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  backdrop-filter: blur(4px);
+  text-decoration: none;
 }
+
+.whatsapp-float {
+  top: 25%;
+  transform: translateY(-25px);
+  z-index: 999;
+}
+
+.call-float {
+  top: 25%;
+  transform: translateY(25px);
+  z-index: 998;
+}
+
+.whatsapp-float:hover,
+.call-float:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent-d);
+  opacity: 1;
+  box-shadow: 0 6px 20px rgba(255, 165, 0, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-25px) scale(1.1);
+}
+
+.call-float:hover {
+  transform: translateY(25px) scale(1.1);
+}
+
+.whatsapp-float .ph-whatsapp-logo,
+.call-float .ph-phone {
+  color: inherit;
+}
+
+/* Ocultar en desktop */
+@media (min-width: 1025px) {
+  .whatsapp-float,
+  .call-float {
+    display: none;
+  }
+}
+
+/* Ajustes para móvil - centrados verticalmente, a la derecha con estilo personalizado */
+@media (max-width: 1024px) {
+  .whatsapp-float,
+  .call-float {
+    width: 55px;
+    height: 55px;
+    font-size: 1.6rem;
+    right: 15px;
+    transform: none;
+    border-radius: 50% 0 0 50%;
+    box-shadow: 0 4px 20px rgba(255, 165, 0, 0.2);
+  }
+
+  .whatsapp-float {
+    top: 50%;
+    transform: translateY(-50px);
+    bottom: auto;
+  }
+
+  .call-float {
+    top: 50%;
+    transform: translateY(20px);
+    bottom: auto;
+  }
+
+  .whatsapp-float:hover {
+    transform: translateY(-50px) scale(1.1);
+  }
+
+  .call-float:hover {
+    transform: translateY(20px) scale(1.1);
+  }
+}
+
+/* Ajuste para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .whatsapp-float,
+  .call-float {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    right: 10px;
+    border-radius: 50% 0 0 50%;
+    box-shadow: 0 4px 18px rgba(255, 165, 0, 0.25);
+  }
+
+  .whatsapp-float {
+    transform: translateY(-45px);
+  }
+
+  .call-float {
+    transform: translateY(15px);
+  }
+
+  .whatsapp-float:hover {
+    transform: translateY(-45px) scale(1.1);
+  }
+
+  .call-float:hover {
+    transform: translateY(15px) scale(1.1);
+  }
+}
+
+/* ---------------------------------------------------
+   TOOLTIPS PARA BOTONES FLOTANTES
+--------------------------------------------------- */
+.tooltip-float {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  margin-right: 10px;
+}
+
+.tooltip-float::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: rgba(0, 0, 0, 0.8);
+}
+
+.whatsapp-float:hover .tooltip-float,
+.call-float:hover .tooltip-float {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 1024px) {
+  .tooltip-float {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------
+   BOTÓN SCROLL TO TOP
+--------------------------------------------------- */
+#scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#scroll-to-top:hover {
+  background: var(--accent-d);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  #scroll-to-top {
+    bottom: 180px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+}
+
+/* ---------------------------------------------------
+   ANIMACIONES STAGGER PARA CARDS
+--------------------------------------------------- */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card.stagger-animation,
+.bono-card.stagger-animation {
+  animation: staggerFadeIn 0.6s ease forwards;
+}
+
+/* ---------------------------------------------------
+   LOADING SKELETON PARA IMÁGENES
+--------------------------------------------------- */
+/* Eliminado - usar estilos originales de service-image-wrapper */
+
+.service-image {
+  transition: transform 0.3s ease;
+}
+
+/* Estilos de imagen simplificados */
+
+.service-card:hover .service-image {
+  transform: scale(1.05);
+}
+
+/* ---------------------------------------------------
+   PARALLAX SUTIL EN HERO
+--------------------------------------------------- */
+@media (min-width: 1025px) {
+  .hero-content {
+    transform: translateY(0);
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* ---------------------------------------------------
+   MICROINTERACCIONES MEJORADAS
+--------------------------------------------------- */
+.service-card,
+.bono-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before,
+.bono-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+  z-index: 1;
+}
+
+.service-card:hover::before,
+.bono-card:hover::before {
+  left: 100%;
+}
+
+/* ---------------------------------------------------
+   LOADER INICIAL
+--------------------------------------------------- */
+#loader-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease-out;
+}
+
+#loader-bg.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .loader {
-  border: 4px solid #f3e6d1;
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--sec);
   border-top: 4px solid var(--accent);
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
   animation: spin 1s linear infinite;
+  position: relative;
 }
+
+.loader::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 4px solid transparent;
+  border-top: 4px solid rgba(255, 165, 0, 0.3);
+  border-radius: 50%;
+  animation: spin 2s linear infinite reverse;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -1084,24 +1205,167 @@ button:focus-visible,
     transform: rotate(360deg);
   }
 }
-#loader-bg.hide {
-  opacity: 0;
-  pointer-events: none;
+
+@media (max-width: 480px) {
+  .service-card,
+  .bono-card {
+    padding: 1.2rem;
+  }
+
+  .service-icon,
+  .bono-icon {
+    font-size: 2rem;
+  }
+
+  .service-card h3,
+  .bono-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .hero-name {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
 }
 
 /* ---------------------------------------------------
-   EVITAR SCROLL LATERAL ACCIDENTAL EN MÓVIL FUERA DE LOS SLIDERS
+   TOAST MESSAGES PARA BOTONES FLOTANTES
 --------------------------------------------------- */
-@media (max-width: 1024px) {
-  html,
-  body {
-    overscroll-behavior-x: none;
-    overflow-x: hidden;
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-width: 300px;
+  font-family: var(--font-primary);
+}
+
+.toast-show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--pri);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.toast-content i {
+  color: var(--accent);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.toast-whatsapp {
+  border-color: #25d366;
+}
+
+.toast-whatsapp .toast-content i {
+  color: #25d366;
+}
+
+.toast-phone {
+  border-color: #007bff;
+}
+
+.toast-phone .toast-content i {
+  color: #007bff;
+}
+
+/* Animación de entrada más suave */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
   }
-  .service-cards,
-  .bonos-cards {
-    overscroll-behavior-x: contain;
-    touch-action: pan-y;
-    /* Solo permiten scroll horizontal si el usuario arrastra dentro del slider */
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsivo para móvil */
+@media (max-width: 768px) {
+  .toast {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    transform: translateY(-100%);
+  }
+
+  .toast-show {
+    transform: translateY(0);
+  }
+
+  .toast-content {
+    font-size: 0.9rem;
+  }
+}
+
+/* Salto de línea condicional para móviles */
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .mobile-break {
+    display: block;
+  }
+}
+
+/* Centrado inteligente para pocas cards */
+@media (max-width: 1024px) {
+  .services,
+  .bonos {
+    padding: 2rem 0.5rem;
+  }
+
+  .service-cards[data-cards-count="1"] {
+    justify-content: center;
+    padding-left: calc(50vw - 150px);
+  }
+
+  .bonos-cards[data-cards-count="1"] {
+    justify-content: center;
+    padding-left: calc(50vw - 140px);
+  }
+}
+
+/* Indicadores visuales opcionales para navegación */
+@media (max-width: 1024px) {
+  .services::after,
+  .bonos::after {
+    content: "← Desliza para ver más →";
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-top: 0.5rem;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 480px) {
+  .services::after,
+  .bonos::after {
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
   }
 }

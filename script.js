@@ -133,20 +133,19 @@ function animacionesScroll() {
 document.addEventListener("DOMContentLoaded", animacionesScroll);
 
 // SCROLL TO TOP
-const scrollBtn = document.createElement("button");
-scrollBtn.className = "scroll-to-top";
-scrollBtn.innerHTML = '<i class="ph ph-arrow-up"></i>';
-document.body.appendChild(scrollBtn);
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    scrollBtn.classList.add("visible");
-  } else {
-    scrollBtn.classList.remove("visible");
-  }
-});
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+const scrollBtn = document.getElementById("scroll-to-top");
+if (scrollBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add("visible");
+    } else {
+      scrollBtn.classList.remove("visible");
+    }
+  });
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 
 // MODO OSCURO (toggle manual, opcional)
 // Descomenta para activar el botón de modo oscuro
@@ -188,7 +187,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("loader-bg");
   if (loader) {
     setTimeout(() => {
-      loader.classList.add("hide");
+      loader.classList.add("fade-out");
       setTimeout(() => loader.remove(), 500);
     }, 900);
   }
@@ -264,3 +263,136 @@ function ocultarTooltipFuera() {
   });
 }
 document.addEventListener("DOMContentLoaded", ocultarTooltipFuera);
+
+// Mejoras UX/UI avanzadas
+document.addEventListener("DOMContentLoaded", function () {
+  // Stagger animation para cards
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add("in-view");
+        }, index * 100);
+      }
+    });
+  }, observerOptions);
+
+  // Aplicar animación stagger a cards
+  document.querySelectorAll(".service-card, .bono-card").forEach((card) => {
+    card.classList.add("anim-scroll");
+    staggerObserver.observe(card);
+  });
+
+  // Lazy loading mejorado con placeholder
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.classList.add("loading");
+
+        img.onload = () => {
+          img.classList.remove("loading");
+          img.classList.add("loaded");
+        };
+
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+
+  document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    imageObserver.observe(img);
+  });
+
+  // Smooth scroll mejorado
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+
+  // Prefetch para enlaces importantes
+  const importantLinks = document.querySelectorAll(
+    'a[href*="wa.me"], a[href*="tel:"]'
+  );
+  importantLinks.forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+      // Prefetch DNS para WhatsApp
+      if (link.href.includes("wa.me")) {
+        const prefetch = document.createElement("link");
+        prefetch.rel = "dns-prefetch";
+        prefetch.href = "//wa.me";
+        document.head.appendChild(prefetch);
+      }
+    });
+  });
+
+  // Performance observer para métricas
+  if ("PerformanceObserver" in window) {
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.entryType === "largest-contentful-paint") {
+          console.log("LCP:", entry.startTime);
+        }
+      }
+    });
+    observer.observe({ entryTypes: ["largest-contentful-paint"] });
+  }
+});
+
+// Mensajes de confirmación para botones flotantes
+document.addEventListener("DOMContentLoaded", () => {
+  const whatsappBtn = document.querySelector(".whatsapp-float");
+  const callBtn = document.querySelector(".call-float");
+
+  // Función para mostrar mensaje de confirmación
+  function showToast(message, type = "info") {
+    // Crear el elemento toast
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+      <div class="toast-content">
+        <i class="ph ph-check-circle"></i>
+        <span>${message}</span>
+      </div>
+    `;
+
+    // Añadir al DOM
+    document.body.appendChild(toast);
+
+    // Mostrar con animación
+    setTimeout(() => toast.classList.add("toast-show"), 100);
+
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+      toast.classList.remove("toast-show");
+      setTimeout(() => document.body.removeChild(toast), 300);
+    }, 3000);
+  }
+
+  // Event listener para WhatsApp
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener("click", (e) => {
+      showToast("Chatea conmigo por WhatsApp 💬", "whatsapp");
+    });
+  }
+
+  // Event listener para llamada
+  if (callBtn) {
+    callBtn.addEventListener("click", (e) => {
+      showToast("Llámame ahora 📞", "phone");
+    });
+  }
+});
