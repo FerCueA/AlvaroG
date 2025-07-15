@@ -400,12 +400,27 @@ document.addEventListener("DOMContentLoaded", () => {
 // Forzar apertura directa de WhatsApp en todos los botones relevantes
 
 document.addEventListener("DOMContentLoaded", function () {
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+      navigator.userAgent
+    );
+  }
+  // Mensaje predefinido para WhatsApp
+  const mensajeWhatsapp = encodeURIComponent(
+    "¡Hola! Me gustaría pedir información sobre los servicios de osteopatía y medicina china."
+  );
+  const urlWhatsappMovil = `https://wa.me/34634810054?text=${mensajeWhatsapp}`;
+  const urlWhatsappWeb = `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeWhatsapp}`;
   // Botón header
   const btnHeaderWhatsapp = document.querySelector(".btn-booksy");
   if (btnHeaderWhatsapp) {
     btnHeaderWhatsapp.addEventListener("click", function (e) {
       e.preventDefault();
-      window.open("https://wa.me/34634810054", "_blank");
+      if (isMobile()) {
+        window.location.href = urlWhatsappMovil;
+      } else {
+        window.open(urlWhatsappWeb, "_blank");
+      }
     });
   }
   // Botón flotante
@@ -413,7 +428,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (btnFloatWhatsapp) {
     btnFloatWhatsapp.addEventListener("click", function (e) {
       e.preventDefault();
-      window.open("https://wa.me/34634810054", "_blank");
+      if (isMobile()) {
+        window.location.href = urlWhatsappMovil;
+      } else {
+        window.open(urlWhatsappWeb, "_blank");
+      }
     });
   }
 });
