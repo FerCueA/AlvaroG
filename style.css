@@ -994,10 +994,10 @@ section {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 0.5rem 0.8rem;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.85rem;
   white-space: nowrap;
   opacity: 0;
@@ -1006,6 +1006,8 @@ section {
   backdrop-filter: blur(4px);
   z-index: 1000;
   margin-right: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: none;
 }
 
 .tooltip-float::after {
@@ -1015,18 +1017,52 @@ section {
   top: 50%;
   transform: translateY(-50%);
   border: 5px solid transparent;
-  border-left-color: rgba(0, 0, 0, 0.8);
+  border-left-color: rgba(0, 0, 0, 0.9);
 }
 
+/* Mostrar tooltip en hover para escritorio */
 .whatsapp-float:hover .tooltip-float,
 .call-float:hover .tooltip-float {
   opacity: 1;
   visibility: visible;
+  display: block;
 }
 
-@media (max-width: 1024px) {
+/* Tooltip activo (para sistema de doble pulsación) */
+.tooltip-activo .tooltip-float {
+  opacity: 1;
+  visibility: visible;
+  display: block !important;
+}
+
+/* Mejoras específicas para móvil */
+@media (max-width: 800px) {
   .tooltip-float {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    margin-right: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .tooltip-float::after {
+    border-width: 6px;
+    border-left-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Asegurar que no se active con hover en móvil */
+  .whatsapp-float:hover .tooltip-float,
+  .call-float:hover .tooltip-float {
+    opacity: 0;
+    visibility: hidden;
     display: none;
+  }
+  
+  /* Solo mostrar cuando esté activo por doble toque */
+  .tooltip-activo .tooltip-float {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -1367,5 +1403,30 @@ section {
   .bonos::after {
     font-size: 0.75rem;
     margin-top: 0.3rem;
+  }
+}
+
+/* Feedback visual para toques en móvil */
+@media (max-width: 800px) {
+  .whatsapp-float:active,
+  .call-float:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+  
+  .whatsapp-float.tooltip-activo,
+  .call-float.tooltip-activo {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+  
+  .whatsapp-float.tooltip-activo {
+    background: rgba(37, 211, 102, 0.2);
+    box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.4);
+  }
+  
+  .call-float.tooltip-activo {
+    background: rgba(0, 123, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.4);
   }
 }
