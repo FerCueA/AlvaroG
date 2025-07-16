@@ -98,13 +98,11 @@
         </a>
         <div class="nav-actions">
           <a
-            href="https://wa.me/34634810054"
+            href="#"
             class="btn-booksy"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Contactar por WhatsApp"
+            aria-label="Reservar cita por WhatsApp"
           >
-            Contactar por WhatsApp
+            Reservar Cita
           </a>
         </div>
       </nav>
@@ -422,6 +420,133 @@
         ]
       }
     </script>
+
+    <!-- MODAL SELECCIÓN DE CITA -->
+    <div id="modal-cita" class="modal-overlay" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">📅 Selecciona tu cita preferida</h3>
+          <button class="modal-close" aria-label="Cerrar modal">
+            <i class="ph ph-x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="cita-form" class="cita-form">
+            <div class="form-group">
+              <label for="fecha-cita">
+                <i class="ph ph-calendar"></i> Fecha preferida:
+              </label>
+              <input 
+                type="date" 
+                id="fecha-cita" 
+                name="fecha" 
+                required
+                min=""
+                max=""
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="hora-cita">
+                <i class="ph ph-clock"></i> Hora preferida:
+              </label>
+              <select id="hora-cita" name="hora" required>
+                <option value="">Selecciona una hora</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="servicio-cita">
+                <i class="ph ph-hand-heart"></i> Tipo de servicio:
+              </label>
+              <select id="servicio-cita" name="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option value="Osteopatía">Osteopatía</option>
+                <option value="Acupuntura">Acupuntura</option>
+                <option value="Moxibustión">Moxibustión</option>
+                <option value="Vendaje Neuromuscular">Vendaje Neuromuscular</option>
+                <option value="Auriculopuntura">Auriculopuntura</option>
+                <option value="Consulta general">Consulta general</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="nombre-cita">
+                <i class="ph ph-user"></i> Tu nombre:
+              </label>
+              <input 
+                type="text" 
+                id="nombre-cita" 
+                name="nombre" 
+                placeholder="Ej: María García"
+                required
+                maxlength="50"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="poblacion-cita">
+                <i class="ph ph-map-pin"></i> Población:
+              </label>
+              <select id="poblacion-cita" name="poblacion" required>
+                <option value="">Selecciona tu población</option>
+                <option value="Las Palmas de Gran Canaria">Las Palmas de Gran Canaria</option>
+                <option value="Telde">Telde</option>
+                <option value="Santa Lucía de Tirajana">Santa Lucía de Tirajana</option>
+                <option value="Arucas">Arucas</option>
+                <option value="Ingenio">Ingenio</option>
+                <option value="Agüimes">Agüimes</option>
+                <option value="Gáldar">Gáldar</option>
+                <option value="Santa María de Guía">Santa María de Guía</option>
+                <option value="Moya">Moya</option>
+                <option value="Valsequillo">Valsequillo</option>
+                <option value="Teror">Teror</option>
+                <option value="Firgas">Firgas</option>
+                <option value="Valleseco">Valleseco</option>
+                <option value="Otra (especificar en comentarios)">Otra población</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="comentarios-cita">
+                <i class="ph ph-chat-circle"></i> Comentarios adicionales (opcional):
+              </label>
+              <textarea 
+                id="comentarios-cita" 
+                name="comentarios" 
+                placeholder="Ej: Dolencia específica, otra población, preferencias..."
+                maxlength="200"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-secondary" id="cancelar-cita">
+                Cancelar
+              </button>
+              <button type="submit" class="btn-primary" id="confirmar-cita">
+                <i class="ph ph-whatsapp-logo"></i> Enviar por WhatsApp
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <!-- BOTÓN FLOTANTE WHATSAPP  -->
     <a

@@ -1233,6 +1233,26 @@ section {
   animation: spin 2s linear infinite reverse;
 }
 
+/* Animación de spin para el indicador de carga */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-primary:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -1430,3 +1450,308 @@ section {
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.4);
   }
 }
+
+/* ---------------------------------------------------
+   MODAL SELECCIÓN DE CITA
+--------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.modal-close:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.cita-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.form-group label i {
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: white;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(44, 122, 92, 0.1);
+}
+
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+  border-color: #e74c3c;
+}
+
+.form-actions {
+  display: flex !important;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-secondary {
+  flex: 1;
+  padding: 12px 24px;
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.btn-secondary:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+  color: #495057;
+}
+
+.btn-primary {
+  flex: 2;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(44, 122, 92, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Responsive para móvil */
+@media (max-width: 600px) {
+  #modal-cita .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #confirmar-cita,
+  #cancelar-cita {
+    width: 100% !important;
+    flex: none !important;
+    justify-content: center !important;
+  }
+  
+  #confirmar-cita {
+    order: 2; /* Botón principal abajo en móvil */
+  }
+  
+  #cancelar-cita {
+    order: 1; /* Botón cancelar arriba en móvil */
+  }
+}
+
+/* Responsive para botones del modal en móvil */
+@media (max-width: 600px) {
+  #modal-cita .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #confirmar-cita,
+  #cancelar-cita {
+    width: 100% !important;
+    flex: none !important;
+    justify-content: center !important;
+  }
+  
+  #confirmar-cita {
+    order: 2; /* Botón principal abajo en móvil */
+  }
+  
+  #cancelar-cita {
+    order: 1; /* Botón cancelar arriba en móvil */
+  }
+}
+
+/* SOLUCIÓN FINAL PARA BOTONES DEL MODAL - MÁXIMA PRIORIDAD */
+body #modal-cita #confirmar-cita {
+  background: #2c7a5c !important;
+  color: white !important;
+  border: 2px solid #2c7a5c !important;
+  padding: 14px 24px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  min-width: 180px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  flex: 2 !important;
+}
+
+body #modal-cita #cancelar-cita {
+  background: #6c757d !important;
+  color: white !important;
+  border: 2px solid #6c757d !important;
+  padding: 14px 24px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  min-width: 120px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  flex: 1 !important;
+}
+
+body #modal-cita .form-actions {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 20px !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+body #modal-cita #confirmar-cita:hover {
+  background: #1e5a40 !important;
+  border-color: #1e5a40 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(44, 122, 92, 0.3) !important;
+}
+
+body #modal-cita #cancelar-cita:hover {
+  background: #5a6268 !important;
+  border-color: #5a6268 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ---------------------------------------------------
+   FIN ESTILOS
+--------------------------------------------------- */

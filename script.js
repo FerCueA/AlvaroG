@@ -205,6 +205,359 @@ function isMobileDevice() {
   );
 }
 
+// Sistema de Modal para Selección de Cita
+function initModalCita() {
+
+  
+  const modal = document.getElementById('modal-cita');
+  const form = document.getElementById('cita-form');
+  const fechaInput = document.getElementById('fecha-cita');
+  const cancelarBtn = document.getElementById('cancelar-cita');
+  const closeBtn = document.querySelector('.modal-close');
+
+  if (!modal || !form || !fechaInput) {
+    console.error('No se pudieron encontrar los elementos del modal');
+    return function() { alert('Error: Modal no disponible'); };
+  }
+
+
+
+  // Configurar fechas mínima y máxima
+  function configurarFechas() {
+    const hoy = new Date();
+    const maxFecha = new Date();
+    maxFecha.setMonth(maxFecha.getMonth() + 3); // 3 meses adelante
+    
+    // Fecha mínima: mañana (para dar tiempo a confirmar)
+    hoy.setDate(hoy.getDate() + 1);
+    
+    fechaInput.min = hoy.toISOString().split('T')[0];
+    fechaInput.max = maxFecha.toISOString().split('T')[0];
+  }
+
+  // Abrir modal
+  function abrirModal() {
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    
+    // Preseleccionar recomendados
+    preseleccionarRecomendados();
+    
+    // Focus en el campo de nombre (ya que fecha y hora están preseleccionadas)
+    setTimeout(() => {
+      const nombreInput = document.getElementById('nombre-cita');
+      if (nombreInput) {
+        nombreInput.focus();
+
+      }
+    }, 100);
+  }
+
+  // Cerrar modal
+  function cerrarModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    form.reset();
+  }
+
+  // Formatear fecha para WhatsApp
+  function formatearFecha(fechaString) {
+    const fecha = new Date(fechaString + 'T00:00:00');
+    const opciones = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    };
+    return fecha.toLocaleDateString('es-ES', opciones);
+  }
+
+  // Generar mensaje de WhatsApp
+  function generarMensajeWhatsApp(datos) {
+    const fechaFormateada = formatearFecha(datos.fecha);
+    
+    return `¡Hola! Me gustaría solicitar una cita para ${datos.servicio}.
+
+📅 *Detalles de la cita solicitada:*
+• *Fecha:* ${fechaFormateada}
+• *Hora:* ${datos.hora}
+• *Servicio:* ${datos.servicio}
+• *Nombre:* ${datos.nombre}
+• *Población:* ${datos.poblacion}${datos.comentarios ? `\n• *Comentarios:* ${datos.comentarios}` : ''}
+
+Por favor, confirma la disponibilidad de esta fecha y hora.
+
+¡Gracias!`;
+  }
+
+  // Enviar por WhatsApp
+  function enviarWhatsApp(mensaje) {
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    const urlWhatsappMovil = `https://wa.me/34634810054?text=${mensajeCodificado}`;
+    const urlWhatsappWeb = `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeCodificado}`;
+    
+    if (isMobileDevice()) {
+      window.location.assign(urlWhatsappMovil);
+    } else {
+      window.open(urlWhatsappWeb, "_blank");
+    }
+  }
+
+  // Event listeners
+  if (cancelarBtn) {
+    cancelarBtn.addEventListener('click', cerrarModal);
+  }
+  
+  if (closeBtn) {
+    closeBtn.addEventListener('click', cerrarModal);
+  }
+  
+  // Cerrar con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      cerrarModal();
+    }
+  });
+
+  // Cerrar haciendo clic fuera del modal
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      cerrarModal();
+    }
+  });
+
+  // Manejar envío del formulario
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      procesarFormulario();
+    });
+  }
+
+  // También añadir listener al botón directamente como backup
+  const confirmarBtn = document.getElementById('confirmar-cita');
+  if (confirmarBtn) {
+    confirmarBtn.addEventListener('click', function(e) {
+
+      e.preventDefault();
+      procesarFormulario();
+    });
+  }
+
+  // Función para procesar el formulario
+  function procesarFormulario() {
+
+    
+    const submitBtn = document.getElementById('confirmar-cita');
+    const originalText = submitBtn.innerHTML;
+    
+    // Mostrar indicador de carga
+    submitBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 1s linear infinite;"></i> Abriendo WhatsApp...';
+    submitBtn.disabled = true;
+    
+    const formData = new FormData(form);
+    const datos = {
+      fecha: formData.get('fecha'),
+      hora: formData.get('hora'),
+      servicio: formData.get('servicio'),
+      nombre: formData.get('nombre'),
+      poblacion: formData.get('poblacion'),
+      comentarios: formData.get('comentarios')
+    };
+
+
+
+    // Validar que todos los campos obligatorios estén completos
+    if (!datos.fecha || !datos.hora || !datos.servicio || !datos.nombre.trim() || !datos.poblacion) {
+      alert('Por favor, completa todos los campos obligatorios (fecha, hora, servicio, nombre y población).');
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+      return;
+    }
+
+    // Validar día laboral una vez más
+    const fechaSeleccionada = new Date(datos.fecha + 'T00:00:00');
+    const diaSemana = fechaSeleccionada.getDay();
+    if (diaSemana === 0 || diaSemana === 6) {
+      alert('⚠️ Por favor, selecciona un día laboral (lunes a viernes).');
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+      return;
+    }
+
+    // Generar y enviar mensaje con pequeño delay para UX
+    setTimeout(() => {
+      const mensaje = generarMensajeWhatsApp(datos);
+
+      enviarWhatsApp(mensaje);
+      cerrarModal();
+      
+      // Restaurar botón
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+    }, 800);
+  }
+
+  // Validar día laboral (lunes a viernes)
+  fechaInput.addEventListener('change', function() {
+    const fechaSeleccionada = new Date(this.value + 'T00:00:00');
+    const diaSemana = fechaSeleccionada.getDay();
+    
+    // 0 = domingo, 6 = sábado
+    if (diaSemana === 0 || diaSemana === 6) {
+      alert('⚠️ Por favor, selecciona un día laboral (lunes a viernes). El centro no atiende los fines de semana.');
+      this.value = '';
+      return;
+    }
+  });
+
+  // Preseleccionar próximo día laboral
+  function preseleccionarProximoDiaLaboral() {
+    const hoy = new Date();
+    let proximoDiaLaboral = new Date(hoy);
+    proximoDiaLaboral.setDate(proximoDiaLaboral.getDate() + 1);
+    
+    // Buscar el próximo día laboral
+    while (proximoDiaLaboral.getDay() === 0 || proximoDiaLaboral.getDay() === 6) {
+      proximoDiaLaboral.setDate(proximoDiaLaboral.getDate() + 1);
+    }
+    
+    fechaInput.value = proximoDiaLaboral.toISOString().split('T')[0];
+  }
+
+  // Preseleccionar día y hora recomendada
+  function preseleccionarRecomendados() {
+    preseleccionarProximoDiaLaboral();
+    
+    // Preseleccionar hora recomendada (10:00 AM)
+    const horaSelect = document.getElementById('hora-cita');
+    horaSelect.value = '10:00';
+  }
+
+  // Configurar fechas al cargar
+  configurarFechas();
+  preseleccionarRecomendados();
+
+  // Retornar función para abrir modal
+  return abrirModal;
+}
+
+// SOLUCIÓN DIRECTA PARA EL BOTÓN DE CONFIRMAR CITA
+document.addEventListener('DOMContentLoaded', function() {
+  // Solución directa para asegurar funcionamiento del botón
+  
+  // Esperar un poco más para asegurar que todo esté cargado
+  setTimeout(function() {
+    const confirmarBtn = document.getElementById('confirmar-cita');
+    const modal = document.getElementById('modal-cita');
+    
+    if (confirmarBtn && modal) {
+
+      
+      // Eliminar listeners anteriores clonando el elemento
+      const nuevoBtn = confirmarBtn.cloneNode(true);
+      confirmarBtn.parentNode.replaceChild(nuevoBtn, confirmarBtn);
+      
+      // Añadir listener directo y simple
+      nuevoBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+
+        
+        // Obtener datos
+        const fecha = document.getElementById('fecha-cita').value;
+        const hora = document.getElementById('hora-cita').value;
+        const servicio = document.getElementById('servicio-cita').value;
+        const nombre = document.getElementById('nombre-cita').value;
+        const poblacion = document.getElementById('poblacion-cita').value;
+        const comentarios = document.getElementById('comentarios-cita').value;
+        
+
+        
+        // Validar campos obligatorios
+        if (!fecha || !hora || !servicio || !nombre.trim() || !poblacion) {
+          alert('Por favor, completa todos los campos obligatorios (fecha, hora, servicio, nombre y población).');
+          return;
+        }
+        
+        // Validar día laboral
+        const fechaSeleccionada = new Date(fecha + 'T00:00:00');
+        const diaSemana = fechaSeleccionada.getDay();
+        if (diaSemana === 0 || diaSemana === 6) {
+          alert('⚠️ Por favor, selecciona un día laboral (lunes a viernes).');
+          return;
+        }
+        
+        // Generar mensaje
+        const fechaFormateada = new Date(fecha + 'T00:00:00').toLocaleDateString('es-ES', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        
+        const mensaje = `¡Hola! Me gustaría solicitar una cita para ${servicio}.
+
+📅 *Detalles de la cita solicitada:*
+• *Fecha:* ${fechaFormateada}
+• *Hora:* ${hora}
+• *Servicio:* ${servicio}
+• *Nombre:* ${nombre}
+• *Población:* ${poblacion}${comentarios ? `\n• *Comentarios:* ${comentarios}` : ''}
+
+Por favor, confirma la disponibilidad de esta fecha y hora.
+
+¡Gracias!`;
+        
+
+        
+        // Mostrar loading
+        const originalText = nuevoBtn.innerHTML;
+        nuevoBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 1s linear infinite;"></i> Abriendo WhatsApp...';
+        nuevoBtn.disabled = true;
+        
+        // Enviar por WhatsApp
+        setTimeout(() => {
+          const mensajeCodificado = encodeURIComponent(mensaje);
+          const urlWhatsapp = isMobileDevice() 
+            ? `https://wa.me/34634810054?text=${mensajeCodificado}`
+            : `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeCodificado}`;
+          
+          if (isMobileDevice()) {
+            window.location.assign(urlWhatsapp);
+          } else {
+            window.open(urlWhatsapp, "_blank");
+          }
+          
+          // Cerrar modal
+          modal.classList.remove('active');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          
+          // Resetear formulario
+          document.getElementById('cita-form').reset();
+          
+          // Restaurar botón
+          setTimeout(() => {
+            nuevoBtn.innerHTML = originalText;
+            nuevoBtn.disabled = false;
+          }, 1000);
+          
+        }, 500);
+      });
+      
+
+    } else {
+      console.error('No se encontraron elementos necesarios para la solución directa');
+    }
+  }, 1000); // Esperar 1 segundo para asegurar que todo esté cargado
+});
+
 // Doble pulsación optimizada para móvil y escritorio para WhatsApp y llamada flotantes
 function dobleToqueFlotantesWhatsappLlamada() {
   const whatsappBtn = document.querySelector(".whatsapp-float");
@@ -213,6 +566,9 @@ function dobleToqueFlotantesWhatsappLlamada() {
   let tocadoCall = false;
   let whatsappTimeout = null;
   let callTimeout = null;
+
+  // Inicializar modal de cita
+  const abrirModalCita = initModalCita();
 
   // Tooltip accesible con mejoras para móvil
   function showTooltip(btn, mensaje) {
@@ -264,24 +620,14 @@ function dobleToqueFlotantesWhatsappLlamada() {
       e.preventDefault();
       
       if (!tocadoWhatsapp) {
-        showTooltip(whatsappBtn, "Toca de nuevo para abrir WhatsApp");
+        showTooltip(whatsappBtn, "Toca de nuevo para seleccionar cita");
         tocadoWhatsapp = true;
         whatsappTimeout = setTimeout(resetWhatsappState, 2000);
       } else {
         resetWhatsappState();
         
-        // Ejecutar acción WhatsApp
-        const mensajeWhatsapp = encodeURIComponent(
-          "¡Hola! Me gustaría pedir información sobre los servicios de osteopatía y medicina china."
-        );
-        const urlWhatsappMovil = `https://wa.me/34634810054?text=${mensajeWhatsapp}`;
-        const urlWhatsappWeb = `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeWhatsapp}`;
-        
-        if (isMobileDevice()) {
-          window.location.assign(urlWhatsappMovil);
-        } else {
-          window.open(urlWhatsappWeb, "_blank");
-        }
+        // Abrir modal de selección de cita
+        abrirModalCita();
       }
     });
 
@@ -487,26 +833,60 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Configuración directa de WhatsApp para botón del header (sin doble pulsación)
+// Configuración directa de WhatsApp para botón del header (con modal de cita)
 document.addEventListener("DOMContentLoaded", function () {
-  // Mensaje predefinido para WhatsApp
-  const mensajeWhatsapp = encodeURIComponent(
-    "¡Hola! Me gustaría pedir información sobre los servicios de osteopatía y medicina china."
-  );
-  const urlWhatsappMovil = `https://wa.me/34634810054?text=${mensajeWhatsapp}`;
-  const urlWhatsappWeb = `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeWhatsapp}`;
-  
-  // Botón header (apertura directa sin doble pulsación)
+  // Botón header (abre modal de cita)
   const btnHeaderWhatsapp = document.querySelector(".btn-booksy");
   if (btnHeaderWhatsapp) {
     btnHeaderWhatsapp.addEventListener("click", function (e) {
       e.preventDefault();
-      if (isMobileDevice()) {
-        window.location.assign(urlWhatsappMovil);
-      } else {
-        window.open(urlWhatsappWeb, "_blank");
+      
+      // Verificar si el modal existe, si no, inicializarlo
+      let abrirModalCita = window.abrirModalCita;
+      if (!abrirModalCita) {
+        abrirModalCita = initModalCita();
+        window.abrirModalCita = abrirModalCita;
       }
+      
+      // Abrir modal de selección de cita
+      abrirModalCita();
     });
+  }
+});
+
+// Configurar enlaces de WhatsApp en la sección de contacto
+document.addEventListener("DOMContentLoaded", function () {
+  const enlaceWhatsappContacto = document.querySelector('.contacto-item a[href*="wa.me"]');
+  
+  if (enlaceWhatsappContacto) {
+    enlaceWhatsappContacto.addEventListener("click", function (e) {
+      e.preventDefault();
+      
+      // Verificar si el modal existe, si no, inicializarlo
+      let abrirModalCita = window.abrirModalCita;
+      if (!abrirModalCita) {
+        abrirModalCita = initModalCita();
+        window.abrirModalCita = abrirModalCita;
+      }
+      
+      // Abrir modal de selección de cita
+      abrirModalCita();
+    });
+  }
+});
+
+// Inicialización global del modal
+document.addEventListener("DOMContentLoaded", function() {
+
+  
+  // Asegurar que el modal se inicialice
+  if (typeof window.abrirModalCita === 'undefined') {
+    try {
+      window.abrirModalCita = initModalCita();
+
+    } catch (error) {
+      console.error('Error al inicializar modal:', error);
+    }
   }
 });
 
