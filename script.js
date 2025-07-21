@@ -447,115 +447,87 @@ Por favor, confirma la disponibilidad de esta fecha y hora.
 }
 
 // SOLUCIÓN DIRECTA PARA EL BOTÓN DE CONFIRMAR CITA
+// Doble pulsación para confirmar cita
+function dobleToqueConfirmarCita(btn, callback) {
+  let tocado = false;
+  let timeout = null;
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!tocado) {
+      btn.innerHTML = '<i class="ph ph-hand-tap"></i> Pulsa de nuevo para confirmar';
+      tocado = true;
+      timeout = setTimeout(() => {
+        tocado = false;
+        btn.innerHTML = 'Enviar por WhatsApp';
+      }, 2000);
+    } else {
+      clearTimeout(timeout);
+      tocado = false;
+      btn.innerHTML = 'Enviando...';
+      callback();
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Solución directa para asegurar funcionamiento del botón
-  
-  // Esperar un poco más para asegurar que todo esté cargado
   setTimeout(function() {
     const confirmarBtn = document.getElementById('confirmar-cita');
     const modal = document.getElementById('modal-cita');
-    
     if (confirmarBtn && modal) {
-
-      
-      // Eliminar listeners anteriores clonando el elemento
       const nuevoBtn = confirmarBtn.cloneNode(true);
       confirmarBtn.parentNode.replaceChild(nuevoBtn, confirmarBtn);
-      
-      // Añadir listener directo y simple
-      nuevoBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-
-        
-        // Obtener datos
+      // Lógica de doble toque
+      dobleToqueConfirmarCita(nuevoBtn, function() {
+        // ...código original de envío de WhatsApp...
         const fecha = document.getElementById('fecha-cita').value;
         const hora = document.getElementById('hora-cita').value;
         const servicio = document.getElementById('servicio-cita').value;
         const nombre = document.getElementById('nombre-cita').value;
         const poblacion = document.getElementById('poblacion-cita').value;
         const comentarios = document.getElementById('comentarios-cita').value;
-        
-
-        
-        // Validar campos obligatorios
         if (!fecha || !hora || !servicio || !nombre.trim() || !poblacion) {
           alert('Por favor, completa todos los campos obligatorios (fecha, hora, servicio, nombre y población).');
+          nuevoBtn.innerHTML = 'Enviar por WhatsApp';
           return;
         }
-        
-        // Validar día laboral
         const fechaSeleccionada = new Date(fecha + 'T00:00:00');
         const diaSemana = fechaSeleccionada.getDay();
         if (diaSemana === 0 || diaSemana === 6) {
           alert('⚠️ Por favor, selecciona un día laboral (lunes a viernes).');
+          nuevoBtn.innerHTML = 'Enviar por WhatsApp';
           return;
         }
-        
-        // Generar mensaje
         const fechaFormateada = new Date(fecha + 'T00:00:00').toLocaleDateString('es-ES', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
-        
         const mensaje = `¡Hola! Me gustaría solicitar una cita para ${servicio}.
-
-📅 *Detalles de la cita solicitada:*
-• *Fecha:* ${fechaFormateada}
-• *Hora:* ${hora}
-• *Servicio:* ${servicio}
-• *Nombre:* ${nombre}
-• *Población:* ${poblacion}${comentarios ? `\n• *Comentarios:* ${comentarios}` : ''}
-
-Por favor, confirma la disponibilidad de esta fecha y hora.
-
-¡Gracias!`;
-        
-
-        
-        // Mostrar loading
+\n📅 *Detalles de la cita solicitada:*\n• *Fecha:* ${fechaFormateada}\n• *Hora:* ${hora}\n• *Servicio:* ${servicio}\n• *Nombre:* ${nombre}\n• *Población:* ${poblacion}${comentarios ? `\n• *Comentarios:* ${comentarios}` : ''}\n\nPor favor, confirma la disponibilidad de esta fecha y hora.\n\n¡Gracias!`;
         const originalText = nuevoBtn.innerHTML;
         nuevoBtn.innerHTML = '<i class="ph ph-spinner-gap" style="animation: spin 1s linear infinite;"></i> Abriendo WhatsApp...';
         nuevoBtn.disabled = true;
-        
-        // Enviar por WhatsApp
         setTimeout(() => {
           const mensajeCodificado = encodeURIComponent(mensaje);
           const urlWhatsapp = isMobileDevice() 
             ? `https://wa.me/34634810054?text=${mensajeCodificado}`
             : `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeCodificado}`;
-          
           if (isMobileDevice()) {
             window.location.assign(urlWhatsapp);
           } else {
             window.open(urlWhatsapp, "_blank");
           }
-          
-          // Cerrar modal
           modal.classList.remove('active');
           modal.setAttribute('aria-hidden', 'true');
           document.body.style.overflow = '';
-          
-          // Resetear formulario
           document.getElementById('cita-form').reset();
-          
-          // Restaurar botón
           setTimeout(() => {
-            nuevoBtn.innerHTML = originalText;
+            nuevoBtn.innerHTML = 'Enviar por WhatsApp';
             nuevoBtn.disabled = false;
           }, 1000);
-          
         }, 500);
       });
-      
-
-    } else {
-      console.error('No se encontraron elementos necesarios para la solución directa');
     }
-  }, 1000); // Esperar 1 segundo para asegurar que todo esté cargado
+  }, 1000);
 });
 
 // Doble pulsación optimizada para móvil y escritorio para WhatsApp y llamada flotantes
