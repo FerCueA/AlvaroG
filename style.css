@@ -1007,6 +1007,53 @@ section::before {
 }
 
 @media (max-width: 768px) {
+  /* Asegurar que el body tenga el padding correcto para el header fijo */
+  body {
+    padding-top: 70px;
+  }
+
+  /* Hero móvil mejorado */
+  .hero {
+    padding: 3rem 1.5rem;
+    min-height: 50vh;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(52, 152, 219, 0.05) 100%);
+  }
+
+  .hero-name {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero .btn-primary {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    width: auto;
+    min-width: 200px;
+  }
+
+  /* Secciones móvil optimizadas */
+  section {
+    padding: 3rem 1.5rem;
+  }
+
+  /* Títulos móvil mejorados */
+  .section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
   .footer {
     padding: 1.5rem 0.5rem;
   }
@@ -1044,20 +1091,34 @@ section::before {
 
   /* Navegación móvil optimizada */
   .header {
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   }
 
   .nav-container {
-    padding: 1rem;
+    padding: 0.8rem 1rem;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    min-height: 70px;
+    min-height: 60px;
   }
 
-  .nav-container .logo {
-    height: 45px;
-    width: auto;
+  .logo-img img {
+    height: 40px !important;
+    max-height: none;
+    border-radius: 12px;
+    transition: all 0.2s ease-out;
+  }
+
+  .logo-img img:hover {
+    transform: scale(1.05);
   }
 
   .nav-actions {
@@ -1066,8 +1127,12 @@ section::before {
   }
 
   .btn-booksy {
-    font-size: 0.9rem;
-    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
   }
 
   /* Nueva sección contactos móvil */
@@ -1181,6 +1246,78 @@ section::before {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* ---------------------------------------------------
+   MEJORAS ESPECÍFICAS MÓVIL
+--------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Cards de servicios móvil premium */
+  .service-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 107, 53, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Iconos más grandes en móvil */
+  .service-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Títulos más legibles */
+  .service-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Mejorar contraste en móvil */
+  .service-card p {
+    color: var(--gray-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Bonos móvil mejorados */
+  .bono-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(255, 107, 53, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .bono-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .bono-card .precio {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+  }
+
+  /* Footer móvil mejorado */
+  .footer {
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+  }
+
+  /* Optimización táctil */
+  .btn-booksy,
+  .btn-primary {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+
+  .contacto-info a.link {
+    min-height: 44px;
+    padding: 0.8rem 1.2rem;
   }
 }
 
@@ -1474,31 +1611,41 @@ section::before {
   }
 
   .whatsapp-float {
-    width: 45px;
-    height: 45px;
-    font-size: 1.3rem;
-    top: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 1.4rem;
+    top: 60%;
+    right: 15px;
     transform: translateY(-50px);
     bottom: auto;
     animation: none;
+    border-radius: 50%;
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.9);
   }
 
   .call-float {
-    width: 45px;
-    height: 45px;
-    font-size: 1.3rem;
-    top: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 1.4rem;
+    top: 60%;
+    right: 15px;
     transform: translateY(20px);
     bottom: auto;
     animation: none;
+    border-radius: 50%;
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.9);
   }
 
   .whatsapp-float:hover {
-    transform: translateY(-50px) scale(1.02);
+    transform: translateY(-50px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
   }
 
   .call-float:hover {
-    transform: translateY(20px) scale(1.02);
+    transform: translateY(20px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
   }
 }
 
