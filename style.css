@@ -34,6 +34,30 @@
   --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
   --shadow-strong: 0 16px 60px rgba(0, 0, 0, 0.15);
   --shadow-colored: 0 8px 32px rgba(255, 107, 53, 0.2);
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --glass-blur: blur(20px);
+}
+
+/* Animaciones de gradientes */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 * {
@@ -45,7 +69,7 @@
 
 body {
   font-family: var(--font);
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%);
+  background: #ffffff;
   color: var(--black);
   overflow-x: hidden;
 }
@@ -115,8 +139,8 @@ section {
   margin: 0;
   padding: 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 107, 53, 0.1);
   position: relative;
   z-index: 1000;
@@ -167,9 +191,8 @@ main {
   content: "";
   display: block;
   height: 4px;
-  background: var(--gradient-primary);
+  background: var(--secondary-accent);
   width: 100%;
-  animation: gradientShift 8s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
@@ -242,9 +265,34 @@ main {
   text-decoration: none;
   font-weight: 600;
 }
+
+/* Efecto ripple para botones */
 .btn-booksy,
 .btn-primary {
-  background: var(--gradient-primary);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-booksy {
+  background: var(--secondary-accent);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(52, 152, 219, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(-45deg, #ff6b35, #f39c12, #ff6b35, #e55a2b);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
   color: var(--white);
   border: none;
   padding: 0.8rem 1.6rem;
@@ -291,8 +339,8 @@ main {
    BOTÓN RESERVA DESTACADO
 --------------------------------------------------- */
 .btn-booksy {
-  background: var(--gradient-primary);
-  box-shadow: var(--shadow-colored);
+  background: var(--secondary-accent);
+  box-shadow: 0 8px 32px rgba(52, 152, 219, 0.2);
   border: 2px solid transparent;
   background-clip: padding-box;
   font-size: 1.1rem;
@@ -480,11 +528,12 @@ section::before {
   margin: 0 auto;
 }
 .service-card {
-  background: var(--gradient-card);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 2.5rem;
   border-radius: 20px;
-  border: 1px solid rgba(255, 107, 53, 0.1);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--glass-shadow);
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s forwards;
@@ -551,6 +600,12 @@ section::before {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: iconFloat 3s ease-in-out infinite;
+  transition: all 0.2s ease-out;
+}
+
+.service-card:hover .service-icon {
+  animation: floatUp 2s ease-in-out infinite;
+  transform: scale(1.1);
 }
 
 @keyframes iconFloat {
@@ -563,6 +618,12 @@ section::before {
   margin-bottom: 1rem;
   color: var(--pri);
   font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 .service-card .service-image-wrapper {
   order: 3;
