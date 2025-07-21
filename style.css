@@ -76,19 +76,32 @@ body {
 
 /* Animaciones optimizadas para rendimiento */
 * {
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
 }
 
-/* Desactivar animaciones complejas en móvil */
+/* Desactivar animaciones complejas en móvil pero mantener transiciones normales */
 @media (max-width: 768px) {
-  * {
-    animation-duration: 0.1s !important;
-    transition-duration: 0.1s !important;
-  }
-  
   *::before,
   *::after {
     animation: none !important;
+  }
+  
+  /* Mantener transiciones normales para UX */
+  .service-card,
+  .bono-card,
+  .contacto-item,
+  .btn-booksy,
+  .btn-primary,
+  .whatsapp-float,
+  .call-float {
+    transition: all 0.3s ease-out !important;
+  }
+  
+  /* Transiciones específicas para elementos interactivos */
+  .service-card:hover,
+  .bono-card:hover,
+  .contacto-item:hover {
+    transition: transform 0.2s ease-out, box-shadow 0.3s ease-out !important;
   }
 }
 
@@ -1048,10 +1061,19 @@ section::before {
     padding: 3rem 1.5rem;
   }
 
+  .section.contacto {
+    padding: 2.5rem 1.5rem;
+  }
+
   /* Títulos móvil mejorados */
   .section h2 {
     font-size: 2.2rem;
     margin-bottom: 2rem;
+  }
+
+  .section.contacto h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .footer {
@@ -1139,30 +1161,41 @@ section::before {
   .contacto-info {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
     margin: 0 1rem;
   }
 
   .contacto-item {
     width: 100%;
-    max-width: 400px;
-    padding: 1.5rem;
+    max-width: 350px;
+    padding: 1.2rem;
     border-radius: 12px;
     flex: none;
+    gap: 0.8rem;
   }
 
   .contacto-item .icon {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 0;
   }
 
   .contacto-item h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .contacto-item p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
   }
 
   .contacto-info a.link {
-    width: 100%;
+    width: auto;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -1180,6 +1213,45 @@ section::before {
 }
 
 @media (max-width: 480px) {
+  /* Contactos ultra compactos para móviles pequeños */
+  .section.contacto {
+    padding: 2rem 1rem;
+  }
+
+  .section.contacto h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .contacto-info {
+    gap: 0.8rem;
+    margin: 0 0.5rem;
+  }
+
+  .contacto-item {
+    padding: 1rem;
+    max-width: 320px;
+    gap: 0.6rem;
+  }
+
+  .contacto-item .icon {
+    font-size: 1.6rem;
+  }
+
+  .contacto-item h3 {
+    font-size: 0.95rem;
+  }
+
+  .contacto-item p {
+    font-size: 0.85rem;
+  }
+
+  .contacto-info a.link {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+  }
+
   .footer {
     padding: 1.2rem 0.3rem;
   }
@@ -1622,6 +1694,7 @@ section::before {
     border-radius: 50%;
     box-shadow: 0 6px 25px rgba(255, 107, 53, 0.3);
     border: 3px solid rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease-out;
   }
 
   .call-float {
@@ -1636,16 +1709,19 @@ section::before {
     border-radius: 50%;
     box-shadow: 0 6px 25px rgba(255, 107, 53, 0.3);
     border: 3px solid rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease-out;
   }
 
   .whatsapp-float:hover {
     transform: translateY(-50px) scale(1.1);
     box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+    transition: all 0.2s ease-out;
   }
 
   .call-float:hover {
     transform: translateY(20px) scale(1.1);
     box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+    transition: all 0.2s ease-out;
   }
 }
 
