@@ -248,43 +248,93 @@ main {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 1rem;
+}
+
+/* Iconos de redes sociales épicos en navegación */
+.social-nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-right: 1rem;
+}
+
+.social-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: var(--gradient-epic);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: var(--shadow-medium);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.social-nav-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.social-nav-icon:hover::before {
+  opacity: 1;
+}
+
+.social-nav-icon:hover {
+  transform: translateY(-3px) scale(1.15) rotate(5deg);
+  box-shadow: var(--shadow-epic);
 }
 .logo-img img {
   height: 71.4px;
   max-height: 81.6px;
-  border-radius: 20px;
-  border: 3px solid transparent;
-  background: linear-gradient(white, white) padding-box,
-              var(--gradient-primary) border-box;
-  box-shadow: var(--shadow-colored);
+  border-radius: 15px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   object-fit: contain;
   position: relative;
+  filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.25));
 }
 
 .logo-img img:hover {
-  transform: scale(1.1) rotate(2deg);
-  box-shadow: var(--shadow-strong);
-  filter: brightness(1.1);
+  transform: scale(1.08) translateY(-2px);
+  filter: drop-shadow(0 8px 25px rgba(255, 107, 53, 0.4)) brightness(1.05);
 }
 
 .logo-img img::before {
   content: '';
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  background: var(--gradient-primary);
-  border-radius: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   z-index: -1;
-  animation: rotate 6s linear infinite;
 }
 
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.logo-img:hover img::before {
+  opacity: 1;
 }
+
+.logo-img:hover img::before {
+  opacity: 1;
+}
+
 .nav-container a,
 .nav-actions button {
   color: var(--pri);
@@ -1132,29 +1182,55 @@ section::before {
     min-height: 60px;
   }
 
+  /* Iconos de redes sociales móviles */
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  .social-nav-icons {
+    gap: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .social-nav-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-nav-icon:hover {
+    transform: translateY(-2px) scale(1.1);
+    animation: none; /* Simplificar animaciones en móvil */
+  }
+
   .logo-img img {
     height: 40px !important;
     max-height: none;
-    border-radius: 12px;
-    transition: all 0.2s ease-out;
+    border-radius: 10px;
+    transition: all 0.3s ease-out;
+    filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.2));
   }
 
   .logo-img img:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-1px);
+    filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.3));
   }
 
   .nav-actions {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
   }
 
   .btn-booksy {
-    font-size: 0.85rem;
-    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 8px;
     font-weight: 600;
     text-transform: none;
     letter-spacing: 0;
+    white-space: nowrap;
   }
 
   /* Nueva sección contactos móvil */

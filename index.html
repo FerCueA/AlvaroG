@@ -67,7 +67,9 @@
     />
 
     <!-- Preload recursos críticos -->
-    <link rel="preload" href="img/Logo.png" as="image" />
+    <link rel="preload" href="img/Logo.png" as="image" type="image/png" fetchpriority="high" />
+    <link rel="preload" href="style.css" as="style" />
+    <link rel="preload" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css" as="style" crossorigin />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
@@ -94,9 +96,33 @@
             src="img/Logo.png"
             alt="Logo Álvaro García"
             class="logo-decorado logo-animado"
+            fetchpriority="high"
+            loading="eager"
           />
         </a>
         <div class="nav-actions">
+          <!-- Iconos de redes sociales -->
+          <div class="social-nav-icons">
+            <a
+              href="https://www.instagram.com/alvaro_garcia_osteopata/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-nav-icon"
+              aria-label="Instagram de Álvaro García"
+            >
+              <i class="ph ph-instagram-logo"></i>
+            </a>
+            <a
+              href="https://www.tiktok.com/@osteopata.lvaro"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-nav-icon"
+              aria-label="TikTok de Álvaro García"
+            >
+              <i class="ph ph-tiktok-logo"></i>
+            </a>
+          </div>
+          <!-- Botón de reserva -->
           <a
             href="#"
             class="btn-booksy"
@@ -475,14 +501,25 @@
                 <i class="ph ph-hand-heart"></i> Tipo de servicio:
               </label>
               <select id="servicio-cita" name="servicio" required>
-                <option value="">Selecciona un servicio</option>
+                <option value="Consulta general" selected>Consulta general</option>
                 <option value="Osteopatía">Osteopatía</option>
                 <option value="Acupuntura">Acupuntura</option>
-                <option value="Moxibustión">Moxibustión</option>
                 <option value="Vendaje Neuromuscular">Vendaje Neuromuscular</option>
-                <option value="Auriculopuntura">Auriculopuntura</option>
-                <option value="Consulta general">Consulta general</option>
               </select>
+            </div>
+
+            <div class="form-group">
+              <label for="dolencias-cita">
+                <i class="ph ph-warning-circle"></i> Dolencias o síntomas (obligatorio):
+              </label>
+              <textarea 
+                id="dolencias-cita" 
+                name="dolencias" 
+                placeholder="Describe tus dolencias, síntomas o motivo de consulta..."
+                required
+                maxlength="300"
+                rows="3"
+              ></textarea>
             </div>
 
             <div class="form-group">
@@ -529,9 +566,9 @@
               <textarea 
                 id="comentarios-cita" 
                 name="comentarios" 
-                placeholder="Ej: Dolencia específica, otra población, preferencias..."
-                maxlength="200"
-                rows="3"
+                placeholder="Información adicional, otra población, preferencias de horario..."
+                maxlength="150"
+                rows="2"
               ></textarea>
             </div>
 

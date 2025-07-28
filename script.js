@@ -279,18 +279,19 @@ function initModalCita() {
   function generarMensajeWhatsApp(datos) {
     const fechaFormateada = formatearFecha(datos.fecha);
     
-    return `¡Hola! Me gustaría solicitar una cita para ${datos.servicio}.
+    return `� ¡Hola! Me gustaría solicitar una cita para ${datos.servicio}.
 
-📅 *Detalles de la cita solicitada:*
-• *Fecha:* ${fechaFormateada}
-• *Hora:* ${datos.hora}
-• *Servicio:* ${datos.servicio}
-• *Nombre:* ${datos.nombre}
-• *Población:* ${datos.poblacion}${datos.comentarios ? `\n• *Comentarios:* ${datos.comentarios}` : ''}
+� *DETALLES DE LA CITA SOLICITADA:*
+▫️ *Fecha:* ${fechaFormateada}
+▫️ *Hora:* ${datos.hora}
+▫️ *Servicio:* ${datos.servicio}
+▫️ *Nombre:* ${datos.nombre}
+▫️ *Población:* ${datos.poblacion}
+▫️ *Dolencias/Síntomas:* ${datos.dolencias}${datos.comentarios ? `\n▫️ *Comentarios:* ${datos.comentarios}` : ''}
 
-Por favor, confirma la disponibilidad de esta fecha y hora.
+✅ Por favor, confirma la disponibilidad de esta fecha y hora.
 
-¡Gracias!`;
+� ¡Gracias!`;
   }
 
   // Enviar por WhatsApp
@@ -366,14 +367,13 @@ Por favor, confirma la disponibilidad de esta fecha y hora.
       servicio: formData.get('servicio'),
       nombre: formData.get('nombre'),
       poblacion: formData.get('poblacion'),
+      dolencias: formData.get('dolencias'),
       comentarios: formData.get('comentarios')
     };
 
-
-
     // Validar que todos los campos obligatorios estén completos
-    if (!datos.fecha || !datos.hora || !datos.servicio || !datos.nombre.trim() || !datos.poblacion) {
-      alert('Por favor, completa todos los campos obligatorios (fecha, hora, servicio, nombre y población).');
+    if (!datos.fecha || !datos.hora || !datos.servicio || !datos.nombre.trim() || !datos.poblacion || !datos.dolencias.trim()) {
+      alert('Por favor, completa todos los campos obligatorios (fecha, hora, servicio, nombre, población y dolencias).');
       submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
       return;
