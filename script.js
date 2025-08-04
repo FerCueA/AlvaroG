@@ -790,3 +790,81 @@ function debugMobileTouch() {
 
 // Ejecutar debug al cargar
 document.addEventListener('DOMContentLoaded', debugMobileTouch);
+
+// Animación de conteo progresivo para estadísticas del hero
+document.addEventListener('DOMContentLoaded', function() {
+  const statNumbers = document.querySelectorAll('.stat-number');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateNumber(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.5,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  statNumbers.forEach(number => {
+    observer.observe(number);
+  });
+});
+
+function animateNumber(element) {
+  const text = element.textContent;
+  const isPercentage = text.includes('%');
+  const isPlusSign = text.includes('+');
+  
+  // Extraer el número del texto
+  let targetNumber = parseInt(text.replace(/[^0-9]/g, ''));
+  
+  // Configurar valores específicos para cada estadística
+  if (text.includes('200')) {
+    targetNumber = 200;
+  } else if (text.includes('5')) {
+    targetNumber = 5;
+  } else if (text.includes('100')) {
+    targetNumber = 100;
+  }
+  
+  let currentNumber = 0;
+  const increment = targetNumber / 50; // 50 pasos para la animación
+  const duration = 2000; // 2 segundos
+  const stepTime = duration / 50;
+  
+  element.textContent = '0' + (isPercentage ? '%' : (isPlusSign ? '+' : ''));
+  
+  const timer = setInterval(() => {
+    currentNumber += increment;
+    
+    if (currentNumber >= targetNumber) {
+      currentNumber = targetNumber;
+      clearInterval(timer);
+    }
+    
+    let displayNumber = Math.floor(currentNumber);
+    let suffix = '';
+    
+    if (isPlusSign) suffix = '+';
+    if (isPercentage) suffix = '%';
+    
+    element.textContent = displayNumber + suffix;
+    
+    // Efecto de vibración al llegar al número final
+    if (currentNumber >= targetNumber) {
+      element.style.animation = 'numberPulse 3s ease-in-out infinite, finalBounce 0.5s ease-out';
+    }
+  }, stepTime);
+}
+
+// Keyframe adicional para el rebote final (se añadirá al CSS)
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes finalBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+`;
+document.head.appendChild(style);
