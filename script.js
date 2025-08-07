@@ -822,8 +822,8 @@ function animateNumber(element) {
   // Configurar valores específicos para cada estadística
   if (text.includes('200')) {
     targetNumber = 200;
-  } else if (text.includes('5')) {
-    targetNumber = 5;
+  } else if (text.includes('15')) {
+    targetNumber = 15;
   } else if (text.includes('100')) {
     targetNumber = 100;
   }
