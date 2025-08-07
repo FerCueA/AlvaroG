@@ -820,12 +820,12 @@ function animateNumber(element) {
   let targetNumber = parseInt(text.replace(/[^0-9]/g, ''));
   
   // Configurar valores específicos para cada estadística
-  if (text.includes('200')) {
-    targetNumber = 200;
-  } else if (text.includes('5')) {
-    targetNumber = 5;
+  if (text.includes('1000')) {
+    targetNumber = 1000;
   } else if (text.includes('100')) {
     targetNumber = 100;
+  } else if (text.includes('10')) {
+    targetNumber = 10;
   }
   
   let currentNumber = 0;
