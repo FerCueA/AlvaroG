@@ -205,6 +205,11 @@ function isMobileDevice() {
   );
 }
 
+// Detección específica de Firefox móvil
+function isFirefoxMobile() {
+  return /Mobile|Tablet/i.test(navigator.userAgent) && /Firefox/i.test(navigator.userAgent);
+}
+
 // Sistema de Modal para Selección de Cita
 function initModalCita() {
 
@@ -301,7 +306,19 @@ function initModalCita() {
     const urlWhatsappWeb = `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeCodificado}`;
     
     if (isMobileDevice()) {
-      window.location.assign(urlWhatsappMovil);
+      // Manejo específico para Firefox móvil
+      if (isFirefoxMobile()) {
+        // En Firefox móvil, usar window.open con '_self' para mejor compatibilidad
+        try {
+          window.open(urlWhatsappMovil, '_self');
+        } catch (error) {
+          // Fallback si window.open falla
+          window.location.href = urlWhatsappMovil;
+        }
+      } else {
+        // Para otros navegadores móviles, usar el método original
+        window.location.assign(urlWhatsappMovil);
+      }
     } else {
       window.open(urlWhatsappWeb, "_blank");
     }
@@ -752,15 +769,22 @@ document.addEventListener("DOMContentLoaded", function () {
     enlaceWhatsappContacto.addEventListener("click", function (e) {
       e.preventDefault();
       
-      // Verificar si el modal existe, si no, inicializarlo
-      let abrirModalCita = window.abrirModalCita;
-      if (!abrirModalCita) {
-        abrirModalCita = initModalCita();
-        window.abrirModalCita = abrirModalCita;
+      // Si estamos en móvil, usar el modal de cita, si no, abrir WhatsApp directamente
+      if (isMobileDevice()) {
+        // Verificar si el modal existe, si no, inicializarlo
+        let abrirModalCita = window.abrirModalCita;
+        if (!abrirModalCita) {
+          abrirModalCita = initModalCita();
+          window.abrirModalCita = abrirModalCita;
+        }
+        
+        // Abrir modal de selección de cita
+        abrirModalCita();
+      } else {
+        // En escritorio, abrir WhatsApp web directamente
+        const urlWhatsappWeb = "https://web.whatsapp.com/send?phone=34634810054";
+        window.open(urlWhatsappWeb, "_blank");
       }
-      
-      // Abrir modal de selección de cita
-      abrirModalCita();
     });
   }
 });
