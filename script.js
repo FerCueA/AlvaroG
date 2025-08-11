@@ -205,6 +205,11 @@ function isMobileDevice() {
   );
 }
 
+// Detección específica de Firefox
+function isFirefox() {
+  return navigator.userAgent.toLowerCase().includes('firefox');
+}
+
 // Sistema de Modal para Selección de Cita
 function initModalCita() {
 
@@ -300,10 +305,32 @@ function initModalCita() {
     const urlWhatsappMovil = `https://wa.me/34634810054?text=${mensajeCodificado}`;
     const urlWhatsappWeb = `https://web.whatsapp.com/send?phone=34634810054&text=${mensajeCodificado}`;
     
-    if (isMobileDevice()) {
-      window.location.assign(urlWhatsappMovil);
+    // Firefox requiere manejo especial debido a su política de bloqueo de popups
+    if (isFirefox()) {
+      try {
+        // En Firefox, crear un enlace temporal y hacer clic en él
+        const url = isMobileDevice() ? urlWhatsappMovil : urlWhatsappWeb;
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        
+        // Añadir al DOM temporalmente
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error('Error al abrir WhatsApp en Firefox:', error);
+        // Fallback: navegar directamente
+        window.location.href = isMobileDevice() ? urlWhatsappMovil : urlWhatsappWeb;
+      }
     } else {
-      window.open(urlWhatsappWeb, "_blank");
+      // Comportamiento normal para otros navegadores
+      if (isMobileDevice()) {
+        window.location.assign(urlWhatsappMovil);
+      } else {
+        window.open(urlWhatsappWeb, "_blank");
+      }
     }
   }
 
@@ -389,17 +416,28 @@ function initModalCita() {
       return;
     }
 
-    // Generar y enviar mensaje con pequeño delay para UX
-    setTimeout(() => {
-      const mensaje = generarMensajeWhatsApp(datos);
-
+    // Generar y enviar mensaje
+    const mensaje = generarMensajeWhatsApp(datos);
+    
+    // Firefox requiere ejecución inmediata para preservar el gesto del usuario
+    if (isFirefox()) {
       enviarWhatsApp(mensaje);
       cerrarModal();
       
-      // Restaurar botón
+      // Restaurar botón inmediatamente
       submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
-    }, 800);
+    } else {
+      // Otros navegadores mantienen el delay para UX
+      setTimeout(() => {
+        enviarWhatsApp(mensaje);
+        cerrarModal();
+        
+        // Restaurar botón
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 800);
+    }
   }
 
   // Validar día laboral (lunes a viernes)
