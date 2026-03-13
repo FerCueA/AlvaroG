@@ -42,7 +42,6 @@ Ejecuta los comandos desde la raíz del proyecto.
 │   │   ├── MobileNav.astro
 │   │   ├── Pricing.astro
 │   │   ├── Services.astro
-│   │   └── WhatsappFloat.astro
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── pages/
