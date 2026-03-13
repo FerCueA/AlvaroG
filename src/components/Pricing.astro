@@ -1,0 +1,225 @@
+---
+const plans = [
+  { name: "Sesión individual", price: "40€", popular: false, desc: "Una sesión completa para empezar tu recuperación." },
+  { name: "Bono 2 sesiones", price: "70€", popular: false, desc: "Ideal para trabajar un problema concreto en profundidad." },
+  {
+    name: "Bono 3 sesiones",
+    price: "105€",
+    popular: true,
+    desc: "El plan más elegido. Permite un abordaje completo y una recuperación real, con seguimiento entre sesiones.",
+    perks: [
+      "3 sesiones personalizadas",
+      "Evaluación inicial incluida",
+      "Seguimiento entre sesiones",
+      "A domicilio en Las Palmas",
+      "Ahorra 15€ respecto a sesiones sueltas",
+    ],
+  },
+  { name: "Bono 5 sesiones", price: "175€", popular: false, desc: "Para un tratamiento continuado y resultados duraderos." },
+];
+---
+
+<section id="precios" class="relative overflow-hidden px-6 py-16 sm:py-20 lg:flex lg:min-h-svh lg:items-center">
+  <div class="absolute inset-0 bg-linear-to-b from-stone-100 via-[#f8f2ea] to-stone-100"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(251,146,60,0.2),transparent_35%),radial-gradient(circle_at_75%_70%,rgba(245,158,11,0.14),transparent_40%)]"></div>
+
+  <div class="relative mx-auto w-full max-w-6xl">
+    <div class="mb-8 text-center" data-gsap="reveal">
+      <p class="text-sm font-semibold tracking-[0.18em] text-orange-500">PRECIOS</p>
+      <h2 class="font-heading mt-3 text-3xl text-slate-900 sm:text-4xl lg:text-5xl">Elige tu ritmo de recuperación</h2>
+      <p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-slate-500 lg:hidden">
+        Recomendado para empezar: bono de 3 sesiones con seguimiento y mejor relación calidad-precio.
+      </p>
+    </div>
+
+    <!-- MÓVIL: carousel horizontal -->
+    <div class="lg:hidden">
+      <div id="pricing-carousel" data-carousel="pricing" class="hide-scrollbar flex gap-4 overflow-x-auto pb-6 pt-1 [scroll-snap-type:x_mandatory] [-webkit-overflow-scrolling:touch]">
+        {plans.map((plan) => {
+          const planMessage = encodeURIComponent(
+            `Hola Álvaro, me interesa el bono de ${plan.name}. ¿Me cuentas la disponibilidad para empezar?`,
+          );
+          return (
+            <article
+              data-carousel-slide
+              id={plan.popular ? "popular-card" : undefined}
+              class={`carousel-slide-mobile ${plan.popular ? "is-active" : ""} flex-none w-[72vw] max-w-70 rounded-3xl border p-5 shadow-xl snap-start ${
+                plan.popular
+                  ? "border-orange-300 bg-linear-to-br from-orange-500 via-orange-400 to-amber-300 text-white shadow-orange-900/30 ring-4 ring-orange-300/50"
+                  : "border-white/80 bg-white/80 text-slate-900 shadow-stone-300/35 backdrop-blur-sm"
+              }`}
+            >
+              {plan.popular && (
+                <span class="mb-3 inline-block rounded-full bg-white/25 px-3 py-1 text-[0.65rem] font-semibold text-white tracking-wide">Más popular</span>
+              )}
+              <h3 class="font-heading text-xl leading-tight">{plan.name}</h3>
+              <p class="mt-2 text-4xl font-semibold">{plan.price}</p>
+              <p class={`mt-3 text-xs leading-relaxed ${plan.popular ? "text-white/80" : "text-slate-500"}`}>{plan.desc}</p>
+              {plan.perks && (
+                <ul class="mt-4 space-y-1.5">
+                  {plan.perks.map((perk: string) => (
+                    <li class="flex items-center gap-2 text-[0.7rem] text-white/90">
+                      <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/25 text-[0.5rem] font-bold">✓</span>
+                      {perk}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <a
+                href={`https://wa.me/34634810054?text=${planMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`mt-5 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-xs font-semibold transition duration-200 ${
+                  plan.popular
+                    ? "bg-white text-orange-500 hover:bg-slate-50"
+                    : "bg-orange-500 text-white hover:bg-orange-600"
+                }`}
+              >
+                Reservar
+              </a>
+            </article>
+          );
+        })}
+        <div class="flex-none w-2"></div>
+      </div>
+      <div class="mb-3 flex items-center justify-center gap-2">
+        {plans.map((plan, index) => (
+          <button
+            type="button"
+            data-carousel-dot="pricing"
+            data-index={index}
+            aria-label={`Ir a ${plan.name}`}
+            aria-pressed={plan.popular ? "true" : "false"}
+            class={`h-1.5 rounded-full transition-all duration-200 ${plan.popular ? "w-7 bg-orange-400" : "w-1.5 bg-stone-300"}`}
+          ></button>
+        ))}
+      </div>
+      <div class="rounded-[1.6rem] border border-orange-100 bg-white/80 p-4 shadow-lg shadow-stone-200/30 backdrop-blur-sm">
+        <p class="text-[0.68rem] font-semibold tracking-[0.16em] text-orange-500">BONO RECOMENDADO</p>
+        <div class="mt-2 flex items-center justify-between gap-3">
+          <div>
+            <p class="font-heading text-xl text-slate-900">3 sesiones</p>
+            <p class="text-xs text-slate-500">Ahorra 15€ y permite seguimiento real</p>
+          </div>
+          <a
+            href="https://wa.me/34634810054?text=Hola%20%C3%81lvaro%2C%20me%20interesa%20el%20bono%20de%203%20sesiones.%20%C2%BFMe%20cuentas%20la%20disponibilidad%20para%20empezar%3F"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex shrink-0 items-center justify-center rounded-full bg-orange-500 px-4 py-2 text-xs font-semibold text-white"
+          >
+            Elegir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const carousel = document.getElementById("pricing-carousel");
+      const popular = document.getElementById("popular-card");
+      const pricingSlides = carousel?.querySelectorAll<HTMLElement>('[data-carousel-slide]') ?? [];
+      const pricingDots = document.querySelectorAll('[data-carousel-dot="pricing"]');
+
+      const setPricingActive = (activeIndex: number) => {
+        pricingSlides.forEach((slide, index) => {
+          slide.classList.toggle('is-active', index === activeIndex);
+        });
+
+        pricingDots.forEach((dot, index) => {
+          dot.classList.toggle('w-7', index === activeIndex);
+          dot.classList.toggle('bg-orange-400', index === activeIndex);
+          dot.classList.toggle('w-1.5', index !== activeIndex);
+          dot.classList.toggle('bg-stone-300', index !== activeIndex);
+          dot.setAttribute('aria-pressed', index === activeIndex ? 'true' : 'false');
+        });
+      };
+
+      const updatePricingFromScroll = () => {
+        if (!carousel || pricingSlides.length === 0) return;
+        const center = carousel.scrollLeft + carousel.clientWidth / 2;
+        let activeIndex = 0;
+        let bestDistance = Number.POSITIVE_INFINITY;
+
+        pricingSlides.forEach((slide, index) => {
+          const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+          const distance = Math.abs(center - slideCenter);
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            activeIndex = index;
+          }
+        });
+
+        setPricingActive(activeIndex);
+      };
+
+      if (carousel && popular) {
+        requestAnimationFrame(() => {
+          const offset = popular.offsetLeft - (carousel.clientWidth - popular.clientWidth) / 2;
+          carousel.scrollLeft = Math.max(offset, 0);
+          updatePricingFromScroll();
+        });
+      }
+
+      pricingDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const index = Number(dot.getAttribute('data-index'));
+          const target = pricingSlides[index];
+          target?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        });
+      });
+
+      carousel?.addEventListener('scroll', updatePricingFromScroll, { passive: true });
+      requestAnimationFrame(updatePricingFromScroll);
+    </script>
+    <div class="hidden gap-5 lg:grid lg:grid-cols-4">
+      {plans.map((plan) => {
+        const planMessage = encodeURIComponent(
+          `Hola Álvaro, me interesa el bono de ${plan.name}. ¿Me cuentas la disponibilidad para empezar?`,
+        );
+        return (
+          <article
+            class={`rounded-4xl border p-7 shadow-xl transition duration-300 hover:-translate-y-1 ${
+              plan.popular
+                ? "lg:col-span-2 lg:row-span-2 border-orange-200 bg-linear-to-br from-orange-500 via-orange-400 to-amber-300 text-white shadow-orange-900/30"
+                : "border-white/80 bg-white/80 text-slate-900 shadow-stone-300/35 backdrop-blur-sm"
+            }`}
+            data-gsap="reveal"
+            data-reveal-delay={plan.popular ? "70" : "120"}
+          >
+            {plan.popular && (
+              <span class="mb-4 inline-block rounded-full bg-white/25 px-4 py-1.5 text-xs font-semibold text-white tracking-wide">Más popular</span>
+            )}
+            <h3 class="font-heading text-3xl leading-tight">{plan.name}</h3>
+            <p class="mt-4 text-5xl font-semibold">{plan.price}</p>
+            {plan.desc && (
+              <p class={`mt-5 text-sm leading-relaxed ${plan.popular ? "text-white/80" : "text-slate-500"}`}>
+                {plan.desc}
+              </p>
+            )}
+            {plan.perks && (
+              <ul class="mt-6 space-y-2.5">
+                {plan.perks.map((perk: string) => (
+                  <li class="flex items-center gap-2.5 text-sm text-white/90">
+                    <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/25 text-[0.6rem] font-bold">✓</span>
+                    {perk}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <a
+              href={`https://wa.me/34634810054?text=${planMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-200 ${
+                plan.popular
+                  ? "bg-white text-orange-500 hover:bg-slate-50"
+                  : "bg-orange-500 text-white hover:bg-orange-600"
+              }`}
+            >
+              Reservar este bono
+            </a>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

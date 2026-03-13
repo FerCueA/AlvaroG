@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+@import "tailwindcss";
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: "Inter", sans-serif;
+		background-color: #f7f3ed;
+		background-image: radial-gradient(circle at 14% 12%, rgba(251, 146, 60, 0.08), transparent 30%),
+			radial-gradient(circle at 84% 88%, rgba(251, 191, 36, 0.05), transparent 32%);
+		color: #1f2937;
+		text-rendering: optimizeLegibility;
+		padding-bottom: 5.5rem;
+	}
+
+	.font-heading {
+		font-family: "Playfair Display", serif;
+		letter-spacing: -0.015em;
+	}
+
+	a {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
+
+@layer utilities {
+	.section-screen {
+		min-height: 100svh;
+	}
+
+	.aurora-bg {
+		background: linear-gradient(130deg, #101827 0%, #1e1b4b 36%, #9a3412 82%, #111827 100%);
+		background-size: 190% 190%;
+		animation: auroraShift 16s ease-in-out infinite;
+	}
+
+	.hide-scrollbar {
+		scrollbar-width: none;
+	}
+
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.carousel-slide-mobile {
+		transform: scale(0.96);
+		opacity: 0.68;
+		filter: saturate(0.88);
+		transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+	}
+
+	.carousel-slide-mobile.is-active {
+		transform: scale(1);
+		opacity: 1;
+		filter: saturate(1);
+	}
+}
+
+@media (min-width: 1024px) {
+	body {
+		padding-bottom: 0;
+	}
+}
+
+@media (max-width: 767px) {
+	.aurora-bg {
+		animation: none;
+	}
+
+	/* Backdrop blur is expensive on low-end mobile GPUs. */
+	[class*="backdrop-blur"] {
+		backdrop-filter: none !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.aurora-bg {
+		animation: none;
+	}
+
+	* {
+		transition: none;
+	}
+}
+
+@keyframes auroraShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

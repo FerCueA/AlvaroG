@@ -1,0 +1,80 @@
+---
+const instagram = "https://www.instagram.com/alvaro_garcia_osteopata/";
+const tiktok = "https://www.tiktok.com/@osteopata.lvaro";
+const whatsappLink = `https://wa.me/34634810054?text=${encodeURIComponent("Hola Álvaro, me gustaría reservar una sesión. ¿Tienes disponibilidad esta semana?")}`;
+---
+
+<footer class="relative overflow-hidden bg-slate-950 text-slate-300">
+  <!-- Acentos de luz -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_0%,rgba(251,146,60,0.18),transparent_40%),radial-gradient(ellipse_at_100%_100%,rgba(245,158,11,0.10),transparent_40%)]"></div>
+
+  <!-- Cuerpo principal del footer -->
+  <div class="relative mx-auto max-w-6xl px-6 py-16">
+    <div class="grid grid-cols-1 gap-12 sm:grid-cols-3">
+
+      <!-- Columna 1: Identidad -->
+      <div class="sm:col-span-1">
+        <h2 class="font-heading text-4xl text-white">Álvaro García</h2>
+        <p class="mt-2 text-xs tracking-[0.2em] text-orange-400">OSTEOPATÍA · QUIROMASAJE · MEDICINA CHINA</p>
+        <p class="mt-5 text-sm leading-relaxed text-slate-400">
+          Terapias naturales personalizadas a domicilio en Las Palmas de Gran Canaria.
+        </p>
+      </div>
+
+      <!-- Columna 2: Contacto -->
+      <div>
+        <h3 class="mb-5 text-xs font-semibold tracking-[0.2em] text-slate-500">CONTACTO</h3>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 text-orange-400">📍</span>
+            <span>Las Palmas de Gran Canaria<br/><span class="text-slate-500">Servicio a domicilio</span></span>
+          </li>
+          <li>
+            <a href="tel:+34634810054" class="group flex items-center gap-3 transition">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-500/15 text-orange-400 transition group-hover:bg-orange-500 group-hover:text-white">📞</span>
+              <span class="text-xl font-semibold text-white transition group-hover:text-orange-300">634 810 054</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Redes -->
+      <div>
+        <h3 class="mb-5 text-xs font-semibold tracking-[0.2em] text-slate-500">SÍGUEME</h3>
+        <div class="flex flex-col gap-3">
+          <a
+            href={instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-3 rounded-xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-slate-200 transition hover:border-orange-400/40 hover:bg-white/8 hover:text-white"
+          >
+            <svg class="h-4 w-4 shrink-0 fill-current text-orange-400" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            Instagram
+          </a>
+          <a
+            href={tiktok}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-3 rounded-xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-slate-200 transition hover:border-orange-400/40 hover:bg-white/8 hover:text-white"
+          >
+            <svg class="h-4 w-4 shrink-0 fill-current text-orange-400" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+            TikTok
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Línea inferior -->
+    <div class="mt-14 flex flex-col items-center gap-3 border-t border-white/8 pt-6 sm:flex-row sm:justify-between">
+      <p class="text-xs text-slate-600">© 2026 Álvaro García. Todos los derechos reservados.</p>
+      <a
+        href="https://aleixofdezcuevas.es/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-slate-300 transition hover:border-orange-400/40 hover:text-orange-300"
+      >
+        <span class="text-orange-400">✦</span> Diseño web por aleixofdezcuevas.es
+      </a>
+    </div>
+  </div>
+</footer>

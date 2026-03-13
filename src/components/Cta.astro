@@ -1,0 +1,40 @@
+---
+const whatsappMessage = encodeURIComponent(
+  "Hola Álvaro, me gustaría reservar una sesión. ¿Tienes disponibilidad esta semana?",
+);
+const whatsappLink = `https://wa.me/34634810054?text=${whatsappMessage}`;
+---
+
+<section id="reservar" class="relative flex min-h-[78svh] items-center justify-center overflow-hidden px-6 py-16 lg:min-h-svh lg:py-20">
+  <div class="absolute inset-0 aurora-bg"></div>
+  <div class="absolute inset-0 bg-linear-to-b from-slate-950/55 via-slate-900/40 to-slate-950/70"></div>
+
+  <div
+    class="relative z-10 w-full max-w-4xl rounded-4xl border border-white/15 bg-white/10 p-7 text-left text-white shadow-2xl shadow-black/35 backdrop-blur-2xl sm:p-12 sm:text-center"
+    data-gsap="reveal"
+    data-reveal-delay="40"
+  >
+    <span class="inline-block rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] text-white/90">RESERVAS</span>
+    <h2 class="font-heading mt-4 max-w-[11ch] text-balance text-3xl sm:mx-auto sm:mt-5 sm:max-w-none sm:text-5xl md:text-6xl">¿Listo para aliviar tu dolor?</h2>
+    <p class="mt-4 max-w-xl text-sm leading-relaxed text-white/85 sm:mx-auto sm:mt-5 sm:text-base">
+      Reserva tu sesión en segundos y empieza un tratamiento adaptado a tu cuerpo y estilo de vida.
+    </p>
+
+    <div class="mt-5 flex flex-wrap gap-2 sm:justify-center">
+      <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[0.68rem] font-medium text-white/85">Respuesta por WhatsApp</span>
+      <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[0.68rem] font-medium text-white/85">Servicio a domicilio</span>
+      <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[0.68rem] font-medium text-white/85">Las Palmas</span>
+    </div>
+
+    <a
+      href={whatsappLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-8 inline-flex w-full items-center justify-center rounded-full bg-linear-to-r from-orange-500 to-amber-400 px-8 py-3.5 text-base font-semibold text-white shadow-xl shadow-orange-950/45 transition duration-300 hover:from-amber-400 hover:to-orange-500 sm:w-auto sm:px-10 sm:text-lg"
+    >
+      Reservar por WhatsApp
+    </a>
+
+    <p class="mt-4 text-xs text-white/65 sm:text-sm">Si me escribes ahora, te respondo con disponibilidad y precio sin compromiso.</p>
+  </div>
+</section>

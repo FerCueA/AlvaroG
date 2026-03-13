@@ -1,0 +1,23 @@
+---
+const items = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#precios", label: "Precios" },
+  { href: "#reservar", label: "WhatsApp" },
+];
+---
+
+<nav class="mobile-safe fixed inset-x-3 bottom-3 z-40 rounded-[1.75rem] border border-white/60 bg-white/88 p-2 shadow-2xl shadow-stone-950/15 backdrop-blur-2xl lg:hidden">
+  <ul class="grid grid-cols-4 gap-1">
+    {items.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class="flex min-h-11 items-center justify-center rounded-2xl px-2 text-[0.7rem] font-semibold tracking-[0.08em] text-slate-600 transition hover:bg-orange-50 hover:text-orange-600"
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

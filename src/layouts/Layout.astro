@@ -1,0 +1,87 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Terapias Naturales en Las Palmas",
+  description = "Osteopatia, acupuntura y terapias naturales para tu bienestar.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-stone-50 text-slate-800 antialiased">
+    <slot />
+
+    <script>
+      import Lenis from "lenis";
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+      // On mobile devices we skip heavy smooth-scrolling/parallax to keep UI responsive.
+      if (!prefersReducedMotion && !isMobile) {
+        const lenis = new Lenis({
+          smoothWheel: true,
+          lerp: 0.085,
+          wheelMultiplier: 0.95,
+        });
+
+        const raf = (time: number) => {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
+
+        lenis.on("scroll", ScrollTrigger.update);
+
+        gsap.utils.toArray<HTMLElement>("[data-gsap='reveal']").forEach((element) => {
+          const delay = Number(element.getAttribute("data-reveal-delay") || 0) / 1000;
+          gsap.fromTo(
+            element,
+            { autoAlpha: 0, y: 48 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              delay,
+              duration: 1.05,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: element,
+                start: "top 82%",
+                once: true,
+              },
+            },
+          );
+        });
+
+        gsap.utils.toArray<HTMLElement>("[data-gsap='parallax']").forEach((element) => {
+          gsap.to(element, {
+            yPercent: -14,
+            ease: "none",
+            scrollTrigger: {
+              trigger: element,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
