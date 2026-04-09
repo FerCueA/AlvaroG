@@ -4,44 +4,52 @@ import { createWhatsAppLink, siteInfo } from "../data/site";
 const whatsappLink = createWhatsAppLink(siteInfo.defaultWhatsappMessage);
 const instagram = siteInfo.instagram;
 const tiktok = siteInfo.tiktok;
+const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteInfo.locationLong)}`;
 ---
 
 <footer class="relative overflow-hidden px-4 pb-6 pt-4 sm:px-6">
-  <div class="relative mx-auto max-w-6xl overflow-hidden soft-panel soft-blob p-5 pb-6 text-[#5a473b] sm:p-6 lg:px-8 lg:py-7">
-    <div class="zen-lines absolute inset-y-0 right-0 hidden w-24 opacity-30 sm:block"></div>
-    <div class="absolute right-6 top-5 hidden flex-col gap-2 sm:flex">
-      <span class="pebble h-4 w-4"></span>
-      <span class="pebble h-6 w-5"></span>
-    </div>
-
-    <div class="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
-      <div class="max-w-2xl lg:pr-6">
-        <p class="text-[0.62rem] font-semibold tracking-[0.18em] text-[#8f8173]">CONTACTO</p>
-        <h2 class="font-heading mt-2 text-3xl sm:text-4xl">{siteInfo.name}</h2>
-        <p class="mt-2 text-sm leading-relaxed text-[#5a473b]/75 sm:text-base">
-          Osteopatía, quiromasaje y medicina china en {siteInfo.locationLong}, y también a domicilio.
-        </p>
-        <p class="mt-2 text-sm text-[#5a473b]/70">{siteInfo.homeServiceNote}</p>
+  <div class="relative mx-auto max-w-6xl">
+    <article class="soft-blob relative bg-white/88 px-4 py-4 text-[#5a473b] shadow-[0_14px_36px_rgba(96,101,107,0.10)] sm:p-5">
+      <div class="absolute right-4 top-4 hidden items-center gap-1.5 sm:flex">
+        <span class="pebble h-3.5 w-3"></span>
+        <span class="pebble h-4 w-3.5"></span>
       </div>
 
-      <div class="flex max-w-md flex-wrap gap-2 text-sm font-semibold lg:justify-end">
-        <a href={siteInfo.phoneHref} class="rounded-full bg-white px-4 py-2 transition hover:bg-[#f5f1ea]">{siteInfo.phoneDisplay}</a>
+      <p class="text-[0.64rem] font-semibold tracking-[0.18em] text-[#8f8173]">CONTACTO</p>
+      <h2 class="font-heading mt-1.5 text-[2rem] leading-tight sm:mt-2 sm:text-4xl">{siteInfo.name}</h2>
+      <p class="mt-1.5 max-w-2xl text-[0.95rem] leading-relaxed text-[#5a473b]/80 sm:mt-2 sm:text-base">
+        Osteopatía, quiromasaje y medicina china en consulta en Las Palmas de Gran Canaria y también a domicilio.
+      </p>
+      <p class="mt-2 text-sm text-[#5a473b]/70">{siteInfo.homeServiceNote}</p>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-sm font-semibold">
+        <a
+          href={siteInfo.phoneHref}
+          aria-label={`Llamar a ${siteInfo.phoneDisplay}`}
+          title="Llamar"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white transition hover:bg-[#f5f1ea]"
+        >
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.64 2.62a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.46-1.3a2 2 0 0 1 2.11-.45c.84.31 1.72.52 2.62.64A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </a>
+        <a href={mapsLink} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-4 py-2 transition hover:bg-[#f5f1ea]">Dirección</a>
         <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="rounded-full bg-[#7d8678] px-4 py-2 text-white transition hover:bg-[#687164]">WhatsApp</a>
         <a href={instagram} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-4 py-2 transition hover:bg-[#f5f1ea]">Instagram</a>
         <a href={tiktok} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white px-4 py-2 transition hover:bg-[#f5f1ea]">TikTok</a>
       </div>
-    </div>
 
-    <div class="relative mt-3 flex flex-col gap-2 text-xs text-[#5a473b]/70 sm:flex-row sm:items-center sm:justify-between">
-      <p>© 2026 Álvaro García. Todos los derechos reservados.</p>
-      <a
-        href="https://aleixofdezcuevas.es/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-1.5 transition hover:text-[#5a473b]"
-      >
-        <span class="text-[#8f8173]">✦</span> Diseño web por aleixofdezcuevas.es
-      </a>
-    </div>
+      <div class="mt-4 flex flex-col gap-2 text-xs text-[#5a473b]/70 sm:flex-row sm:items-center sm:justify-between">
+        <p>© 2026 Álvaro García. Todos los derechos reservados.</p>
+        <a
+          href="https://aleixofdezcuevas.es/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 transition hover:text-[#5a473b]"
+        >
+          <span class="text-[#8f8173]">✦</span> Diseño web por aleixofdezcuevas.es
+        </a>
+      </div>
+    </article>
   </div>
 </footer>

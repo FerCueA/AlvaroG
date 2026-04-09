@@ -2,7 +2,7 @@ export const siteInfo = {
   name: "Álvaro García",
   disciplines: "OSTEOPATÍA · QUIROMASAJE · MEDICINA CHINA",
   heroDescription:
-    "Osteopatía, acupuntura y terapias naturales en Las Palmas con una experiencia calmada, orgánica y enfocada en aliviar el cuerpo de verdad.",
+    "Tratamientos personalizados de osteopatía, quiromasaje y medicina china para aliviar dolor, recuperar movilidad y mejorar tu bienestar, en consulta o a domicilio en Las Palmas.",
   locationShort: "16 C. Arguineguín · Las Palmas de Gran Canaria",
   locationLong: "16 C. Arguineguín, Las Palmas de Gran Canaria, Canarias",
   homeServiceNote: "A domicilio · consultar precio según distancia",
@@ -28,27 +28,27 @@ export const services = [
   {
     title: "Osteopatía",
     image: "/images/osteopatia.jpg",
-    description: "Técnica manual para el reequilibrio corporal",
+    description: "Tratamiento manual para aliviar dolor, mejorar la movilidad y reequilibrar el cuerpo.",
   },
   {
     title: "Acupuntura",
     image: "/images/acupuntura.jpg",
-    description: "Estimulación de puntos energéticos para restaurar el flujo del cuerpo",
+    description: "Aplicación en puntos específicos para aliviar molestias y apoyar la recuperación.",
   },
   {
     title: "Moxibustión",
     image: "/images/moxibustion.jpg",
-    description: "Terapia de calor tradicional para aliviar dolencias",
+    description: "Terapia de calor tradicional para calmar molestias y favorecer el equilibrio corporal.",
   },
   {
     title: "Vendaje Neuromuscular",
     image: "/images/vendaje.jpg",
-    description: "Soporte muscular sin limitar el movimiento",
+    description: "Soporte terapéutico que ayuda a descargar la zona sin limitar el movimiento.",
   },
   {
     title: "Auriculopuntura",
     image: "/images/auriculopuntura.jpg",
-    description: "Estimulación de puntos en la oreja para tratar diferentes dolencias",
+    description: "Estimulación de puntos en la oreja como apoyo en dolor, estrés y otros desequilibrios.",
   },
 ] as const;
 
@@ -56,17 +56,17 @@ export const pricingPlans = [
   {
     name: "Sesión individual",
     price: "45€",
-    desc: "Una sesión completa para empezar tu recuperación.",
+    desc: "Sesión individual adaptada a tu caso para valorar y empezar el tratamiento.",
   },
   {
     name: "Bono 2 sesiones",
     price: "80€",
-    desc: "Ideal para trabajar un problema concreto en profundidad.",
+    desc: "Perfecto para molestias concretas que necesitan continuidad entre sesiones.",
   },
   {
     name: "Bono 3 sesiones",
     price: "120€",
-    desc: "El plan más elegido. Permite un abordaje completo y una recuperación real, con seguimiento entre sesiones.",
+    desc: "La opción más equilibrada para trabajar el problema con seguimiento y continuidad real.",
     tag: "BONO RECOMENDADO",
     perks: [
       "3 sesiones personalizadas",
@@ -77,7 +77,7 @@ export const pricingPlans = [
   {
     name: "Bono 5 sesiones",
     price: "180€",
-    desc: "Para un tratamiento continuado y resultados duraderos.",
+    desc: "Pensado para procesos más completos o tratamientos mantenidos en el tiempo.",
   },
 ] as const;
 
