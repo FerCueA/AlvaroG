@@ -46,11 +46,11 @@
 	}
 
 	.soft-blob {
-		border-radius: 38px 38px 52px 34px / 28px 32px 58px 44px;
+		border-radius: 42% 58% 54% 46% / 36% 38% 62% 64%;
 	}
 
 	.soft-blob-alt {
-		border-radius: 42px 30px 48px 36px / 34px 44px 42px 56px;
+		border-radius: 58% 42% 38% 62% / 46% 60% 40% 54%;
 	}
 
 	.soft-panel {
@@ -98,16 +98,6 @@
 	.carousel-slide-mobile.is-active {
 		transform: scale(1);
 		opacity: 1;
-	}
-}
-
-@media (min-width: 640px) {
-	.soft-blob {
-		border-radius: 42% 58% 54% 46% / 36% 38% 62% 64%;
-	}
-
-	.soft-blob-alt {
-		border-radius: 58% 42% 38% 62% / 46% 60% 40% 54%;
 	}
 }
 
