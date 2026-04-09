@@ -1,0 +1,20 @@
+:root {
+  /* Guía de estilo — piedra zen / arena y canto rodado */
+  --color-bg: #f8f5f0;
+  --color-bg-soft: #fcfaf7;
+  --color-bg-soft-2: #ece5dd;
+  --color-text: #534a43;
+  --color-text-soft: #817468;
+  --color-accent: #8f8173;
+  --color-accent-hover: #77695d;
+  --color-surface: rgba(250, 247, 243, 0.86);
+  --color-surface-solid: #fdfbf8;
+  --color-spot-1: rgba(156, 166, 173, 0.14);
+  --color-spot-2: rgba(222, 214, 204, 0.28);
+  --color-blob-1: #ebe4db;
+  --color-blob-2: #f2ede7;
+  --color-blob-3: #e7ebec;
+  --color-leaf: #7d8678;
+  --color-leaf-soft: #e7ece5;
+  --color-stone: #727b86;
+}

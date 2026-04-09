@@ -1,68 +1,73 @@
 ---
-const services = [
-  {
-    title: "Osteopatía",
-    image: "/images/osteopatia.jpg",
-    description: "Técnica manual para el reequilibrio corporal",
-  },
-  {
-    title: "Acupuntura",
-    image: "/images/acupuntura.jpg",
-    description: "Estimulación de puntos energéticos para restaurar el flujo del cuerpo",
-  },
-  {
-    title: "Moxibustión",
-    image: "/images/moxibustion.jpg",
-    description: "Terapia de calor tradicional para aliviar dolencias",
-  },
-  {
-    title: "Vendaje Neuromuscular",
-    image: "/images/vendaje.jpg",
-    description: "Soporte muscular sin limitar el movimiento",
-  },
-  {
-    title: "Auriculopuntura",
-    image: "/images/auriculopuntura.jpg",
-    description: "Estimulación de puntos en la oreja para tratar diferentes dolencias",
-  },
-];
+import { createWhatsAppLink, services as serviceItems } from "../data/site";
+
+const serviceStyles = [
+  { tone: "bg-white/88 text-[#5a473b]", button: "bg-[#7d8678] text-white hover:bg-[#687164]" },
+  { tone: "bg-[#ebe4db] text-[#5a473b]", button: "bg-[#5a473b] text-white hover:bg-[#8f8173]" },
+  { tone: "bg-[#e7ebec] text-[#5a473b]", button: "bg-[#8f8173] text-white hover:bg-[#77695d]" },
+  { tone: "bg-[#ede5dc] text-[#5a473b]", button: "bg-[#5a473b] text-white hover:bg-[#8f8173]" },
+  { tone: "bg-white/88 text-[#5a473b]", button: "bg-[#7d8678] text-white hover:bg-[#687164]" },
+] as const;
+
+const services = serviceItems.map((service, index) => ({
+  ...service,
+  ...serviceStyles[index],
+}));
 ---
 
-<section id="servicios" class="bg-stone-50">
-  <header class="mx-auto max-w-6xl px-6 pb-8 pt-14 text-center sm:pb-12 sm:pt-20" data-gsap="reveal">
-    <p class="text-sm font-semibold tracking-[0.18em] text-orange-500">TRATAMIENTOS</p>
-    <h2 class="font-heading mt-3 text-3xl text-slate-900 sm:text-5xl">Experiencia terapéutica por etapas</h2>
-  </header>
+<section id="servicios" class="relative overflow-hidden px-4 py-10 sm:px-6 sm:py-12">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(156,166,173,0.12),transparent_24%),radial-gradient(circle_at_100%_0%,rgba(233,223,209,0.16),transparent_24%)]"></div>
+  <div class="zen-lines absolute right-0 top-6 h-32 w-24 rounded-l-[24px] opacity-35"></div>
 
-  <!-- MÓVIL: carousel horizontal deslizable -->
-  <div class="lg:hidden">
-    <div class="flex items-center justify-center gap-2 px-6 pb-4 text-[0.65rem] tracking-[0.18em] text-slate-400">
-      <span>DESLIZA</span>
-      <span class="h-px w-10 bg-slate-300"></span>
-      <span>{services.length} TRATAMIENTOS</span>
+  <div class="relative mx-auto max-w-6xl">
+    <div class="max-w-2xl">
+      <div class="mb-3 hidden items-center gap-2 sm:flex">
+        <span class="pebble h-4 w-4"></span>
+        <span class="pebble h-5 w-5"></span>
+        <span class="pebble h-3 w-3"></span>
+      </div>
+      <p class="text-sm font-semibold tracking-[0.18em] text-[#8f8173]">TRATAMIENTOS</p>
+      <h2 class="font-heading mt-2 text-3xl text-[#5a473b] sm:text-4xl">Inspirado en bambú, piedra y calma natural.</h2>
+      <p class="mt-3 text-sm leading-relaxed text-[#5a473b]/75 sm:text-base">
+        La composición busca una sensación más spa: fondos cálidos, detalles verdes y formas irregulares más creativas.
+      </p>
+      <p class="mt-2 text-[0.68rem] font-medium tracking-[0.14em] text-[#8f8173] sm:hidden">DESLIZA →</p>
     </div>
-    <div data-carousel="services" class="hide-scrollbar flex gap-4 overflow-x-auto px-6 pb-8 pt-2 [scroll-snap-type:x_mandatory] [-webkit-overflow-scrolling:touch]">
+
+    <div class="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 hide-scrollbar sm:block sm:space-y-4 sm:overflow-visible sm:pb-0">
       {services.map((service, index) => {
-        const whatsappMessage = encodeURIComponent(
+        const whatsappLink = createWhatsAppLink(
           `Hola Álvaro, me gustaría reservar una sesión de ${service.title}. ¿Qué horario tienes disponible?`,
         );
+        const reverse = index % 2 !== 0;
+
         return (
-          <article data-carousel-slide class={`carousel-slide-mobile ${index === 0 ? "is-active w-[84vw]" : "w-[78vw]"} flex-none overflow-hidden rounded-[1.6rem] border border-stone-200 bg-white shadow-lg snap-center`}>
-            <div class="relative">
-              <img src={service.image} alt={service.title} loading="lazy" decoding="async" class="h-52 w-full object-cover" />
-              <div class="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-slate-950/85 via-slate-950/35 to-transparent"></div>
-              <div class="absolute inset-x-0 bottom-0 p-4 text-white">
-                <span class="inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[0.62rem] font-semibold tracking-[0.16em] text-white/90 backdrop-blur-lg">TERAPIA</span>
-                <h3 class="font-heading mt-2 text-2xl leading-none">{service.title}</h3>
+          <article class={`carousel-slide-mobile relative grid w-[76vw] min-w-[76vw] max-w-[280px] shrink-0 snap-center gap-2.5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center sm:w-auto sm:min-w-0 sm:max-w-none sm:gap-3 ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
+            <div class={`absolute top-5 -z-10 h-20 w-20 rounded-full blur-2xl ${reverse ? "right-4 bg-[#e6efe1]/70" : "left-4 bg-[#efe4d7]/70"}`}></div>
+
+            <figure class={`relative ${reverse ? "soft-blob-alt" : "soft-blob"} zen-lines overflow-hidden bg-[#f7efe6] p-2 shadow-[0_14px_36px_rgba(86,98,90,0.10)]`}>
+              <img
+                src={service.image}
+                alt={service.title}
+                loading="lazy"
+                decoding="async"
+                class="relative h-32 w-full object-cover sm:h-52"
+              />
+            </figure>
+
+            <div class={`${reverse ? "soft-blob" : "soft-blob-alt"} relative px-4 py-3.5 sm:p-5 shadow-[0_14px_36px_rgba(86,98,90,0.10)] ${service.tone}`}>
+              <div class="absolute right-4 top-4 hidden items-center gap-1.5 sm:flex">
+                <span class="pebble h-3.5 w-3"></span>
+                <span class="pebble h-4 w-3.5"></span>
               </div>
-            </div>
-            <div class="p-5">
-              <p class="text-sm leading-relaxed text-slate-500">{service.description}</p>
+              <p class="text-[0.64rem] font-semibold tracking-[0.18em] opacity-70">0{index + 1} · TRATAMIENTO</p>
+              <h3 class="font-heading mt-1.5 text-[1.35rem] leading-tight sm:mt-2 sm:text-3xl">{service.title}</h3>
+              <p class="mt-1.5 text-[0.92rem] leading-relaxed opacity-80 sm:mt-2 sm:text-base">{service.description}</p>
               <a
-                href={`https://wa.me/34634810054?text=${whatsappMessage}`}
+                href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-4 inline-flex items-center justify-center rounded-full bg-orange-500 px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-orange-600"
+                class={`mt-3 inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold transition sm:text-sm ${service.button}`}
               >
                 Reservar sesión
               </a>
@@ -70,112 +75,6 @@ const services = [
           </article>
         );
       })}
-      <div class="flex-none w-2"></div>
     </div>
-    <div class="mb-10 flex items-center justify-center gap-2">
-      {services.map((service, index) => (
-        <button
-          type="button"
-          data-carousel-dot="services"
-          data-index={index}
-          aria-label={`Ir a ${service.title}`}
-          aria-pressed={index === 0 ? "true" : "false"}
-          class={`h-1.5 rounded-full transition-all duration-200 ${index === 0 ? "w-7 bg-orange-400" : "w-1.5 bg-stone-300"}`}
-        ></button>
-      ))}
-    </div>
-  </div>
-
-  <script>
-    const servicesCarousel = document.querySelector<HTMLElement>('[data-carousel="services"]');
-    const servicesSlides = servicesCarousel?.querySelectorAll<HTMLElement>('[data-carousel-slide]') ?? [];
-    const servicesDots = document.querySelectorAll('[data-carousel-dot="services"]');
-
-    const setServicesActive = (activeIndex: number) => {
-      servicesSlides.forEach((slide, index) => {
-        slide.classList.toggle('is-active', index === activeIndex);
-      });
-
-      servicesDots.forEach((dot, index) => {
-        dot.classList.toggle('w-7', index === activeIndex);
-        dot.classList.toggle('bg-orange-400', index === activeIndex);
-        dot.classList.toggle('w-1.5', index !== activeIndex);
-        dot.classList.toggle('bg-stone-300', index !== activeIndex);
-        dot.setAttribute('aria-pressed', index === activeIndex ? 'true' : 'false');
-      });
-    };
-
-    const updateServicesFromScroll = () => {
-      if (!servicesCarousel || servicesSlides.length === 0) return;
-      const center = servicesCarousel.scrollLeft + servicesCarousel.clientWidth / 2;
-      let activeIndex = 0;
-      let bestDistance = Number.POSITIVE_INFINITY;
-
-      servicesSlides.forEach((slide, index) => {
-        const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
-        const distance = Math.abs(center - slideCenter);
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          activeIndex = index;
-        }
-      });
-
-      setServicesActive(activeIndex);
-    };
-
-    servicesDots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const index = Number(dot.getAttribute('data-index'));
-        const target = servicesSlides[index];
-        target?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      });
-    });
-
-    servicesCarousel?.addEventListener('scroll', updateServicesFromScroll, { passive: true });
-    requestAnimationFrame(updateServicesFromScroll);
-  </script>
-
-  <!-- ESCRITORIO: secciones alternadas full-screen -->
-  <div class="hidden lg:block">
-    {services.map((service, index) => {
-      const whatsappMessage = encodeURIComponent(
-        `Hola Álvaro, me gustaría reservar una sesión de ${service.title}. ¿Qué horario tienes disponible?`,
-      );
-      const isReverse = index % 2 !== 0;
-      return (
-        <article class="section-screen relative overflow-hidden px-6 py-14">
-          <div class="absolute inset-0 bg-linear-to-b from-stone-50 via-stone-100/40 to-stone-50"></div>
-          <div
-            class={`relative mx-auto grid h-full w-full max-w-6xl items-center gap-14 lg:grid-cols-2 ${
-              isReverse ? "lg:[&>*:first-child]:order-2" : ""
-            }`}
-          >
-            <figure class="overflow-hidden rounded-4xl border border-white/60 shadow-2xl shadow-stone-300/35" data-gsap="reveal">
-              <img
-                src={service.image}
-                alt={service.title}
-                loading="lazy"
-                decoding="async"
-                class="h-136 w-full object-cover"
-                data-gsap="parallax"
-              />
-            </figure>
-            <div class="rounded-4xl border border-white/70 bg-white/70 p-10 shadow-xl shadow-stone-300/35 backdrop-blur-xl" data-gsap="reveal" data-reveal-delay="60">
-              <span class="inline-block rounded-full bg-orange-100 px-4 py-1.5 text-xs font-semibold text-orange-600 tracking-wide">Terapia</span>
-              <h3 class="font-heading mt-5 text-5xl text-slate-900">{service.title}</h3>
-              <p class="mt-6 max-w-lg text-lg leading-relaxed text-slate-600">{service.description}</p>
-              <a
-                href={`https://wa.me/34634810054?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-8 inline-flex items-center justify-center rounded-full bg-orange-500 px-7 py-3 text-base font-semibold text-white shadow-lg shadow-orange-950/20 transition duration-200 hover:bg-orange-600"
-              >
-                Reservar sesión
-              </a>
-            </div>
-          </div>
-        </article>
-      );
-    })}
   </div>
 </section>

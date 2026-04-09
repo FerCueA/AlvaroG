@@ -1,72 +1,81 @@
 ---
-const whatsappMessage = encodeURIComponent(
-  "Hola Álvaro, me gustaría reservar una sesión. ¿Tienes disponibilidad esta semana?",
-);
-const whatsappLink = `https://wa.me/34634810054?text=${whatsappMessage}`;
+import { createWhatsAppLink,  heroStats, siteInfo } from "../data/site";
+
+const whatsappLink = createWhatsAppLink(siteInfo.defaultWhatsappMessage);
+const [firstName, lastName] = siteInfo.name.split(" ");
 ---
 
-<section id="inicio" class="section-screen relative flex items-center overflow-hidden px-6 pb-14 pt-24 sm:pb-24 sm:pt-28">
-  <img
-    src="/images/hero.jpg"
-    alt="Terapia de bienestar"
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-    class="absolute inset-0 h-full w-full scale-110 object-cover"
-    data-gsap="parallax"
-  />
+<section id="inicio" class="relative overflow-hidden px-4 pb-10 pt-7 sm:px-6 sm:pb-12 sm:pt-9">
+  <div class="absolute inset-0 aurora-bg opacity-80"></div>
+  <div class="zen-lines absolute -right-6 top-5 h-64 w-24 rounded-[28px] opacity-45 sm:w-32"></div>
+  <div class="absolute -left-8 top-8 h-32 w-32 rounded-full bg-[#e7ebec]/75 blur-3xl"></div>
+  <div class="absolute bottom-0 left-1/3 h-28 w-28 rounded-full bg-[#e4dbd1]/75 blur-3xl"></div>
 
-  <div class="absolute inset-0 aurora-bg opacity-80 mix-blend-multiply"></div>
-  <div class="absolute inset-0 bg-linear-to-b from-slate-950/80 via-slate-900/45 to-slate-950/78"></div>
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(251,146,60,0.35),transparent_34%),radial-gradient(circle_at_80%_82%,rgba(217,119,6,0.22),transparent_36%)]"></div>
+  <div class="absolute right-6 top-16 hidden flex-col gap-3 sm:flex">
+    <span class="pebble h-12 w-9 rotate-12"></span>
+    <span class="pebble h-16 w-11 -rotate-6"></span>
+    <span class="pebble h-14 w-10 rotate-6"></span>
+  </div>
 
-  <div class="relative mx-auto w-full max-w-6xl">
-    <div class="mx-auto max-w-4xl text-left text-white sm:text-center" data-gsap="reveal" data-reveal-delay="0">
-      <span class="mb-4 inline-block rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[0.62rem] font-semibold tracking-[0.18em] text-white/90 backdrop-blur-xl sm:mb-5 sm:px-5 sm:text-xs sm:tracking-[0.24em]">
-        BIENESTAR INTEGRAL
-      </span>
+  <div class="relative mx-auto max-w-6xl">
+    <div class="grid gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-center">
+      <div class="text-[#5a473b]">
+        <p class="inline-flex items-center gap-2 rounded-full leaf-chip px-3 py-1 text-[0.68rem] font-semibold tracking-[0.22em]">
+          <span class="h-2 w-2 rounded-full bg-[#7d8678]"></span>
+          {siteInfo.disciplines}
+        </p>
 
-      <h1 class="font-heading max-w-[11ch] text-balance text-[2.7rem] leading-[0.92] text-white sm:mx-auto sm:max-w-none sm:text-6xl md:text-7xl">
-        Álvaro García
-      </h1>
+        <div class="mt-3 max-w-2xl">
+          <p class="font-heading text-[4.2rem] leading-[0.8] text-[#5a473b] sm:text-[5.8rem] lg:text-[7.2rem]">{firstName}</p>
+          <p class="font-heading -mt-1 ml-3 text-[4.2rem] leading-[0.8] text-[#8f8173] sm:ml-8 sm:text-[5.8rem] lg:text-[7.4rem]">{lastName}</p>
+          <div class="mt-3 h-[2px] w-24 rounded-full bg-[#b8aa9b]"></div>
+        </div>
 
-      <p class="mt-3 text-[0.68rem] tracking-[0.12em] text-white/70 sm:mt-5 sm:text-base sm:tracking-[0.15em]">
-        Osteopatía · Quiromasaje · Medicina China
-      </p>
+        <p class="mt-4 max-w-xl text-base leading-relaxed text-[#5a473b]/78 lg:text-lg">
+          {siteInfo.heroDescription}
+        </p>
 
-      <p class="mt-4 max-w-88 text-[0.96rem] leading-relaxed text-white/90 sm:mx-auto sm:mt-7 sm:max-w-2xl sm:text-lg">
-        Osteopatía, acupuntura y terapias naturales en Las Palmas
-      </p>
-
-      <div class="mt-5 flex flex-wrap gap-2 sm:justify-center">
-        <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[0.68rem] font-medium text-white/80 backdrop-blur-lg">A domicilio</span>
-        <span class="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[0.68rem] font-medium text-white/80 backdrop-blur-lg">Respuesta rápida</span>
-      </div>
-
-      <a
-        href={whatsappLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-7 inline-flex w-full items-center justify-center rounded-full bg-linear-to-r from-orange-500 via-orange-400 to-amber-300 px-6 py-3 text-sm font-semibold text-white shadow-xl shadow-orange-950/40 transition duration-300 hover:-translate-y-0.5 hover:from-amber-300 hover:to-orange-500 sm:mt-9 sm:w-auto sm:px-10 sm:py-3.5 sm:text-lg"
-      >
-        Reservar por WhatsApp
-      </a>
-    </div>
-
-    <div class="mt-7 grid grid-cols-2 gap-2 sm:mt-14 sm:grid-cols-3 sm:gap-3" data-gsap="reveal" data-reveal-delay="120">
-      <div class="col-span-2 rounded-2xl border border-white/20 bg-black/30 px-4 py-4 text-white backdrop-blur-xl sm:col-span-1 sm:px-5 sm:py-5">
-        <div class="flex items-end justify-between gap-3 sm:block">
-          <div class="font-heading text-3xl font-bold text-white sm:text-4xl">+1000</div>
-          <div class="text-[0.62rem] font-semibold tracking-[0.14em] text-orange-200/80 sm:mt-1.5 sm:text-xs">PACIENTES TRATADOS</div>
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full bg-[#7d8678] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#7d8678]/20 transition hover:-translate-y-0.5 hover:bg-[#687164] sm:px-8"
+          >
+            Reservar por WhatsApp
+          </a>
+          <a
+            href="#servicios"
+            class="inline-flex items-center justify-center rounded-full bg-white/90 px-6 py-3 text-sm font-semibold text-[#5a473b] transition hover:bg-white sm:px-8"
+          >
+            Ver tratamientos
+          </a>
         </div>
       </div>
-      <div class="rounded-xl border border-white/20 bg-black/25 px-3 py-4 text-white backdrop-blur-xl sm:rounded-2xl sm:px-5 sm:py-5">
-        <div class="font-heading text-2xl font-bold text-white sm:text-4xl">12</div>
-        <div class="mt-1 text-[0.58rem] font-semibold tracking-[0.12em] text-orange-200/75 sm:mt-1.5 sm:text-xs">AÑOS EXP.</div>
-      </div>
-      <div class="rounded-xl border border-white/20 bg-black/25 px-3 py-4 text-white backdrop-blur-xl sm:rounded-2xl sm:px-5 sm:py-5">
-        <div class="font-heading text-2xl font-bold text-white sm:text-4xl">100%</div>
-        <div class="mt-1 text-[0.58rem] font-semibold tracking-[0.12em] text-orange-200/75 sm:mt-1.5 sm:text-xs">A DOMICILIO</div>
+
+      <div class="relative">
+        <div class="zen-lines soft-blob-alt absolute inset-2 opacity-55"></div>
+        <figure class="relative soft-blob soft-panel overflow-hidden p-2">
+          <img
+            src="/images/hero.webp"
+            alt="Terapia de bienestar"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="soft-blob-alt h-72 w-full object-cover sm:h-84 lg:h-96"
+          />
+        </figure>
+
+
+
+        <div class="mt-4 grid gap-2 sm:grid-cols-3">
+          {heroStats.map((item) => (
+            <div class={`rounded-[20px_14px_18px_12px] px-4 py-3 text-[#5a473b] shadow-sm ${item.tone}`}>
+              <p class="font-heading text-2xl sm:text-3xl">{item.value}</p>
+              <p class="mt-1 text-[0.62rem] uppercase tracking-[0.16em] opacity-75">{item.label}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>

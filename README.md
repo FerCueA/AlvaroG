@@ -4,13 +4,16 @@ Landing page desarrollada con Astro para un negocio de osteopatía, quiromasaje,
 
 El proyecto está orientado a conversión en móvil, con foco en reservas por WhatsApp, secciones inmersivas, animaciones suaves y una presentación visual premium.
 
-## Stack
+## Stack y dependencias principales
 
-- Astro 6
-- Tailwind CSS 4
-- DaisyUI
-- GSAP con ScrollTrigger
-- Lenis para smooth scroll
+Estas son las dependencias actuales definidas en `package.json`:
+
+- `astro` 6
+- `tailwindcss` 4
+- `@tailwindcss/vite`
+- `gsap` con `ScrollTrigger`
+- `lenis` para smooth scroll
+
 
 ## Requisitos
 
@@ -39,7 +42,6 @@ Ejecuta los comandos desde la raíz del proyecto.
 │   │   ├── Cta.astro
 │   │   ├── Footer.astro
 │   │   ├── Hero.astro
-│   │   ├── MobileNav.astro
 │   │   ├── Pricing.astro
 │   │   ├── Services.astro
 │   ├── layouts/
@@ -60,7 +62,6 @@ Ejecuta los comandos desde la raíz del proyecto.
 - Bloque de precios con bono recomendado
 - CTA final de reserva
 - Footer con contacto, redes y crédito del creador
-- Navegación sticky en móvil
 - Botón flotante de WhatsApp
 
 ## Personalización rápida
@@ -86,11 +87,19 @@ La configuración visual global, tipografías y utilidades están en `src/styles
 
 El número y los mensajes precargados están definidos directamente en los componentes que lanzan la reserva.
 
+## Despliegue
+
+El proyecto está preparado para desplegarse en Netlify mediante `netlify.toml`:
+
+- comando de build: `npm run build`
+- carpeta publicada: `dist`
+- versión de Node configurada: `22`
+
 ## Notas
 
 - El proyecto está optimizado como sitio estático.
-- La build actual se genera correctamente con `npm run build`.
 - Hay animaciones de scroll, pero la página sigue siendo funcional sin interacción avanzada.
+- Para dejar la documentación alineada con el código real, conviene revisar `package.json` cada vez que se añadan o eliminen librerías.
 
 ## Autoría
 
