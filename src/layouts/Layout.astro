@@ -17,6 +17,9 @@ const { title = SITE.meta.title, description = SITE.meta.description } = Astro.p
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<script is:inline>
+			document.documentElement.classList.add("js");
+		</script>
 	</head>
 	<body>
 		<slot />
@@ -66,6 +69,31 @@ const { title = SITE.meta.title, description = SITE.meta.description } = Astro.p
 						},
 					);
 				});
+			}
+		</script>
+		<script>
+			// Reveal the meridian marker of each section heading as it enters view.
+			const markers = document.querySelectorAll<HTMLElement>("[data-meridian]");
+
+			if (markers.length > 0) {
+				const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+				if (reducedMotion) {
+					markers.forEach((marker) => marker.classList.add("is-visible"));
+				} else {
+					const observer = new IntersectionObserver(
+						(entries) => {
+							entries.forEach((entry) => {
+								if (!entry.isIntersecting) return;
+								entry.target.classList.add("is-visible");
+								observer.unobserve(entry.target);
+							});
+						},
+						{ rootMargin: "0px 0px -12% 0px", threshold: 0.2 },
+					);
+
+					markers.forEach((marker) => observer.observe(marker));
+				}
 			}
 		</script>
 	</body>

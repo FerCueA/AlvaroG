@@ -171,6 +171,10 @@ Tailwind por defecto:
 
 - Props: `index`, `label`, `title`, `description`, `class`.
 - El `h2` va en display, `max-w-2xl`. La descripción en `ink-2`, `max-w-xl`.
+- **Animación**: al entrar en pantalla (IntersectionObserver en `Layout.astro`), la
+  hairline se dibuja de izquierda a derecha (`scaleX`) y el punto aparece
+  (`opacity` + `scale`). Estado inicial `is-visible`. Sin JS el marcador queda
+  estático y visible (el estado "oculto" solo se aplica bajo `html.js`).
 
 ### Buttons
 
@@ -287,6 +291,8 @@ sin cards con sombra.
 - Transiciones: `color`, `background-color`, `border-color`, `transform`, y el
   `filter` del tratamiento de imagen.
 - Duración: `200ms`; `img-ink` usa `500ms` (revela el color al pasar el ratón).
+- **Marcador de meridiano**: `650ms` con `cubic-bezier(0.2, 0.7, 0.2, 1)`; el
+  punto, `500ms`. Se dispara una sola vez por sección al entrar en pantalla.
 - Reveal de scroll: GSAP `fromTo` (opacity + `y:48`) con ScrollTrigger;
   desactivado en móvil y con `prefers-reduced-motion`.
 - Evitar: animaciones infinitas, gradientes animados, movimientos grandes.
