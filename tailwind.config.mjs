@@ -1,4 +1,4 @@
 export default {
-  content: ["./src/**/*.{astro,html,js,ts}"],
-  plugins: [],
+	content: ["./src/**/*.{astro,html,js,ts}"],
+	plugins: [],
 };

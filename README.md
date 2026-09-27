@@ -7,8 +7,7 @@ El proyecto está orientado a conversión en móvil, con foco en reservas por Wh
 ## Stack
 
 - Astro 6
-- Tailwind CSS 4
-- DaisyUI
+- Tailwind CSS 4 (design tokens en `src/styles/global.css`)
 - GSAP con ScrollTrigger
 - Lenis para smooth scroll
 
@@ -21,12 +20,13 @@ El proyecto está orientado a conversión en móvil, con foco en reservas por Wh
 
 Ejecuta los comandos desde la raíz del proyecto.
 
-| Comando | Descripción |
-| :-- | :-- |
-| `npm install` | Instala dependencias |
-| `npm run dev` | Inicia el entorno de desarrollo |
-| `npm run build` | Genera la versión de producción en `dist/` |
-| `npm run preview` | Previsualiza la build localmente |
+| Comando           | Descripción                                |
+| :---------------- | :----------------------------------------- |
+| `npm install`     | Instala dependencias                       |
+| `npm run dev`     | Inicia el entorno de desarrollo            |
+| `npm run build`   | Genera la versión de producción en `dist/` |
+| `npm run preview` | Previsualiza la build localmente           |
+| `npm run check`   | Ejecuta el type-check de Astro             |
 
 ## Estructura
 
@@ -38,30 +38,39 @@ Ejecuta los comandos desde la raíz del proyecto.
 │   ├── components/
 │   │   ├── Cta.astro
 │   │   ├── Footer.astro
+│   │   ├── Header.astro
 │   │   ├── Hero.astro
 │   │   ├── MobileNav.astro
 │   │   ├── Pricing.astro
 │   │   ├── Services.astro
+│   │   └── ui/
+│   │       └── Icon.astro
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── pages/
 │   │   └── index.astro
 │   └── styles/
 │       └── global.css
+├── DESIGN.md
 ├── astro.config.mjs
 ├── package.json
 └── tsconfig.json
 ```
 
+## Diseño
+
+El sistema visual (tipografía, color, spacing, componentes y patrones
+prohibidos) está documentado en [`DESIGN.md`](./DESIGN.md). Es la referencia
+obligatoria para cualquier cambio de frontend.
+
 ## Secciones actuales
 
-- Hero con CTA principal a WhatsApp
-- Carrusel móvil de tratamientos
-- Bloque de precios con bono recomendado
+- Hero editorial con CTA principal a WhatsApp y datos de confianza
+- Tratamientos: carrusel en móvil, layout alternado en escritorio
+- Tabla de precios con plan recomendado
 - CTA final de reserva
 - Footer con contacto, redes y crédito del creador
-- Navegación sticky en móvil
-- Botón flotante de WhatsApp
+- Cabecera sticky en escritorio y navegación inferior flotante en móvil
 
 ## Personalización rápida
 

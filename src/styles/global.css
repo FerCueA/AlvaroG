@@ -1,42 +1,123 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Instrument+Sans:wght@400;500;600&display=swap");
 @import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens                                                       */
+/*  Single source of truth for the visual system. See DESIGN.md.        */
+/* ------------------------------------------------------------------ */
+@theme {
+	--font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+
+	/* Neutral, warm surfaces */
+	--color-canvas: #f7f3ec;
+	--color-surface: #ffffff;
+	--color-surface-2: #efe8dd;
+
+	/* Ink scale: primary → muted */
+	--color-ink: #221d19;
+	--color-ink-2: #5c5349;
+	--color-ink-3: #6f665c;
+
+	/* Hairlines */
+	--color-line: #e5ddd1;
+
+	/* Single accent: clay. Used only for primary actions and labels. */
+	--color-clay: #a5522f;
+	--color-clay-600: #893f20;
+	--color-clay-50: #f6ece5;
+
+	/* Semantic feedback */
+	--color-success: #4f7a4a;
+	--color-warning: #b07d2b;
+	--color-danger: #b4453a;
+
+	/* Radius scale: small, intentional. Not every box is a capsule. */
+	--radius-control: 0.5rem;
+	--radius-surface: 0.875rem;
+}
 
 @layer base {
 	html {
 		scroll-behavior: smooth;
+		-webkit-text-size-adjust: 100%;
 	}
 
 	body {
-		font-family: "Inter", sans-serif;
-		background-color: #f7f3ed;
-		background-image: radial-gradient(circle at 14% 12%, rgba(251, 146, 60, 0.08), transparent 30%),
-			radial-gradient(circle at 84% 88%, rgba(251, 191, 36, 0.05), transparent 32%);
-		color: #1f2937;
+		font-family: var(--font-sans);
+		background-color: var(--color-canvas);
+		color: var(--color-ink);
 		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 		padding-bottom: 5.5rem;
 	}
 
-	.font-heading {
-		font-family: "Playfair Display", serif;
+	/* Display face is reserved for headings so hierarchy is enforced. */
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: var(--font-display);
+		font-optical-sizing: auto;
 		letter-spacing: -0.015em;
 	}
 
-	a {
+	::selection {
+		background-color: #e7d3c6;
+		color: var(--color-ink);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-clay);
+		outline-offset: 2px;
+	}
+
+	a,
+	button {
 		-webkit-tap-highlight-color: transparent;
 	}
 }
 
+@layer components {
+	/* Consistent page gutter + max width. */
+	.shell {
+		@apply mx-auto w-full max-w-6xl px-6;
+	}
+
+	/* Small uppercase label used to introduce sections. */
+	.eyebrow {
+		@apply text-xs font-semibold tracking-[0.18em] text-clay uppercase;
+	}
+
+	/* Button hierarchy: primary > secondary > ghost > link. */
+	.btn {
+		@apply inline-flex items-center justify-center gap-2 rounded-control px-5 py-2.5 text-sm font-semibold transition-colors duration-200;
+	}
+	.btn-primary {
+		@apply bg-clay text-white hover:bg-clay-600;
+	}
+	.btn-secondary {
+		@apply border border-line text-ink hover:border-ink-3 hover:bg-surface-2;
+	}
+	.btn-on-dark {
+		@apply border border-white/25 text-white hover:bg-white/10;
+	}
+	.btn-lg {
+		@apply px-6 py-3 text-base;
+	}
+	.link-arrow {
+		@apply inline-flex items-center gap-1.5 text-sm font-semibold text-clay transition-colors hover:text-clay-600;
+	}
+	.link-arrow .icon-arrow {
+		@apply transition-transform duration-200;
+	}
+	.link-arrow:hover .icon-arrow {
+		transform: translateX(3px);
+	}
+}
+
 @layer utilities {
-	.section-screen {
-		min-height: 100svh;
-	}
-
-	.aurora-bg {
-		background: linear-gradient(130deg, #101827 0%, #1e1b4b 36%, #9a3412 82%, #111827 100%);
-		background-size: 190% 190%;
-		animation: auroraShift 16s ease-in-out infinite;
-	}
-
 	.hide-scrollbar {
 		scrollbar-width: none;
 	}
@@ -46,16 +127,20 @@
 	}
 
 	.carousel-slide-mobile {
-		transform: scale(0.96);
-		opacity: 0.68;
-		filter: saturate(0.88);
-		transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+		transform: scale(0.98);
+		opacity: 0.72;
+		transition:
+			transform 200ms ease,
+			opacity 200ms ease;
 	}
 
 	.carousel-slide-mobile.is-active {
 		transform: scale(1);
 		opacity: 1;
-		filter: saturate(1);
+	}
+
+	.mobile-safe {
+		padding-bottom: env(safe-area-inset-bottom, 0px);
 	}
 }
 
@@ -66,10 +151,6 @@
 }
 
 @media (max-width: 767px) {
-	.aurora-bg {
-		animation: none;
-	}
-
 	/* Backdrop blur is expensive on low-end mobile GPUs. */
 	[class*="backdrop-blur"] {
 		backdrop-filter: none !important;
@@ -77,23 +158,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.aurora-bg {
-		animation: none;
-	}
-
 	* {
-		transition: none;
-	}
-}
-
-@keyframes auroraShift {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
+		transition: none !important;
+		animation: none !important;
 	}
 }
