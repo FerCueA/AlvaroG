@@ -1,0 +1,29 @@
+---
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+import { NAV_ITEMS, SITE } from "../../lib/site";
+---
+
+<header class="sticky top-0 z-40 hidden border-b border-line bg-paper/85 backdrop-blur lg:block">
+	<div class="shell flex h-16 items-center justify-between">
+		<a href="#inicio" class="flex items-baseline gap-2">
+			<span class="font-display text-xl text-ink">{SITE.name}</span>
+			<span class="font-hanzi text-sm text-cinnabar" aria-hidden="true">
+				中医
+			</span>
+		</a>
+
+		<nav aria-label="Navegación principal">
+			<ul class="flex items-center gap-8 text-sm">
+				{NAV_ITEMS.map((item) => (
+					<li>
+						<a href={item.href} class="text-ink-2 transition-colors hover:text-cinnabar">
+							{item.label}
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+
+		<WhatsAppButton label="Reservar" />
+	</div>
+</header>

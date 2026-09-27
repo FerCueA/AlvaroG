@@ -1,0 +1,58 @@
+---
+import Icon from "../ui/Icon.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+import { PLANS } from "../../data/plans";
+
+const messageFor = (name: string) =>
+	`Hola Álvaro, me interesa el bono de ${name}. ¿Me cuentas la disponibilidad para empezar?`;
+---
+
+<section id="precios" class="border-t border-line">
+	<div class="shell py-16 lg:py-24">
+		<SectionHeading
+			index="02"
+			label="Precios"
+			title="Tarifas claras"
+			description="Sesiones a domicilio. Cuantas más reserves, mejor sale cada sesión."
+		/>
+
+		<ul class="mt-12">
+			{PLANS.map((plan) => (
+				<li class="grid gap-6 border-t border-line py-8 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
+					<div>
+						<div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+							<h3 class="text-2xl text-ink sm:text-3xl">{plan.name}</h3>
+							{plan.popular && (
+								<span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-cinnabar">
+									<span class="h-1.5 w-1.5 rounded-full bg-cinnabar" aria-hidden="true"></span>
+									Recomendado
+								</span>
+							)}
+						</div>
+						<p class="mt-2 max-w-xl text-sm leading-relaxed text-ink-2">{plan.desc}</p>
+						{plan.perks && (
+							<ul class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+								{plan.perks.map((perk) => (
+									<li class="flex items-center gap-2 text-sm text-ink-2">
+										<Icon name="check" class="h-4 w-4 shrink-0 text-cinnabar" />
+										{perk}
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+
+					<div class="flex items-center justify-between gap-6 sm:flex-col sm:items-end sm:gap-3">
+						<span class="font-display text-3xl text-ink sm:text-4xl">{plan.price}</span>
+						<WhatsAppButton
+							message={messageFor(plan.name)}
+							label="Reservar"
+							variant={plan.popular ? "primary" : "secondary"}
+						/>
+					</div>
+				</li>
+			))}
+		</ul>
+	</div>
+</section>

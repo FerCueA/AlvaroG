@@ -1,15 +1,13 @@
 ---
 import "../styles/global.css";
+import { SITE } from "../lib/site";
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const {
-	title = "Terapias Naturales en Las Palmas",
-	description = "Osteopatia, acupuntura y terapias naturales para tu bienestar.",
-} = Astro.props;
+const { title = SITE.meta.title, description = SITE.meta.description } = Astro.props;
 ---
 
 <!doctype html>

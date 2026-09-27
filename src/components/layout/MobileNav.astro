@@ -1,0 +1,20 @@
+---
+import Icon from "../ui/Icon.astro";
+import { NAV_ITEMS } from "../../lib/site";
+---
+
+<nav class="mobile-safe fixed inset-x-3 bottom-3 z-40 rounded-surface border border-line bg-paper/95 shadow-lg shadow-ink/10 backdrop-blur lg:hidden">
+	<ul class="grid grid-cols-4 gap-1 p-1.5">
+		{NAV_ITEMS.map((item) => (
+			<li>
+				<a
+					href={item.href}
+					class="flex min-h-12 flex-col items-center justify-center gap-1 rounded-control px-2 py-1 text-xs font-medium text-ink-2 transition-colors hover:bg-ink/5 hover:text-cinnabar"
+				>
+					<Icon name={item.icon} class="h-5 w-5" />
+					{item.label}
+				</a>
+			</li>
+		))}
+	</ul>
+</nav>

@@ -1,0 +1,60 @@
+---
+import Icon from "../ui/Icon.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { SERVICES } from "../../data/services";
+import { whatsappUrl } from "../../lib/site";
+
+const messageFor = (title: string) =>
+	`Hola Álvaro, me gustaría reservar una sesión de ${title}. ¿Qué horario tienes disponible?`;
+---
+
+<section id="tratamientos">
+	<div class="shell py-16 lg:py-24">
+		<SectionHeading
+			index="01"
+			label="Tratamientos"
+			title="Lo que trabajo"
+			description="Osteopatía, acupuntura y medicina china, combinadas según lo que necesites. Cuál usar se decide en la valoración."
+		/>
+
+		<div class="mt-12">
+			{SERVICES.map((service, index) => (
+				<article class="grid gap-5 border-t border-line py-10 sm:grid-cols-[6.5rem_1fr] sm:gap-10">
+					<div>
+						<span class="font-hanzi text-2xl text-cinnabar" aria-hidden="true">
+							{service.hanzi}
+						</span>
+						<p class="mt-2 text-xs uppercase tracking-[0.22em] text-ink-3">
+							{String(index + 1).padStart(2, "0")}
+						</p>
+					</div>
+
+					<div class="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-10">
+						<div>
+							<h3 class="text-2xl text-ink sm:text-3xl">{service.title}</h3>
+							<p class="mt-3 max-w-md text-base leading-relaxed text-ink-2">
+								{service.description}
+							</p>
+							<a
+								href={whatsappUrl(messageFor(service.title))}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="link-arrow mt-5"
+							>
+								Reservar sesión
+								<Icon name="arrow-right" class="icon-arrow h-4 w-4" />
+							</a>
+						</div>
+						<img
+							src={service.image}
+							alt={service.title}
+							loading="lazy"
+							decoding="async"
+							class="img-ink h-32 w-28 rounded-surface object-cover sm:h-40 sm:w-32"
+						/>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>

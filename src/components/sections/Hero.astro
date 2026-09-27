@@ -1,0 +1,62 @@
+---
+import Icon from "../ui/Icon.astro";
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+import { PHONE_TEL, SITE } from "../../lib/site";
+
+const stats = [
+	{ value: "+1.000", label: "Pacientes" },
+	{ value: "12 años", label: "De experiencia" },
+	{ value: "A domicilio", label: "En Las Palmas" },
+];
+---
+
+<section id="inicio" class="relative overflow-hidden">
+	<span
+		class="pointer-events-none absolute -top-12 right-0 -z-0 select-none font-hanzi text-[13rem] leading-none text-ink/[0.05] sm:text-[20rem]"
+		aria-hidden="true"
+	>
+		中医
+	</span>
+
+	<div class="shell relative grid items-center gap-12 pt-14 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pt-20 lg:pb-24">
+		<div data-gsap="reveal">
+			<p class="eyebrow">{SITE.name}</p>
+			<h1 class="mt-5 text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
+				Cuerpo y energía,
+				<br />
+				en equilibrio
+			</h1>
+			<p class="mt-6 max-w-md text-lg leading-relaxed text-ink-2">
+				{SITE.discipline} a domicilio en {SITE.location}.
+			</p>
+
+			<div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+				<WhatsAppButton size="lg" />
+				<a href={PHONE_TEL} class="link-arrow text-base">
+					<Icon name="phone" class="h-4 w-4" />
+					{SITE.phoneDisplay}
+				</a>
+			</div>
+
+			<dl class="mt-14 flex flex-wrap gap-x-12 gap-y-6 border-t border-line pt-8">
+				{stats.map((stat) => (
+					<div>
+						<dt class="eyebrow">{stat.label}</dt>
+						<dd class="mt-2 font-display text-2xl text-ink sm:text-3xl">{stat.value}</dd>
+					</div>
+				))}
+			</dl>
+		</div>
+
+		<figure class="relative" data-gsap="reveal" data-reveal-delay="80">
+			<img
+				src="/images/acupuntura.jpg"
+				alt="Sesión de acupuntura"
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+				class="img-ink aspect-[4/5] w-full rounded-surface object-cover"
+			/>
+		</figure>
+	</div>
+</section>

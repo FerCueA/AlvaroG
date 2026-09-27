@@ -1,40 +1,39 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Instrument+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap");
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  Design tokens                                                       */
+/*  Design tokens · 「Tinta」 (ink, paper, cinnabar)                    */
 /*  Single source of truth for the visual system. See DESIGN.md.        */
 /* ------------------------------------------------------------------ */
 @theme {
-	--font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-	--font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+	--font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-display: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
+	--font-hanzi: "Noto Serif SC", "Cormorant Garamond", serif;
 
-	/* Neutral, warm surfaces */
-	--color-canvas: #f7f3ec;
-	--color-surface: #ffffff;
-	--color-surface-2: #efe8dd;
+	/* Paper + ink */
+	--color-paper: #f4efe3;
+	--color-paper-2: #eae2d1;
+	--color-ink: #1b1916;
+	--color-ink-2: #554f45;
+	--color-ink-3: #857d6f;
+	--color-line: #d8cfbc;
 
-	/* Ink scale: primary → muted */
-	--color-ink: #221d19;
-	--color-ink-2: #5c5349;
-	--color-ink-3: #6f665c;
+	/* Cinnabar: the single accent (seals, points, actions) */
+	--color-cinnabar: #b23a2e;
+	--color-cinnabar-600: #8f2c22;
+	--color-cinnabar-50: #f3e2dd;
 
-	/* Hairlines */
-	--color-line: #e5ddd1;
-
-	/* Single accent: clay. Used only for primary actions and labels. */
-	--color-clay: #a5522f;
-	--color-clay-600: #893f20;
-	--color-clay-50: #f6ece5;
+	/* Sparingly: jade */
+	--color-jade: #5c7360;
 
 	/* Semantic feedback */
 	--color-success: #4f7a4a;
 	--color-warning: #b07d2b;
 	--color-danger: #b4453a;
 
-	/* Radius scale: small, intentional. Not every box is a capsule. */
-	--radius-control: 0.5rem;
-	--radius-surface: 0.875rem;
+	/* Radius: print-like, small. Squares for seals. */
+	--radius-control: 0.25rem;
+	--radius-surface: 0.5rem;
 }
 
 @layer base {
@@ -45,7 +44,7 @@
 
 	body {
 		font-family: var(--font-sans);
-		background-color: var(--color-canvas);
+		background-color: var(--color-paper);
 		color: var(--color-ink);
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
@@ -53,23 +52,23 @@
 		padding-bottom: 5.5rem;
 	}
 
-	/* Display face is reserved for headings so hierarchy is enforced. */
+	/* Display face for headings; light, calligraphic, lots of air. */
 	h1,
 	h2,
 	h3,
 	h4 {
 		font-family: var(--font-display);
-		font-optical-sizing: auto;
-		letter-spacing: -0.015em;
+		font-weight: 500;
+		letter-spacing: -0.01em;
 	}
 
 	::selection {
-		background-color: #e7d3c6;
+		background-color: #e6c9c3;
 		color: var(--color-ink);
 	}
 
 	:focus-visible {
-		outline: 2px solid var(--color-clay);
+		outline: 2px solid var(--color-cinnabar);
 		outline-offset: 2px;
 	}
 
@@ -80,34 +79,40 @@
 }
 
 @layer components {
-	/* Consistent page gutter + max width. */
+	/* Consistent page gutter. Narrower than before: scroll-like reading. */
 	.shell {
-		@apply mx-auto w-full max-w-6xl px-6;
+		@apply mx-auto w-full max-w-5xl px-6;
 	}
 
-	/* Small uppercase label used to introduce sections. */
+	/* Small uppercase label, quiet. */
 	.eyebrow {
-		@apply text-xs font-semibold tracking-[0.18em] text-clay uppercase;
+		@apply text-xs font-medium tracking-[0.22em] text-ink-3 uppercase;
 	}
 
-	/* Button hierarchy: primary > secondary > ghost > link. */
+	/* Cinnabar seal (印章). */
+	.seal {
+		@apply inline-flex h-9 w-9 items-center justify-center rounded-[0.15rem] bg-cinnabar font-hanzi text-lg leading-none text-paper;
+	}
+
+	/* Button hierarchy. */
 	.btn {
-		@apply inline-flex items-center justify-center gap-2 rounded-control px-5 py-2.5 text-sm font-semibold transition-colors duration-200;
+		@apply inline-flex items-center justify-center gap-2 rounded-control px-5 py-2.5 text-sm font-medium transition-colors duration-200;
 	}
 	.btn-primary {
-		@apply bg-clay text-white hover:bg-clay-600;
+		@apply bg-cinnabar text-paper hover:bg-cinnabar-600;
 	}
 	.btn-secondary {
-		@apply border border-line text-ink hover:border-ink-3 hover:bg-surface-2;
+		@apply border border-ink/20 text-ink hover:border-ink/45 hover:bg-ink/5;
 	}
 	.btn-on-dark {
-		@apply border border-white/25 text-white hover:bg-white/10;
+		@apply border border-paper/25 text-paper hover:bg-paper/10;
 	}
 	.btn-lg {
 		@apply px-6 py-3 text-base;
 	}
+
 	.link-arrow {
-		@apply inline-flex items-center gap-1.5 text-sm font-semibold text-clay transition-colors hover:text-clay-600;
+		@apply inline-flex items-center gap-1.5 text-sm font-medium text-cinnabar transition-colors hover:text-cinnabar-600;
 	}
 	.link-arrow .icon-arrow {
 		@apply transition-transform duration-200;
@@ -115,30 +120,18 @@
 	.link-arrow:hover .icon-arrow {
 		transform: translateX(3px);
 	}
+
+	/* Unifies mixed stock photos into one ink/sepia look. */
+	.img-ink {
+		filter: grayscale(1) sepia(0.24) contrast(1.04);
+		transition: filter 500ms ease;
+	}
+	.img-ink:hover {
+		filter: grayscale(0.15) sepia(0.05) contrast(1.02);
+	}
 }
 
 @layer utilities {
-	.hide-scrollbar {
-		scrollbar-width: none;
-	}
-
-	.hide-scrollbar::-webkit-scrollbar {
-		display: none;
-	}
-
-	.carousel-slide-mobile {
-		transform: scale(0.98);
-		opacity: 0.72;
-		transition:
-			transform 200ms ease,
-			opacity 200ms ease;
-	}
-
-	.carousel-slide-mobile.is-active {
-		transform: scale(1);
-		opacity: 1;
-	}
-
 	.mobile-safe {
 		padding-bottom: env(safe-area-inset-bottom, 0px);
 	}
@@ -161,5 +154,8 @@
 	* {
 		transition: none !important;
 		animation: none !important;
+	}
+	.img-ink {
+		filter: grayscale(1) sepia(0.24) contrast(1.04) !important;
 	}
 }

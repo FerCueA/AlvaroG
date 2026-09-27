@@ -1,0 +1,83 @@
+---
+import Icon from "../ui/Icon.astro";
+import { PHONE_TEL, SITE, whatsappUrl } from "../../lib/site";
+
+const socials = [
+	{ name: "Instagram", href: SITE.socials.instagram, icon: "instagram" },
+	{ name: "TikTok", href: SITE.socials.tiktok, icon: "tiktok" },
+];
+---
+
+<footer id="contacto" class="border-t border-line">
+	<div class="shell grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
+		<div>
+			<p class="font-display text-2xl text-ink">{SITE.name}</p>
+			<p class="mt-1 font-hanzi text-sm text-cinnabar" aria-hidden="true">
+				中医
+			</p>
+			<p class="mt-5 max-w-xs text-sm leading-relaxed text-ink-3">
+				{SITE.discipline}. Terapias a domicilio en {SITE.location}.
+			</p>
+		</div>
+
+		<div>
+			<h3 class="eyebrow">Contacto</h3>
+			<ul class="mt-5 space-y-3 text-sm text-ink-2">
+				<li class="flex items-start gap-3">
+					<Icon name="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-cinnabar" />
+					<span>{SITE.location}</span>
+				</li>
+				<li>
+					<a href={PHONE_TEL} class="flex items-center gap-3 transition-colors hover:text-cinnabar">
+						<Icon name="phone" class="h-4 w-4 shrink-0 text-cinnabar" />
+						<span class="font-medium">{SITE.phoneDisplay}</span>
+					</a>
+				</li>
+				<li>
+					<a
+						href={whatsappUrl()}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center gap-3 transition-colors hover:text-cinnabar"
+					>
+						<Icon name="whatsapp" class="h-4 w-4 shrink-0 text-cinnabar" />
+						<span>WhatsApp</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<h3 class="eyebrow">Sígueme</h3>
+			<ul class="mt-5 space-y-3 text-sm text-ink-2">
+				{socials.map((social) => (
+					<li>
+						<a
+							href={social.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="flex items-center gap-3 transition-colors hover:text-cinnabar"
+						>
+							<Icon name={social.icon} class="h-4 w-4 shrink-0 text-cinnabar" />
+							<span>{social.name}</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</div>
+
+	<div class="border-t border-line">
+		<div class="shell flex flex-col gap-3 py-6 text-xs text-ink-3 sm:flex-row sm:items-center sm:justify-between">
+			<p>© 2026 {SITE.name}. Todos los derechos reservados.</p>
+			<a
+				href={SITE.author.url}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="transition-colors hover:text-cinnabar"
+			>
+				Diseño web por {SITE.author.name}
+			</a>
+		</div>
+	</div>
+</footer>

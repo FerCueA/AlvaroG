@@ -1,23 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
-import Services from "../components/Services.astro";
-import Pricing from "../components/Pricing.astro";
-import Cta from "../components/Cta.astro";
-import Footer from "../components/Footer.astro";
-import MobileNav from "../components/MobileNav.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import MobileNav from "../components/layout/MobileNav.astro";
+import Hero from "../components/sections/Hero.astro";
+import Manifesto from "../components/sections/Manifesto.astro";
+import Treatments from "../components/sections/Treatments.astro";
+import Pricing from "../components/sections/Pricing.astro";
+import Cta from "../components/sections/Cta.astro";
 ---
 
-<Layout
-	title="Terapias Naturales en Las Palmas"
-	description="Landing de osteopatia, acupuntura y terapias naturales en Las Palmas de Gran Canaria."
->
+<Layout>
 	<Header />
 
 	<main>
 		<Hero />
-		<Services />
+		<Manifesto />
+		<Treatments />
 		<Pricing />
 		<Cta />
 		<Footer />

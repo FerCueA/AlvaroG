@@ -1,0 +1,38 @@
+---
+import Icon from "../ui/Icon.astro";
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+import { PHONE_TEL, SITE } from "../../lib/site";
+---
+
+<section id="reservar" class="bg-ink text-paper">
+	<div class="shell grid gap-10 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16 lg:py-28">
+		<div data-gsap="reveal">
+			<span class="seal" aria-hidden="true">
+				医
+			</span>
+			<h2 class="mt-6 max-w-lg text-4xl leading-[1.05] sm:text-5xl">
+				Empieza por contarme qué te pasa
+			</h2>
+		</div>
+
+		<div data-gsap="reveal" data-reveal-delay="60">
+			<p class="max-w-md text-base leading-relaxed text-paper/70">
+				Reserva en segundos por WhatsApp y te respondo con disponibilidad y precio, sin compromiso.
+			</p>
+
+			<div class="mt-8 flex flex-wrap items-center gap-4">
+				<WhatsAppButton size="lg" />
+				<a href={PHONE_TEL} class="btn btn-on-dark">
+					<Icon name="phone" class="h-4 w-4" />
+					{SITE.phoneDisplay}
+				</a>
+			</div>
+
+			<ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-paper/60">
+				<li>{SITE.availability.response}</li>
+				<li>{SITE.availability.coverage}</li>
+				{SITE.availability.hours && <li>{SITE.availability.hours}</li>}
+			</ul>
+		</div>
+	</div>
+</section>

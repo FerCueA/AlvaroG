@@ -1,0 +1,42 @@
+---
+import Icon from "./Icon.astro";
+import { whatsappUrl } from "../../lib/site";
+
+/**
+ * WhatsApp call-to-action. Centralises the link, target and icon so every CTA
+ * on the page stays consistent.
+ */
+interface Props {
+	message?: string;
+	label?: string;
+	variant?: "primary" | "secondary" | "on-dark";
+	size?: "sm" | "lg";
+	class?: string;
+}
+
+const {
+	message,
+	label = "Reservar por WhatsApp",
+	variant = "primary",
+	size = "sm",
+	class: className = "",
+} = Astro.props;
+
+const variants = {
+	primary: "btn-primary",
+	secondary: "btn-secondary",
+	"on-dark": "btn-on-dark",
+} as const;
+
+const iconSize = size === "lg" ? "h-5 w-5" : "h-4 w-4";
+---
+
+<a
+	href={whatsappUrl(message)}
+	target="_blank"
+	rel="noopener noreferrer"
+	class:list={["btn", variants[variant], size === "lg" && "btn-lg", className]}
+>
+	<Icon name="whatsapp" class={iconSize} />
+	{label}
+</a>
