@@ -25,7 +25,7 @@ export const SITE = {
 		url: "https://aleixofdezcuevas.es/",
 	},
 	meta: {
-		title: "Terapias Naturales en Las Palmas",
+		title: "Terapias naturales en Las Palmas",
 		description:
 			"Osteopatía, acupuntura y terapias naturales a domicilio en Las Palmas de Gran Canaria.",
 	},

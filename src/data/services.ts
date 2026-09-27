@@ -27,7 +27,7 @@ export const SERVICES: Service[] = [
 		description: "Terapia de calor tradicional para aliviar dolencias",
 	},
 	{
-		title: "Vendaje Neuromuscular",
+		title: "Vendaje neuromuscular",
 		hanzi: "贴扎",
 		image: "/images/vendaje.jpg",
 		description: "Soporte muscular sin limitar el movimiento",

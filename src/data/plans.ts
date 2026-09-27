@@ -10,19 +10,19 @@ export interface Plan {
 export const PLANS: Plan[] = [
 	{
 		name: "Sesión individual",
-		price: "40€",
+		price: "40 €",
 		popular: false,
 		desc: "Una sesión completa para empezar tu recuperación.",
 	},
 	{
 		name: "Bono 2 sesiones",
-		price: "70€",
+		price: "70 €",
 		popular: false,
 		desc: "Ideal para trabajar un problema concreto en profundidad.",
 	},
 	{
 		name: "Bono 3 sesiones",
-		price: "105€",
+		price: "105 €",
 		popular: true,
 		desc: "El plan más elegido. Permite un abordaje completo y una recuperación real, con seguimiento entre sesiones.",
 		perks: [
@@ -30,12 +30,12 @@ export const PLANS: Plan[] = [
 			"Evaluación inicial incluida",
 			"Seguimiento entre sesiones",
 			"A domicilio en Las Palmas",
-			"Ahorra 15€ respecto a sesiones sueltas",
+			"Ahorra 15 € respecto a sesiones sueltas",
 		],
 	},
 	{
 		name: "Bono 5 sesiones",
-		price: "175€",
+		price: "175 €",
 		popular: false,
 		desc: "Para un tratamiento continuado y resultados duraderos.",
 	},
