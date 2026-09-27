@@ -3,9 +3,7 @@ import Icon from "../ui/Icon.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 import { PLANS } from "../../data/plans";
-
-const messageFor = (name: string) =>
-	`Hola Álvaro, me interesa el bono de ${name}. ¿Me cuentas la disponibilidad para empezar?`;
+import { WHATSAPP_MESSAGES } from "../../lib/whatsapp";
 ---
 
 <section id="precios" class="border-t border-line">
@@ -46,7 +44,7 @@ const messageFor = (name: string) =>
 					<div class="flex items-center justify-between gap-6 sm:flex-col sm:items-end sm:gap-3">
 						<span class="font-display text-3xl text-ink sm:text-4xl">{plan.price}</span>
 						<WhatsAppButton
-							message={messageFor(plan.name)}
+							message={WHATSAPP_MESSAGES.plan(plan.name)}
 							label="Reservar"
 							variant={plan.popular ? "primary" : "secondary"}
 						/>

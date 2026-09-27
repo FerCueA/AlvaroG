@@ -6,10 +6,12 @@ y terapia manual a domicilio en Las Palmas de Gran Canaria).
 Referencia obligatoria para cualquier cambio de UI. Si una modificación
 contradice este documento, la modificación está mal.
 
-- Stack: **Astro 6** + **Tailwind CSS 4** (`@tailwindcss/vite`) + GSAP.
+- Stack: **Astro 6** + **Tailwind CSS 4** (`@tailwindcss/vite`) + GSAP/Lenis.
+- Arquitectura: ver `ARCHITECTURE.md`.
 - Tokens: `src/styles/global.css` (`@theme` + `@layer components`).
-- Contenido/config: `src/lib/site.ts`, `src/data/*.ts`.
+- Contenido: `src/data/*.ts`. Config: `src/lib/site.ts`. WhatsApp: `src/lib/whatsapp.ts`.
 - Componentes base: `src/components/ui/*`.
+- Comportamiento de cliente: `src/scripts/motion.ts`.
 
 ---
 
@@ -45,7 +47,6 @@ utilidades (`bg-paper`, `text-ink`, `text-cinnabar`…), nunca hex sueltos.
 | `line`         | `#d8cfbc` | hairlines y bordes (1px)     | `border-line`, `bg-line`       |
 | `cinnabar`     | `#b23a2e` | **primary** (cinabrio 朱砂)  | `bg-cinnabar`, `text-cinnabar` |
 | `cinnabar-600` | `#8f2c22` | primary hover                | `hover:bg-cinnabar-600`        |
-| `cinnabar-50`  | `#f3e2dd` | tinte muy puntual            | —                              |
 | `jade`         | `#5c7360` | secundario decorativo        | `text-jade/15` (水印)          |
 | `success`      | `#4f7a4a` | estados correctos            | `text-success`                 |
 | `warning`      | `#b07d2b` | avisos                       | `text-warning`                 |
@@ -306,7 +307,8 @@ sin cards con sombra.
 - **Watermark hanzi del hero**: entrada `ink-in` (`1200ms`, fade + `translateY`)
   al cargar la página.
 - Reveal de scroll: GSAP `fromTo` (opacity + `y:48`) con ScrollTrigger;
-  desactivado en móvil y con `prefers-reduced-motion`.
+  desactivado en móvil y con `prefers-reduced-motion`. Implementado en
+  `src/scripts/motion.ts` (`initScrollMotion`, `initMeridianReveal`).
 - Evitar: animaciones infinitas, gradientes animados, movimientos grandes.
 
 ---
@@ -323,6 +325,7 @@ sin cards con sombra.
 | Imagen tinta      | `.img-ink`                                  |
 | Sello             | `.seal`                                     |
 | Datos de contacto | `SITE` en `src/lib/site.ts`                 |
+| Mensajes y URL WA | `src/lib/whatsapp.ts`                       |
 | Contenido         | `src/data/services.ts`, `src/data/plans.ts` |
 | Testimonios       | `src/data/testimonials.ts` (opcional)       |
 
@@ -355,6 +358,37 @@ extenderlo; no duplicarlo.
 - No introducir colores fuera de los tokens (nada de verdes/azules "clínicos").
 - No duplicar datos (teléfono, WhatsApp, navegación) en componentes.
 - No usar hanzi decorativos aleatorios: solo los aprobados.
+
+---
+
+## Avoiding generic AI UI
+
+Reglas explícitas para no recaer en el "look de plantilla". Cualquier PR que las
+incumpla debe rechazarse.
+
+- **Do not wrap every section in a card.** Las secciones se separan con espacio y
+  el marcador de meridiano, no con cajas.
+- **Do not create cards inside cards.**
+- **Do not use large rounded rectangles as the default layout primitive.** Radios
+  pequeños (`rounded-control`, `rounded-surface`); `rounded-full` solo para el
+  punto del meridiano.
+- **Do not add decorative gradients** (aurora, radiales, `from-… to-…`) ni fondos
+  de color por bloque.
+- **Do not use badges or pills for ordinary text.** Un badge solo si aporta estado.
+- **Do not add icons to every heading**, and never inside colored squares.
+- **Do not use shadows to separate normal page sections.** La única sombra es la
+  nav inferior móvil.
+- **Do not give every component a border.** El borde es una hairline `line` de 1px
+  para filas y divisores.
+- **Do not use `font-semibold` on everything.** La jerarquía la dan tamaño,
+  familia (serif/sans) y color.
+- **Prefer whitespace, typography and alignment over containers.**
+- **Prefer lists, rows and tables over grids of cards** for structured data.
+- **Use the accent (cinabrio) sparingly**: punto, número de sección, enlace,
+  sello y botón primario. Nada más.
+- **Avoid decorative pills and chips**; el texto plano es suficiente.
+- **Avoid emoji as icons**; usar `ui/Icon.astro`.
+- **Preserve a strong visual hierarchy** and generous white space.
 
 ---
 

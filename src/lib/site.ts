@@ -16,8 +16,6 @@ export const SITE = {
 	phone: "+34634810054",
 	phoneDisplay: "634 810 054",
 	whatsappNumber: "34634810054",
-	defaultWhatsappMessage:
-		"Hola Álvaro, me gustaría reservar una sesión. ¿Tienes disponibilidad esta semana?",
 	socials: {
 		instagram: "https://www.instagram.com/alvaro_garcia_osteopata/",
 		tiktok: "https://www.tiktok.com/@osteopata.lvaro",
@@ -41,11 +39,6 @@ export const SITE = {
 
 /** `tel:` link for the contact number. */
 export const PHONE_TEL = `tel:${SITE.phone}`;
-
-/** Builds a WhatsApp deep link with a pre-filled, URL-encoded message. */
-export function whatsappUrl(message: string = SITE.defaultWhatsappMessage): string {
-	return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
-}
 
 /** Primary navigation, shared by the desktop header and the mobile nav. */
 export const NAV_ITEMS: NavItem[] = [

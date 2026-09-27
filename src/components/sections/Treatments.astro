@@ -2,10 +2,7 @@
 import Icon from "../ui/Icon.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import { SERVICES } from "../../data/services";
-import { whatsappUrl } from "../../lib/site";
-
-const messageFor = (title: string) =>
-	`Hola Álvaro, me gustaría reservar una sesión de ${title}. ¿Qué horario tienes disponible?`;
+import { WHATSAPP_MESSAGES, whatsappUrl } from "../../lib/whatsapp";
 ---
 
 <section id="tratamientos">
@@ -36,7 +33,7 @@ const messageFor = (title: string) =>
 								{service.description}
 							</p>
 							<a
-								href={whatsappUrl(messageFor(service.title))}
+								href={whatsappUrl(WHATSAPP_MESSAGES.treatment(service.title))}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="link-arrow mt-5"

@@ -94,8 +94,11 @@ src/
     services.ts       # Tratamientos (con hanzi)
     plans.ts          # Precios
     testimonials.ts   # Casos (opcional; vacío = sección oculta)
-  lib/
-    site.ts           # Config del sitio, contacto y navegación
+  lib/                # Config y dominio
+    site.ts           # Identidad, contacto, navegación y metadatos
+    whatsapp.ts       # Mensajes y whatsappUrl()
+  scripts/
+    motion.ts         # Smooth scroll, reveals y marcador de meridiano
   layouts/
     Layout.astro
   pages/
@@ -129,6 +132,7 @@ Proyecto estático apto para **Netlify**, **Vercel**, **GitHub Pages** o hosting
 
 ## 📚 Documentación adicional
 
+- [`ARCHITECTURE.md`](./ARCHITECTURE.md) — cómo está construido el proyecto.
 - [`DESIGN.md`](./DESIGN.md) — sistema de diseño (referencia obligatoria para UI).
 - [`AGENTS.md`](./AGENTS.md) — reglas para agentes de IA.
 
