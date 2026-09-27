@@ -12,7 +12,7 @@ const stats = [
 
 <section id="inicio" class="relative overflow-hidden">
 	<span
-		class="pointer-events-none absolute -top-12 right-0 -z-0 select-none font-hanzi text-[13rem] leading-none text-ink/[0.05] sm:text-[20rem]"
+		class="hanzi-watermark pointer-events-none absolute -top-8 right-0 select-none font-hanzi text-[14rem] leading-[0.8] text-ink/[0.07] sm:-top-10 sm:text-[22rem]"
 		aria-hidden="true"
 	>
 		中医
@@ -60,3 +60,20 @@ const stats = [
 		</figure>
 	</div>
 </section>
+
+<style>
+	.hanzi-watermark {
+		animation: ink-in 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) 150ms both;
+	}
+
+	@keyframes ink-in {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

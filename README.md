@@ -85,7 +85,7 @@ npm run preview   # servir localmente la build generada
 src/
   components/
     layout/           # Header, Footer, MobileNav
-    sections/         # Hero, Manifesto, Treatments, Pricing, Cta
+    sections/         # Hero, Manifesto, Treatments, Pricing, Testimonials, Cta
     ui/               # Componentes base reutilizables
       Icon.astro
       SectionHeading.astro
@@ -93,10 +93,9 @@ src/
   data/               # Contenido
     services.ts       # Tratamientos (con hanzi)
     plans.ts          # Precios
+    testimonials.ts   # Casos (opcional; vacío = sección oculta)
   lib/
     site.ts           # Config del sitio, contacto y navegación
-  scripts/
-    carousel.ts       # Lógica de carrusel reutilizable
   layouts/
     Layout.astro
   pages/

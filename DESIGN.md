@@ -217,6 +217,16 @@ tabla con cabecera.
 - Resto de filas: botón secundario.
 - Responsive: en móvil la cifra y el botón pasan a una fila inferior.
 
+### Testimonials (Casos)
+
+Opcional y data-driven (`sections/Testimonials.astro` + `data/testimonials.ts`).
+Mientras `TESTIMONIALS` esté vacío, la sección **no se renderiza**.
+
+- Estructura: marcador de meridiano (`index="03"`) + lista de citas.
+- Cada cita: display serif (`text-xl`/`2xl`), entre comillas angulares; autor y
+  contexto en `text-sm text-ink-3`. Separadas por `border-t border-line`, sin cards.
+- **Nunca inventar testimonios**: solo frases reales de pacientes.
+
 ### Navigation
 
 - **Navbar**: `layout/Header.astro`, `sticky`, `h-16`, `bg-paper/85` +
@@ -293,6 +303,8 @@ sin cards con sombra.
 - Duración: `200ms`; `img-ink` usa `500ms` (revela el color al pasar el ratón).
 - **Marcador de meridiano**: `650ms` con `cubic-bezier(0.2, 0.7, 0.2, 1)`; el
   punto, `500ms`. Se dispara una sola vez por sección al entrar en pantalla.
+- **Watermark hanzi del hero**: entrada `ink-in` (`1200ms`, fade + `translateY`)
+  al cargar la página.
 - Reveal de scroll: GSAP `fromTo` (opacity + `y:48`) con ScrollTrigger;
   desactivado en móvil y con `prefers-reduced-motion`.
 - Evitar: animaciones infinitas, gradientes animados, movimientos grandes.
@@ -312,6 +324,7 @@ sin cards con sombra.
 | Sello             | `.seal`                                     |
 | Datos de contacto | `SITE` en `src/lib/site.ts`                 |
 | Contenido         | `src/data/services.ts`, `src/data/plans.ts` |
+| Testimonios       | `src/data/testimonials.ts` (opcional)       |
 
 Regla: si un componente existente resuelve el problema, reutilizarlo o
 extenderlo; no duplicarlo.
